@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Basics Trainer - Super Version</title>
+    <title>English Basics Trainer v2.0 | Escuela Normal Superior Oiba</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -13,12 +13,14 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
+                        enso: {
                             blue: '#00296B',
+                            darkblue: '#001D4A',
                             red: '#C1121F',
-                            accent: '#3A86EF',
-                            yellow: '#FFB703',
-                            green: '#38B000'
+                            lightred: '#780000',
+                            gold: '#FFB703',
+                            sky: '#3A86EF',
+                            accent: '#2A9D8F'
                         }
                     },
                     fontFamily: {
@@ -32,7 +34,7 @@
     <!-- Google Fonts & FontAwesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -42,23 +44,14 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(226, 232, 240, 0.9);
         }
 
         .dark .glass-card {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .pulse-subtle {
-            animation: pulse-border 2s infinite;
-        }
-
-        @keyframes pulse-border {
-            0%, 100% { border-color: rgba(58, 134, 239, 0.4); }
-            50% { border-color: rgba(58, 134, 239, 0.9); }
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .btn-bounce {
@@ -69,7 +62,7 @@
             transform: scale(0.96);
         }
 
-        /* Custom scrollbar */
+        /* Custom smooth scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -83,391 +76,234 @@
         .dark ::-webkit-scrollbar-thumb {
             background: #475569;
         }
+
+        .card-pulse {
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 15px rgba(0, 41, 107, 0.2); }
+            100% { box-shadow: 0 0 25px rgba(193, 18, 31, 0.4); }
+        }
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-300">
 
-    <!-- TOP NAVIGATION & STATS HEADER -->
-    <header class="bg-brand-blue text-white shadow-lg sticky top-0 z-50 border-b-4 border-brand-red">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- HEADER NAVBAR -->
+    <header class="bg-enso-blue text-white shadow-xl sticky top-0 z-50 border-b-4 border-enso-red">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2">
             
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="showDashboard()">
-                <div class="w-10 h-10 rounded-xl bg-brand-red flex items-center justify-center font-black text-xl text-white shadow-md transform -rotate-3 hover:rotate-0 transition-transform">
-                    🇬🇧
-                </div>
+            <!-- Return to Main Portal Button -->
+            <div class="flex items-center space-x-3">
+                <a href="../index.html" class="bg-enso-red hover:bg-red-700 text-white font-extrabold text-xs px-3.5 py-2.5 rounded-xl btn-bounce shadow-md flex items-center space-x-2 border border-red-400/30" title="Volver al Portal Educativo Principal">
+                    <i class="fas fa-arrow-left text-sm"></i>
+                    <span class="hidden sm:inline">Volver al Portal</span>
+                    <span class="sm:hidden">Inicio</span>
+                </a>
+
+                <div class="h-6 w-px bg-blue-700/60 hidden sm:block"></div>
+
+                <!-- Brand Title -->
                 <div>
-                    <h1 class="text-xl font-extrabold tracking-tight leading-none">English Basics</h1>
-                    <span class="text-xs text-blue-200 font-semibold tracking-wider uppercase">Mastery Trainer v2.0</span>
+                    <h1 class="text-sm sm:text-base font-black tracking-tight leading-none uppercase text-white flex items-center gap-1.5">
+                        <span>🇬🇧 English Basics Trainer</span>
+                        <span class="bg-amber-400 text-enso-darkblue text-[10px] font-black px-1.5 py-0.5 rounded">v2.0</span>
+                    </h1>
+                    <p class="text-[11px] text-blue-200 font-semibold tracking-wide">
+                        Escuela Normal Superior Oiba • Prof. Santiago Medina
+                    </p>
                 </div>
             </div>
 
-            <!-- Stats Bar -->
-            <div class="flex items-center space-x-3 sm:space-x-6 text-sm font-bold">
-                <!-- Streak -->
-                <div class="flex items-center space-x-1.5 bg-blue-900/60 px-3 py-1.5 rounded-full border border-blue-700/50" title="Racha de días activos">
-                    <span class="text-amber-400 text-base">🔥</span>
-                    <span id="stat-streak">1</span>
-                </div>
+            <!-- Quick Access Links & Toggles -->
+            <div class="flex items-center space-x-2">
+                
+                <!-- Official Repository Button -->
+                <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="bg-enso-gold/20 hover:bg-enso-gold/30 text-amber-300 font-bold text-xs px-3 py-2 rounded-xl border border-amber-400/30 transition btn-bounce flex items-center space-x-1.5" title="Ir al Repositorio Oficial ensopfcmedios.com">
+                    <i class="fas fa-database text-xs"></i>
+                    <span class="hidden md:inline">www.ensopfcmedios.com</span>
+                    <i class="fas fa-external-link-alt text-[10px]"></i>
+                </a>
 
-                <!-- XP -->
-                <div class="flex items-center space-x-1.5 bg-blue-900/60 px-3 py-1.5 rounded-full border border-blue-700/50" title="Puntos de Experiencia">
-                    <span class="text-yellow-400 text-base">⭐</span>
-                    <span id="stat-xp">0</span> <span class="text-xs text-blue-300 hidden sm:inline">XP</span>
-                </div>
-
-                <!-- Audio Toggle -->
-                <button id="btn-sound-toggle" onclick="toggleSound()" class="w-9 h-9 rounded-full bg-blue-800/80 hover:bg-blue-700 flex items-center justify-center transition" title="Activar/Desactivar Sonido">
-                    <i id="icon-sound" class="fas fa-volume-up text-white"></i>
+                <!-- Sound FX Toggle -->
+                <button id="btn-sound-toggle" onclick="toggleSound()" class="w-9 h-9 rounded-xl bg-blue-900/60 hover:bg-blue-800 border border-blue-700/50 flex items-center justify-center transition" title="Activar/Desactivar Sonido">
+                    <i id="icon-sound" class="fas fa-volume-up text-amber-300 text-sm"></i>
                 </button>
 
                 <!-- Dark Mode Toggle -->
-                <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-full bg-blue-800/80 hover:bg-blue-700 flex items-center justify-center transition" title="Cambiar Tema">
-                    <i id="icon-theme" class="fas fa-moon text-amber-300"></i>
+                <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-blue-900/60 hover:bg-blue-800 border border-blue-700/50 flex items-center justify-center transition" title="Tema Oscuro/Claro">
+                    <i id="icon-theme" class="fas fa-moon text-amber-300 text-sm"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow max-w-5xl w-full mx-auto p-4 sm:p-6">
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 sm:p-6 space-y-6">
 
-        <!-- DASHBOARD VIEW -->
-        <section id="view-dashboard" class="space-y-6">
-            <!-- Welcome Hero Banner -->
-            <div class="bg-gradient-to-r from-blue-900 via-brand-blue to-indigo-900 rounded-2xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
-                <div class="absolute -right-6 -bottom-6 opacity-10 text-9xl font-black">EN</div>
-                <div class="relative z-10 max-w-xl">
-                    <span class="inline-block bg-brand-red text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
-                        ¡Aprende Jugando!
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">¡Domina las bases del Inglés hoy!</h2>
-                    <p class="text-blue-100 text-sm sm:text-base mb-4">
-                        Aprende saludos, el abecedario, deletreo y conversaciones con audio nativo en tiempo real y pruebas interactivas.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <button onclick="startMode('exam')" class="bg-brand-red hover:bg-red-700 text-white font-bold px-5 py-2.5 rounded-xl shadow-lg hover:shadow-xl btn-bounce flex items-center space-x-2">
-                            <i class="fas fa-trophy text-yellow-300"></i>
-                            <span>Iniciar Examen Final</span>
-                        </button>
-                        <button onclick="startMode('flashcards')" class="bg-white/10 hover:bg-white/20 text-white font-bold px-5 py-2.5 rounded-xl border border-white/20 btn-bounce flex items-center space-x-2">
-                            <i class="fas fa-layer-group text-blue-300"></i>
-                            <span>Modo Tarjetas Repaso</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Categories Grid -->
-            <div>
-                <h3 class="text-lg font-bold mb-4 flex items-center space-x-2">
-                    <i class="fas fa-compass text-brand-accent"></i>
-                    <span>Módulos de Práctica</span>
-                </h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    
-                    <!-- Card 1: Greetings -->
-                    <div onclick="startMode('greetings')" class="glass-card rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition cursor-pointer group hover:border-brand-accent">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-brand-accent flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
-                                👋
-                            </div>
-                            <span class="text-xs font-extrabold bg-blue-50 dark:bg-slate-800 text-brand-accent px-2.5 py-1 rounded-md">
-                                3 Preguntas
-                            </span>
-                        </div>
-                        <h4 class="font-bold text-lg mb-1 group-hover:text-brand-accent transition-colors">Greetings & Goodbyes</h4>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Aprende los saludos formales e informales indispensables en el día a día.</p>
-                        <div class="flex items-center text-xs font-bold text-brand-accent">
-                            <span>Practicar ahora</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Alphabet -->
-                    <div onclick="startMode('alphabet')" class="glass-card rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition cursor-pointer group hover:border-brand-accent">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-500 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
-                                🔤
-                            </div>
-                            <span class="text-xs font-extrabold bg-purple-50 dark:bg-slate-800 text-purple-500 px-2.5 py-1 rounded-md">
-                                3 Preguntas
-                            </span>
-                        </div>
-                        <h4 class="font-bold text-lg mb-1 group-hover:text-purple-500 transition-colors">Alphabet & Sounds</h4>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Domina la pronunciación de las letras en inglés y sus fonemas clave.</p>
-                        <div class="flex items-center text-xs font-bold text-purple-500">
-                            <span>Practicar ahora</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                        </div>
-                    </div>
-
-                    <!-- Card 3: Spelling -->
-                    <div onclick="startMode('spelling')" class="glass-card rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition cursor-pointer group hover:border-brand-accent">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-500 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
-                                ✍️
-                            </div>
-                            <span class="text-xs font-extrabold bg-emerald-50 dark:bg-slate-800 text-emerald-500 px-2.5 py-1 rounded-md">
-                                3 Preguntas
-                            </span>
-                        </div>
-                        <h4 class="font-bold text-lg mb-1 group-hover:text-emerald-500 transition-colors">Spelling Practice</h4>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Entrena tu habilidad para deletrear nombres y palabras correctamente.</p>
-                        <div class="flex items-center text-xs font-bold text-emerald-500">
-                            <span>Practicar ahora</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                        </div>
-                    </div>
-
-                    <!-- Card 4: Dialogues -->
-                    <div onclick="startMode('dialogues')" class="glass-card rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition cursor-pointer group hover:border-brand-accent">
-                        <div class="flex items-start justify-between mb-3">
-                            <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-500 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
-                                💬
-                            </div>
-                            <span class="text-xs font-extrabold bg-amber-50 dark:bg-slate-800 text-amber-500 px-2.5 py-1 rounded-md">
-                                5 Preguntas
-                            </span>
-                        </div>
-                        <h4 class="font-bold text-lg mb-1 group-hover:text-amber-500 transition-colors">Mini Conversations</h4>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Aprende a responder diálogos cotidianos y presentaciones interactivas.</p>
-                        <div class="flex items-center text-xs font-bold text-amber-500">
-                            <span>Practicar ahora</span>
-                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Exam Card Banner -->
-            <div class="glass-card rounded-2xl p-6 border-2 border-brand-red/30 bg-gradient-to-r from-red-50 to-orange-50 dark:from-slate-800 dark:to-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center space-x-4">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-red text-white flex items-center justify-center text-2xl font-black shadow-md flex-shrink-0">
-                        🏆
-                    </div>
-                    <div>
-                        <h4 class="font-extrabold text-lg text-slate-900 dark:text-white">Modo Examen Final</h4>
-                        <p class="text-xs text-slate-600 dark:text-slate-300">15 preguntas integrales con temporizador, puntuación y certificado descargable.</p>
-                    </div>
-                </div>
-                <button onclick="startMode('exam')" class="w-full md:w-auto bg-brand-red hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl shadow-md btn-bounce whitespace-nowrap">
-                    Comenzar Examen
-                </button>
-            </div>
-        </section>
-
-        <!-- EXERCISE / QUIZ VIEW -->
-        <section id="view-quiz" class="hidden space-y-6">
+        <!-- GAMIFICATION STATS BANNER -->
+        <section class="glass-card rounded-2xl p-4 border border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-md">
             
-            <!-- Quiz Top Bar -->
-            <div class="flex items-center justify-between gap-4">
-                <button onclick="showDashboard()" class="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-
-                <!-- Progress Bar Container -->
-                <div class="flex-grow max-w-md">
-                    <div class="flex justify-between text-xs font-bold mb-1">
-                        <span id="quiz-progress-text" class="text-slate-500">Pregunta 1 de 5</span>
-                        <span id="quiz-timer" class="text-brand-red font-mono hidden"><i class="far fa-clock mr-1"></i>00:00</span>
-                    </div>
-                    <div class="w-full h-3 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden p-0.5">
-                        <div id="quiz-progress-bar" class="h-full bg-brand-accent rounded-full transition-all duration-300" style="width: 20%;"></div>
-                    </div>
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/50 text-amber-500 flex items-center justify-center text-2xl font-black shadow-inner">
+                    ⭐
                 </div>
-
-                <!-- Combo Badge -->
-                <div class="flex items-center space-x-1 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 px-3 py-1.5 rounded-full text-xs font-black">
-                    <span>⚡</span>
-                    <span id="quiz-combo">x1</span>
-                </div>
-            </div>
-
-            <!-- Question Card -->
-            <div class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-lg space-y-6">
-                
-                <div class="flex items-start justify-between gap-3">
-                    <span id="quiz-category-badge" class="bg-blue-100 dark:bg-blue-900/50 text-brand-accent text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
-                        Greetings
-                    </span>
-                    <button id="btn-speak-question" class="w-10 h-10 rounded-full bg-blue-50 dark:bg-slate-800 text-brand-accent hover:bg-blue-100 transition flex items-center justify-center text-lg" title="Escuchar pregunta en inglés">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                </div>
-
-                <!-- Question Text -->
-                <h3 id="quiz-question-text" class="text-xl sm:text-2xl font-extrabold leading-snug">
-                    Loading question...
-                </h3>
-
-                <!-- Audio Visualizer / Helper (if phonetic sound) -->
-                <div id="phonetic-helper" class="hidden p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 text-xs text-slate-500 flex items-center space-x-2">
-                    <i class="fas fa-info-circle text-brand-accent"></i>
-                    <span>Haz clic en las opciones para escuchar su pronunciación antes de decidir.</span>
-                </div>
-
-                <!-- Options Grid -->
-                <div id="quiz-options-container" class="grid grid-cols-1 gap-3">
-                    <!-- Dynamic Options Inserted Here -->
-                </div>
-
-                <!-- Feedback Alert Container -->
-                <div id="quiz-feedback" class="hidden rounded-xl p-4 transition-all duration-300 flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <div id="feedback-icon" class="w-10 h-10 rounded-full flex items-center justify-center text-xl text-white font-bold"></div>
-                        <div>
-                            <h4 id="feedback-title" class="font-extrabold text-sm"></h4>
-                            <p id="feedback-msg" class="text-xs opacity-90"></p>
-                        </div>
-                    </div>
-                    <button id="btn-next-question" onclick="nextQuestion()" class="bg-slate-900 dark:bg-white dark:text-slate-900 text-white font-bold text-xs px-4 py-2.5 rounded-lg btn-bounce shadow-md">
-                        Siguiente <i class="fas fa-arrow-right ml-1"></i>
-                    </button>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- FLASHCARDS VIEW -->
-        <section id="view-flashcards" class="hidden space-y-6">
-            <div class="flex items-center justify-between">
-                <button onclick="showDashboard()" class="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <h3 class="font-extrabold text-lg">Tarjetas Didácticas (Flashcards)</h3>
-                <div class="w-10"></div>
-            </div>
-
-            <!-- Flashcard Display -->
-            <div class="max-w-md mx-auto">
-                <div id="flashcard-element" onclick="flipFlashcard()" class="w-full h-80 glass-card rounded-3xl border-2 border-brand-accent/40 shadow-2xl p-8 flex flex-col items-center justify-between text-center cursor-pointer transform transition-transform duration-500 hover:scale-[1.02] relative">
-                    <div class="text-xs font-bold uppercase text-slate-400 tracking-wider">
-                        Toca para girar la tarjeta 🔄
-                    </div>
-
-                    <div class="my-auto space-y-3">
-                        <div id="fc-main-text" class="text-3xl font-black text-brand-blue dark:text-blue-400">
-                            Good morning
-                        </div>
-                        <div id="fc-sub-text" class="text-lg font-bold text-slate-500 dark:text-slate-400 italic">
-                            Buenos días
-                        </div>
-                    </div>
-
-                    <button onclick="event.stopPropagation(); speakText(document.getElementById('fc-main-text').innerText)" class="w-12 h-12 rounded-full bg-brand-accent text-white flex items-center justify-center shadow-lg hover:bg-blue-600 transition">
-                        <i class="fas fa-volume-up text-lg"></i>
-                    </button>
-                </div>
-
-                <!-- Navigation controls -->
-                <div class="flex items-center justify-between mt-6 px-4">
-                    <button onclick="prevFlashcard()" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-bold px-5 py-2.5 rounded-xl btn-bounce flex items-center space-x-2">
-                        <i class="fas fa-chevron-left"></i>
-                        <span>Anterior</span>
-                    </button>
-                    <span id="fc-counter" class="text-xs font-black text-slate-400">1 / 10</span>
-                    <button onclick="nextFlashcard()" class="bg-brand-blue text-white font-bold px-5 py-2.5 rounded-xl btn-bounce flex items-center space-x-2">
-                        <span>Siguiente</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- RESULTS VIEW -->
-        <section id="view-results" class="hidden space-y-6 max-w-2xl mx-auto">
-            
-            <div class="glass-card rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-2xl text-center space-y-6">
-                
-                <div class="w-20 h-20 rounded-full bg-yellow-100 dark:bg-yellow-900/40 text-yellow-500 mx-auto flex items-center justify-center text-4xl shadow-inner">
-                    🏆
-                </div>
-
                 <div>
-                    <h2 class="text-2xl sm:text-3xl font-black mb-1">¡Prueba Finalizada!</h2>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Excelente esfuerzo completando el módulo</p>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Nivel Académico</div>
+                    <div class="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span id="player-level">Estudiante Inicial</span>
+                        <span class="text-xs bg-enso-blue text-white px-2 py-0.5 rounded-full font-bold" id="player-xp">0 XP</span>
+                    </div>
                 </div>
+            </div>
 
-                <!-- Score Highlights Grid -->
-                <div class="grid grid-cols-3 gap-3 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
-                    <div>
-                        <div class="text-xs text-slate-400 font-bold">Puntuación</div>
-                        <div id="res-score" class="text-xl font-black text-brand-blue dark:text-blue-400">0/15</div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-slate-400 font-bold">Porcentaje</div>
-                        <div id="res-percent" class="text-xl font-black text-emerald-500">0%</div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-slate-400 font-bold">XP Ganados</div>
-                        <div id="res-xp" class="text-xl font-black text-amber-500">+0 XP</div>
+            <!-- Streak Tracker & Sound guide -->
+            <div class="flex items-center space-x-6 text-xs">
+                <div class="text-center">
+                    <div class="text-slate-400 font-bold uppercase text-[10px]">Racha Seguidas</div>
+                    <div class="font-black text-amber-500 text-lg flex items-center justify-center gap-1">
+                        <i class="fas fa-fire"></i>
+                        <span id="streak-count">0</span>
                     </div>
                 </div>
 
-                <!-- Feedback summary message -->
-                <div id="res-badge-msg" class="p-4 rounded-xl bg-blue-50 dark:bg-slate-800 text-brand-accent text-xs font-bold">
-                    ¡Gran trabajo! Estás dominando los fundamentos del inglés.
-                </div>
-
-                <!-- Action buttons -->
-                <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                    <button onclick="downloadReport()" class="w-full bg-slate-900 dark:bg-white dark:text-slate-900 text-white font-bold py-3 px-4 rounded-xl btn-bounce flex items-center justify-center space-x-2">
-                        <i class="fas fa-download"></i>
-                        <span>Descargar Reporte TXT</span>
-                    </button>
-                    <button onclick="showDashboard()" class="w-full bg-brand-blue hover:bg-blue-900 text-white font-bold py-3 px-4 rounded-xl btn-bounce flex items-center justify-center space-x-2">
-                        <i class="fas fa-home"></i>
-                        <span>Volver al Inicio</span>
-                    </button>
-                </div>
-
-                <!-- Detailed Answers Review Accordion -->
-                <div class="text-left pt-4 border-t border-slate-200 dark:border-slate-800">
-                    <h4 class="font-extrabold text-sm mb-3 flex items-center space-x-2">
-                        <i class="fas fa-list-check text-brand-accent"></i>
-                        <span>Revisión Detallada de Preguntas</span>
-                    </h4>
-                    <div id="res-breakdown-list" class="space-y-2 max-h-60 overflow-y-auto pr-2">
-                        <!-- Dynamic Question Review Inserted Here -->
+                <div class="text-center border-l border-slate-200 dark:border-slate-700 pl-6">
+                    <div class="text-slate-400 font-bold uppercase text-[10px]">Pronunciación</div>
+                    <div class="font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                        <i class="fas fa-bullhorn text-xs"></i>
+                        <span>Voz Nativa ON</span>
                     </div>
                 </div>
+            </div>
 
+        </section>
+
+        <!-- CATEGORY SELECTION MENU -->
+        <section class="space-y-3">
+            <div class="flex items-center justify-between">
+                <h3 class="text-sm font-extrabold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                    <i class="fas fa-compass text-enso-blue dark:text-blue-400"></i>
+                    <span>Selecciona un Módulo de Entrenamiento:</span>
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+                
+                <button onclick="startGreetings()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">👋</div>
+                    <div class="font-extrabold text-xs">Greetings</div>
+                    <div class="text-[10px] opacity-70">Saludos</div>
+                </button>
+
+                <button onclick="startAlphabet()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">🔤</div>
+                    <div class="font-extrabold text-xs">Alphabet</div>
+                    <div class="text-[10px] opacity-70">Abecedario</div>
+                </button>
+
+                <button onclick="startSpelling()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">✍️</div>
+                    <div class="font-extrabold text-xs">Spelling</div>
+                    <div class="text-[10px] opacity-70">Deletreo</div>
+                </button>
+
+                <button onclick="startDialogues()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">💬</div>
+                    <div class="font-extrabold text-xs">Dialogues</div>
+                    <div class="text-[10px] opacity-70">Diálogos</div>
+                </button>
+
+                <button onclick="startExam()" class="col-span-2 sm:col-span-1 bg-gradient-to-br from-enso-red to-red-700 text-white border-2 border-red-500 p-3 rounded-2xl text-left btn-bounce transition shadow-md group">
+                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">🎓</div>
+                    <div class="font-black text-xs uppercase tracking-wider">Exam Mode</div>
+                    <div class="text-[10px] text-red-200">15 Preguntas</div>
+                </button>
+
+            </div>
+        </section>
+
+        <!-- MAIN EXERCISE & PRACTICE AREA -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-enso-blue/40 dark:border-slate-700 shadow-xl space-y-6 relative min-h-[320px] flex flex-col justify-between">
+            
+            <!-- Top Status Indicator -->
+            <div id="exercise-header" class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                <span class="text-xs font-black uppercase tracking-wider text-enso-blue dark:text-blue-400 flex items-center gap-1.5" id="exercise-category-title">
+                    <i class="fas fa-dumbbell"></i>
+                    <span>Modo Práctica Didáctica</span>
+                </span>
+                <span id="exercise-counter" class="text-xs font-bold text-slate-400">Selecciona un ejercicio arriba</span>
+            </div>
+
+            <!-- Dynamic Question Container -->
+            <div id="exercise" class="space-y-4 my-auto">
+                <div class="text-center py-8 space-y-3">
+                    <div class="text-5xl animate-bounce">🎓</div>
+                    <h2 class="text-xl font-extrabold text-slate-800 dark:text-white">¡Bienvenido al Entrenador de Inglés Básico!</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+                        Haz clic en cualquiera de los botones superiores para repasar saludos, fonética del alfabeto, deletreo o realizar la evaluación final de 15 preguntas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Dynamic Feedback Alert Box -->
+            <div id="result" class="min-h-[40px]"></div>
+
+            <!-- Bottom Secondary Actions -->
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <a href="../index.html" class="text-slate-500 hover:text-enso-blue dark:hover:text-blue-300 font-bold flex items-center gap-1 transition">
+                    <i class="fas fa-home text-xs"></i>
+                    <span>Ir al Portal Principal</span>
+                </a>
+                
+                <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="text-amber-600 dark:text-amber-400 font-bold flex items-center gap-1 hover:underline">
+                    <span>Repositorio ensopfcmedios.com</span>
+                    <i class="fas fa-external-link-alt text-[10px]"></i>
+                </a>
             </div>
 
         </section>
 
     </main>
 
+    <!-- FOOTER -->
+    <footer class="bg-enso-darkblue text-white mt-10 py-6 border-t-4 border-enso-red text-xs">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <div class="font-extrabold text-white text-sm">Escuela Normal Superior Oiba</div>
+                <div class="text-blue-200">Programa de Formación Complementaria (PFC) • Prof. Santiago Medina</div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <a href="../index.html" class="bg-blue-900/80 hover:bg-blue-800 text-white px-3 py-1.5 rounded-xl border border-blue-700 font-bold transition">
+                    <i class="fas fa-undo mr-1"></i> Portal Principal
+                </a>
+                <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="bg-enso-gold/20 text-amber-300 px-3 py-1.5 rounded-xl border border-amber-400/40 font-bold transition hover:bg-enso-gold/30">
+                    🌐 www.ensopfcmedios.com
+                </a>
+            </div>
+        </div>
+    </footer>
+
     <script>
         /* ==========================================================================
-           AUDIO & SYNTHESIS ENGINE (Web Speech API & Web Audio Synthesizer)
+           1. AUDIO ENGINE (Web Speech API & Web Audio FX)
            ========================================================================== */
         let soundEnabled = true;
+        let playerXP = 0;
+        let streak = 0;
         const synth = window.speechSynthesis;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function toggleSound() {
             soundEnabled = !soundEnabled;
             const icon = document.getElementById("icon-sound");
             if (soundEnabled) {
-                icon.className = "fas fa-volume-up text-white";
-                playSfx(600, 'sine', 0.1);
+                icon.className = "fas fa-volume-up text-amber-300 text-sm";
+                playSfx(587.33, 'sine', 0.12);
             } else {
-                icon.className = "fas fa-volume-mute text-red-300";
+                icon.className = "fas fa-volume-mute text-red-300 text-sm";
             }
         }
-
-        function speakText(text) {
-            if (!synth) return;
-            synth.cancel(); // Stop current speaking
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'en-US';
-            utterance.rate = 0.9; // Slightly slower for language learners
-            synth.speak(utterance);
-        }
-
-        // Web Audio Synthesizer for sound FX without external assets
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function playSfx(freq, type = 'sine', duration = 0.15) {
             if (!soundEnabled) return;
@@ -476,409 +312,364 @@
                 const gain = audioCtx.createGain();
                 osc.type = type;
                 osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
                 osc.start();
                 osc.stop(audioCtx.currentTime + duration);
             } catch (e) {
-                console.log("Audio play error", e);
+                console.log("Audio FX error:", e);
             }
         }
 
-        function playSuccessSound() {
-            if (!soundEnabled) return;
-            playSfx(523.25, 'sine', 0.1); // C5
-            setTimeout(() => playSfx(659.25, 'sine', 0.1), 100); // E5
-            setTimeout(() => playSfx(783.99, 'sine', 0.2), 200); // G5
+        function speakEnglish(text) {
+            if (!synth) return;
+            synth.cancel(); // Stop current audio
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9; // Natural pace
+            synth.speak(utterance);
         }
 
-        function playErrorSound() {
-            if (!soundEnabled) return;
-            playSfx(200, 'sawtooth', 0.2);
-            setTimeout(() => playSfx(150, 'sawtooth', 0.25), 150);
-        }
-
-        /* ==========================================================================
-           DATASETS & QUESTION BANK
-           ========================================================================== */
-        const greetingsQuestions = [
-            { q: "Formal greeting when meeting someone for the first time:", options: ["Hi!", "How do you do?", "What's up?"], answer: "How do you do?", cat: "Greetings", explanation: "'How do you do?' es la fórmula clásica e inequívoca de saludo formal." },
-            { q: "Choose the correct greeting for the morning:", options: ["Good night", "Good morning", "Good afternoon"], answer: "Good morning", cat: "Greetings", explanation: "'Good morning' se usa desde el amanecer hasta el mediodía." },
-            { q: "Choose the informal greeting:", options: ["Hello", "Good evening", "What's up?"], answer: "What's up?", cat: "Greetings", explanation: "'What's up?' es una expresión totalmente informal entre amigos." }
-        ];
-
-        const alphabetQuestions = [
-            { q: "Sound of letter J:", options: ["/kei/", "/dlléi/", "/uái/"], answer: "/dlléi/", cat: "Alphabet", explanation: "La letra J se pronuncia como /jay/ o /dlléi/." },
-            { q: "Sound of letter Y:", options: ["/kei/", "/dlléi/", "/uái/"], answer: "/uái/", cat: "Alphabet", explanation: "La letra Y se pronuncia /uái/ (diciendo 'why')." },
-            { q: "Which letters end in /i:/?", options: ["F, L, M", "B, C, D, P, T, V", "S, X, N"], answer: "B, C, D, P, T, V", cat: "Alphabet", explanation: "Este grupo fonético comparte la terminación en sonido 'ee'." }
-        ];
-
-        const spellingQuestions = [
-            { q: "Spell the name JULY:", options: ["J-O-L-Y", "J-U-L-Y", "Y-U-L-J"], answer: "J-U-L-Y", cat: "Spelling", explanation: "Julio en inglés es J-U-L-Y." },
-            { q: "Spell the name PAULA:", options: ["P-A-U-L-A", "P-O-L-A", "P-A-L-U-A"], answer: "P-A-U-L-A", cat: "Spelling", explanation: "Se deletrea P-A-U-L-A." },
-            { q: "Spell the name SHARON:", options: ["S-H-A-R-O-N", "S-H-O-R-A-N", "S-A-H-R-O-N"], answer: "S-H-A-R-O-N", cat: "Spelling", explanation: "S-H-A-R-O-N." }
-        ];
-
-        const dialogueQuestions = [
-            { q: "Choose the correct reply: 'Good afternoon! What's your name?'", options: ["Good night", "My name is Laura", "How do you do?"], answer: "My name is Laura", cat: "Dialogues", explanation: "Al preguntarte el nombre debes responder con 'My name is...'." },
-            { q: "Complete the dialogue: 'Hello! How are you today?'", options: ["I'm fine, thanks", "Good night", "How do you do?"], answer: "I'm fine, thanks", cat: "Dialogues", explanation: "'I'm fine, thanks' es la respuesta estándar a 'How are you?'." },
-            { q: "Choose the correct reply: 'Good morning! How do you do?'", options: ["Good evening", "How do you do?", "I'm fine, thanks"], answer: "How do you do?", cat: "Dialogues", explanation: "En contextos formales, 'How do you do?' se responde con la misma frase." },
-            { q: "Complete the dialogue: 'Hi! What's your name?'", options: ["Good night", "My name is Paula", "How are you today?"], answer: "My name is Paula", cat: "Dialogues", explanation: "Indicas tu nombre al ser preguntado." },
-            { q: "Choose the correct ending: 'Good afternoon! I'm fine, thanks. ______'", options: ["Glad to meet you", "Good night", "What's your name?"], answer: "Glad to meet you", cat: "Dialogues", explanation: "'Glad to meet you' es una excelente despedida cortés." }
-        ];
-
-        const examQuestions = [
-            { q: "1. How do you say 'Buenos días'?", A: "Good night", B: "Good morning", C: "Good afternoon", D: "Hi", answer: "Good morning", cat: "Exam" },
-            { q: "2. Which greeting is formal?", A: "Hi!", B: "Hello!", C: "How do you do?", D: "Hey!", answer: "How do you do?", cat: "Exam" },
-            { q: "3. Sound of letter J:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "/dlléi/", cat: "Exam" },
-            { q: "4. Which group does letter F belong to?", A: "Group 1", B: "Group 2", C: "Group 3", D: "None", answer: "Group 2", cat: "Exam" },
-            { q: "5. Spell the name JULY:", A: "J-O-L-Y", B: "Y-U-L-J", C: "J-U-L-Y", D: "J-U-Y-L", answer: "J-U-L-Y", cat: "Exam" },
-            { q: "6. Choose the correct reply: 'Hello! How are you today?'", A: "Good night", B: "I'm fine, thanks", C: "How do you do?", D: "Good morning", answer: "I'm fine, thanks", cat: "Exam" },
-            { q: "7. Which letters end in /i:/?", A: "F, L, M", B: "B, C, D, P, T, V", C: "J, K, R", D: "S, X, N", answer: "B, C, D, P, T, V", cat: "Exam" },
-            { q: "8. Sound of letter Y:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "/uái/", cat: "Exam" },
-            { q: "9. Choose the correct farewell:", A: "Good night", B: "Good morning", C: "Hello", D: "Hi", answer: "Good night", cat: "Exam" },
-            { q: "10. Spell the name PAULA:", A: "P-A-U-L-A", B: "P-O-L-A", C: "P-A-L-U-A", D: "P-A-U-A-L", answer: "P-A-U-L-A", cat: "Exam" },
-            { q: "11. Which group does letter S belong to?", A: "Group 1", B: "Group 2", C: "Group 3", D: "None", answer: "Group 2", cat: "Exam" },
-            { q: "12. Choose the correct reply: 'Good afternoon! What's your name?'", A: "Good night", B: "My name is Laura", C: "How do you do?", D: "I'm fine, thanks", answer: "My name is Laura", cat: "Exam" },
-            { q: "13. Sound of letter K:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "/kei/", cat: "Exam" },
-            { q: "14. Spell the name SHARON:", A: "S-H-A-R-O-N", B: "S-H-O-R-A-N", C: "S-A-H-R-O-N", D: "S-H-A-R-N-O", answer: "S-H-A-R-O-N", cat: "Exam" },
-            { q: "15. Complete: 'Good afternoon! I'm fine, thanks. ______'", A: "Good night", B: "What's your name?", C: "Glad to meet you", D: "How do you do?", answer: "Glad to meet you", cat: "Exam" }
-        ];
-
-        const flashcardsData = [
-            { en: "Good morning", es: "Buenos días" },
-            { en: "How do you do?", es: "¿Cómo está usted? (Formal)" },
-            { en: "What's up?", es: "¿Qué tal? / ¿Qué pasa? (Informal)" },
-            { en: "My name is...", es: "Mi nombre es..." },
-            { en: "I'm fine, thanks", es: "Estoy bien, gracias" },
-            { en: "Glad to meet you", es: "Gusto en conocerte" },
-            { en: "Good night", es: "Buenas noches (Despedida)" },
-            { en: "Spell your name", es: "Deletrea tu nombre" },
-            { en: "Have a nice day", es: "Que tengas un buen día" },
-            { en: "See you later", es: "Hasta luego" }
-        ];
-
-        /* ==========================================================================
-           APPLICATION STATE
-           ========================================================================== */
-        let currentDeck = [];
-        let currentIndex = 0;
-        let score = 0;
-        let streak = 0;
-        let combo = 1;
-        let totalXp = 0;
-        let examFeedback = [];
-        let isExamMode = false;
-        let timerInterval = null;
-        let secondsElapsed = 0;
-        let flashcardIndex = 0;
-
-        // Views switcher
-        function showView(viewId) {
-            document.getElementById("view-dashboard").classList.add("hidden");
-            document.getElementById("view-quiz").classList.add("hidden");
-            document.getElementById("view-flashcards").classList.add("hidden");
-            document.getElementById("view-results").classList.add("hidden");
-
-            document.getElementById(viewId).classList.remove("hidden");
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function showDashboard() {
-            clearInterval(timerInterval);
-            showView("view-dashboard");
-        }
-
-        /* ==========================================================================
-           QUIZ ENGINE
-           ========================================================================== */
-        function startMode(mode) {
-            currentIndex = 0;
-            score = 0;
-            combo = 1;
-            examFeedback = [];
-            isExamMode = (mode === 'exam');
-
-            document.getElementById("quiz-combo").innerText = `x${combo}`;
-            document.getElementById("quiz-timer").classList.toggle("hidden", !isExamMode);
-
-            if (mode === 'greetings') currentDeck = [...greetingsQuestions];
-            else if (mode === 'alphabet') currentDeck = [...alphabetQuestions];
-            else if (mode === 'spelling') currentDeck = [...spellingQuestions];
-            else if (mode === 'dialogues') currentDeck = [...dialogueQuestions];
-            else if (mode === 'exam') {
-                // Map exam questions options into array format
-                currentDeck = examQuestions.map(q => ({
-                    q: q.q,
-                    options: [q.A, q.B, q.C, q.D],
-                    answer: q.answer,
-                    cat: "EXAM",
-                    explanation: `La respuesta correcta es ${q.answer}`
-                }));
-                startTimer();
-            } else if (mode === 'flashcards') {
-                startFlashcards();
-                return;
-            }
-
-            showView("view-quiz");
-            loadQuestion();
-        }
-
-        function startTimer() {
-            secondsElapsed = 0;
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                secondsElapsed++;
-                const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
-                const secs = String(secondsElapsed % 60).padStart(2, '0');
-                document.getElementById("quiz-timer").innerText = `${mins}:${secs}`;
-            }, 1000);
-        }
-
-        function loadQuestion() {
-            const item = currentDeck[currentIndex];
-            const progressPct = Math.round(((currentIndex + 1) / currentDeck.length) * 100);
+        function addXP(points) {
+            playerXP += points;
+            document.getElementById("player-xp").innerText = `${playerXP} XP`;
             
-            document.getElementById("quiz-progress-text").innerText = `Pregunta ${currentIndex + 1} de ${currentDeck.length}`;
-            document.getElementById("quiz-progress-bar").style.width = `${progressPct}%`;
-            document.getElementById("quiz-category-badge").innerText = item.cat || "Practice";
-            document.getElementById("quiz-question-text").innerText = item.q;
-
-            // Voice speaker handler
-            document.getElementById("btn-speak-question").onclick = () => speakText(item.q);
-
-            // Hide feedback bar
-            const feedbackEl = document.getElementById("quiz-feedback");
-            feedbackEl.classList.add("hidden");
-
-            // Render options
-            const optionsContainer = document.getElementById("quiz-options-container");
-            optionsContainer.innerHTML = "";
-
-            item.options.forEach((opt, idx) => {
-                const optBtn = document.createElement("div");
-                optBtn.className = "option-card flex items-center justify-between p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-800 hover:border-brand-accent cursor-pointer transition-all btn-bounce group";
-                
-                optBtn.innerHTML = `
-                    <div class="flex items-center space-x-3">
-                        <span class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-500 font-extrabold text-xs flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition">
-                            ${String.fromCharCode(65 + idx)}
-                        </span>
-                        <span class="font-bold text-slate-800 dark:text-slate-100 text-sm sm:text-base">${opt}</span>
-                    </div>
-                    <button onclick="event.stopPropagation(); speakText('${opt.replace(/'/g, "\\'")}')" class="w-8 h-8 rounded-full text-slate-400 hover:text-brand-accent hover:bg-blue-50 dark:hover:bg-slate-700 flex items-center justify-center transition" title="Escuchar pronunciación">
-                        <i class="fas fa-volume-up text-xs"></i>
-                    </button>
-                `;
-
-                optBtn.onclick = () => selectOption(optBtn, opt, item.answer, item.explanation);
-                optionsContainer.appendChild(optBtn);
-            });
-        }
-
-        function selectOption(selectedCard, selectedVal, correctVal, explanation) {
-            const optionsContainer = document.getElementById("quiz-options-container");
-            const allCards = optionsContainer.children;
-
-            // Disable further clicks
-            for (let card of allCards) {
-                card.style.pointerEvents = 'none';
+            if (playerXP > 100) {
+                document.getElementById("player-level").innerText = "Normalista Avanzado 🎓";
+            } else if (playerXP > 40) {
+                document.getElementById("player-level").innerText = "Estudiante Intermedio 📚";
             }
-
-            const isCorrect = (selectedVal === correctVal);
-            const feedbackEl = document.getElementById("quiz-feedback");
-            const iconEl = document.getElementById("feedback-icon");
-            const titleEl = document.getElementById("feedback-title");
-            const msgEl = document.getElementById("feedback-msg");
-
-            if (isCorrect) {
-                score++;
-                totalXp += (10 * combo);
-                combo = Math.min(combo + 1, 4);
-                playSuccessSound();
-
-                selectedCard.classList.remove("border-slate-200", "dark:border-slate-700/80");
-                selectedCard.classList.add("border-emerald-500", "bg-emerald-50", "dark:bg-emerald-900/30");
-
-                feedbackEl.className = "rounded-xl p-4 transition-all duration-300 flex items-center justify-between bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-900 dark:text-emerald-100";
-                iconEl.className = "w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xl font-bold";
-                iconEl.innerHTML = "✓";
-                titleEl.innerText = "¡Excelente / Correct!";
-                msgEl.innerText = explanation || "¡Respuesta correcta!";
-            } else {
-                combo = 1;
-                playErrorSound();
-
-                selectedCard.classList.remove("border-slate-200", "dark:border-slate-700/80");
-                selectedCard.classList.add("border-brand-red", "bg-red-50", "dark:bg-red-900/30");
-
-                // Highlight correct option
-                for (let card of allCards) {
-                    if (card.innerText.includes(correctVal)) {
-                        card.classList.add("border-emerald-500", "bg-emerald-50/60");
-                    }
-                }
-
-                feedbackEl.className = "rounded-xl p-4 transition-all duration-300 flex items-center justify-between bg-red-100 dark:bg-red-950/60 border border-red-300 dark:border-red-800 text-red-900 dark:text-red-100";
-                iconEl.className = "w-10 h-10 rounded-full bg-brand-red text-white flex items-center justify-center text-xl font-bold";
-                iconEl.innerHTML = "✗";
-                titleEl.innerText = "Incorrecto";
-                msgEl.innerText = `La respuesta correcta era: "${correctVal}".`;
-            }
-
-            // Save feedback log for exam report
-            examFeedback.push({
-                q: currentDeck[currentIndex].q,
-                userAns: selectedVal,
-                correctAns: correctVal,
-                isCorrect: isCorrect
-            });
-
-            // Update stats bar
-            document.getElementById("stat-xp").innerText = totalXp;
-            document.getElementById("quiz-combo").innerText = `x${combo}`;
-            feedbackEl.classList.remove("hidden");
-        }
-
-        function nextQuestion() {
-            currentIndex++;
-            if (currentIndex < currentDeck.length) {
-                loadQuestion();
-            } else {
-                finishQuiz();
-            }
-        }
-
-        function finishQuiz() {
-            clearInterval(timerInterval);
-            showView("view-results");
-
-            const total = currentDeck.length;
-            const percentage = Math.round((score / total) * 100);
-
-            document.getElementById("res-score").innerText = `${score} / ${total}`;
-            document.getElementById("res-percent").innerText = `${percentage}%`;
-            document.getElementById("res-xp").innerText = `+${score * 15} XP`;
-
-            const badgeMsg = document.getElementById("res-badge-msg");
-            if (percentage >= 80) {
-                badgeMsg.innerText = "🌟 ¡Súper Dominado! Tienes un nivel excelente de inglés básico.";
-                badgeMsg.className = "p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 text-xs font-bold border border-emerald-200";
-            } else if (percentage >= 50) {
-                badgeMsg.innerText = "👍 ¡Buen intento! Sigue practicando las áreas de oportunidad.";
-                badgeMsg.className = "p-4 rounded-xl bg-blue-50 dark:bg-slate-800 text-brand-accent text-xs font-bold border border-blue-200";
-            } else {
-                badgeMsg.innerText = "📚 Necesitas repasar un poco más. ¡Inténtalo de nuevo!";
-                badgeMsg.className = "p-4 rounded-xl bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 text-xs font-bold border border-amber-200";
-            }
-
-            // Render detailed breakdown list
-            const listContainer = document.getElementById("res-breakdown-list");
-            listContainer.innerHTML = "";
-
-            examFeedback.forEach((item, idx) => {
-                const itemEl = document.createElement("div");
-                itemEl.className = `p-3 rounded-xl border text-xs flex items-center justify-between ${
-                    item.isCorrect 
-                        ? 'bg-emerald-50/50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800/50' 
-                        : 'bg-red-50/50 dark:bg-red-950/30 border-red-200 dark:border-red-800/50'
-                }`;
-                itemEl.innerHTML = `
-                    <div class="space-y-0.5">
-                        <div class="font-bold">${idx + 1}. ${item.q}</div>
-                        <div class="${item.isCorrect ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500'}">
-                            Tu respuesta: <strong>${item.userAns}</strong>
-                        </div>
-                    </div>
-                    <div class="text-base font-bold">${item.isCorrect ? '✔️' : '❌'}</div>
-                `;
-                listContainer.appendChild(itemEl);
-            });
-        }
-
-        function downloadReport() {
-            const percentage = Math.round((score / currentDeck.length) * 100);
-            let text = `=======================================\n`;
-            text += `  ENGLISH BASICS TRAINER - REPORT \n`;
-            text += `=======================================\n\n`;
-            text += `Fecha: ${new Date().toLocaleDateString()}\n`;
-            text += `Puntuación: ${score} / ${currentDeck.length}\n`;
-            text += `Porcentaje de Acierto: ${percentage}%\n\n`;
-            text += `DETALLE DE PREGUNTAS:\n`;
-            text += `---------------------------------------\n`;
-
-            examFeedback.forEach((f, i) => {
-                text += `${i + 1}. Pregunta: ${f.q}\n`;
-                text += `   Respuesta Seleccionada: ${f.userAns}\n`;
-                text += `   Respuesta Correcta: ${f.correctAns}\n`;
-                text += `   Resultado: ${f.isCorrect ? 'CORRECTO [✓]' : 'INCORRECTO [✗]'}\n\n`;
-            });
-
-            const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `English_Trainer_Report_${Date.now()}.txt`;
-            a.click();
-            URL.revokeObjectURL(url);
         }
 
         /* ==========================================================================
-           FLASHCARDS ENGINE
-           ========================================================================== */
-        let isFlipped = false;
-
-        function startFlashcards() {
-            flashcardIndex = 0;
-            isFlipped = false;
-            showView("view-flashcards");
-            updateFlashcard();
-        }
-
-        function updateFlashcard() {
-            const card = flashcardsData[flashcardIndex];
-            document.getElementById("fc-main-text").innerText = card.en;
-            document.getElementById("fc-sub-text").innerText = card.es;
-            document.getElementById("fc-counter").innerText = `${flashcardIndex + 1} / ${flashcardsData.length}`;
-            speakText(card.en);
-        }
-
-        function flipFlashcard() {
-            const fcSub = document.getElementById("fc-sub-text");
-            fcSub.classList.toggle("hidden");
-            playSfx(400, 'sine', 0.08);
-        }
-
-        function nextFlashcard() {
-            flashcardIndex = (flashcardIndex + 1) % flashcardsData.length;
-            updateFlashcard();
-        }
-
-        function prevFlashcard() {
-            flashcardIndex = (flashcardIndex - 1 + flashcardsData.length) % flashcardsData.length;
-            updateFlashcard();
-        }
-
-        /* ==========================================================================
-           THEME TOGGLE & INITIALIZATION
+           2. THEME CONTROLLER
            ========================================================================== */
         function toggleDarkMode() {
             document.documentElement.classList.toggle('dark');
             const icon = document.getElementById("icon-theme");
             if (document.documentElement.classList.contains('dark')) {
-                icon.className = "fas fa-sun text-yellow-400";
+                icon.className = "fas fa-sun text-amber-300 text-sm";
             } else {
-                icon.className = "fas fa-moon text-amber-300";
+                icon.className = "fas fa-moon text-amber-300 text-sm";
+            }
+            playSfx(440, 'sine', 0.08);
+        }
+
+        /* ==========================================================================
+           3. QUESTION DATA BANK
+           ========================================================================== */
+        const greetingsQuestions = [
+            { q: "Formal greeting when meeting someone for the first time:", options: ["Hi!", "How do you do?", "What's up?"], answer: "How do you do?" },
+            { q: "Choose the correct greeting for the morning:", options: ["Good night", "Good morning", "Good afternoon"], answer: "Good morning" },
+            { q: "Choose the informal greeting:", options: ["Hello", "Good evening", "What's up?"], answer: "What's up?" }
+        ];
+
+        const alphabetQuestions = [
+            { q: "Sound of letter J:", options: ["/kei/", "/dlléi/", "/uái/"], answer: "/dlléi/" },
+            { q: "Sound of letter Y:", options: ["/kei/", "/dlléi/", "/uái/"], answer: "/uái/" },
+            { q: "Which letters end in /i:/?", options: ["F, L, M", "B, C, D, P, T, V", "S, X, N"], answer: "B, C, D, P, T, V" }
+        ];
+
+        const spellingQuestions = [
+            { q: "Spell the name JULY:", options: ["J-O-L-Y", "J-U-L-Y", "Y-U-L-J"], answer: "J-U-L-Y" },
+            { q: "Spell the name PAULA:", options: ["P-A-U-L-A", "P-O-L-A", "P-A-L-U-A"], answer: "P-A-U-L-A" },
+            { q: "Spell the name SHARON:", options: ["S-H-A-R-O-N", "S-H-O-R-A-N", "S-A-H-R-O-N"], answer: "S-H-A-R-O-N" }
+        ];
+
+        const dialogueQuestions = [
+            { q: "Choose the correct reply: 'Good afternoon! What's your name?'", options: ["Good night", "My name is Laura", "How do you do?"], answer: "My name is Laura" },
+            { q: "Complete the dialogue: 'Hello! How are you today?'", options: ["I'm fine, thanks", "Good night", "How do you do?"], answer: "I'm fine, thanks" },
+            { q: "Choose the correct reply: 'Good morning! How do you do?'", options: ["Good evening", "How do you do?", "I'm fine, thanks"], answer: "How do you do?" },
+            { q: "Complete the dialogue: 'Hi! What's your name?'", options: ["Good night", "My name is Paula", "How are you today?"], answer: "My name is Paula" },
+            { q: "Choose the correct ending: 'Good afternoon! I'm fine, thanks. ______'", options: ["Glad to meet you", "Good night", "What's your name?"], answer: "Glad to meet you" }
+        ];
+
+        const examQuestions = [
+            { q: "1. How do you say 'Buenos días'?", A: "Good night", B: "Good morning", C: "Good afternoon", D: "Hi", answer: "B" },
+            { q: "2. Which greeting is formal?", A: "Hi!", B: "Hello!", C: "How do you do?", D: "Hey!", answer: "C" },
+            { q: "3. Sound of letter J:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "B" },
+            { q: "4. Which group does letter F belong to?", A: "Group 1", B: "Group 2", C: "Group 3", D: "None", answer: "B" },
+            { q: "5. Spell the name JULY:", A: "J-O-L-Y", B: "Y-U-L-J", C: "J-U-L-Y", D: "J-U-Y-L", answer: "C" },
+            { q: "6. Choose the correct reply: 'Hello! How are you today?'", A: "Good night", B: "I'm fine, thanks", C: "How do you do?", D: "Good morning", answer: "B" },
+            { q: "7. Which letters end in /i:/?", A: "F, L, M", B: "B, C, D, P, T, V", C: "J, K, R", D: "S, X, N", answer: "B" },
+            { q: "8. Sound of letter Y:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "C" },
+            { q: "9. Choose the correct farewell:", A: "Good night", B: "Good morning", C: "Hello", D: "Hi", answer: "A" },
+            { q: "10. Spell the name PAULA:", A: "P-A-U-L-A", B: "P-O-L-A", C: "P-A-L-U-A", D: "P-A-U-A-L", answer: "A" },
+            { q: "11. Which group does letter S belong to?", A: "Group 1", B: "Group 2", C: "Group 3", D: "None", answer: "B" },
+            { q: "12. Choose the correct reply: 'Good afternoon! What's your name?'", A: "Good night", B: "My name is Laura", C: "How do you do?", D: "I'm fine, thanks", answer: "B" },
+            { q: "13. Sound of letter K:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "A" },
+            { q: "14. Spell the name SHARON:", A: "S-H-A-R-O-N", B: "S-H-O-R-A-N", C: "S-A-H-R-O-N", D: "S-H-A-R-N-O", answer: "A" },
+            { q: "15. Complete: 'Good afternoon! I'm fine, thanks. ______'", A: "Good night", B: "What's your name?", C: "Glad to meet you", D: "How do you do?", answer: "C" }
+        ];
+
+        /* ==========================================================================
+           4. PRACTICE ENGINE LOGIC
+           ========================================================================== */
+        function startGreetings() {
+            setCategoryHeader("Greetings (Saludos y Expresiones)");
+            loadExercise(greetingsQuestions);
+        }
+
+        function startAlphabet() {
+            setCategoryHeader("Alphabet & Phonetics (Abecedario)");
+            loadExercise(alphabetQuestions);
+        }
+
+        function startSpelling() {
+            setCategoryHeader("Spelling Practice (Deletreo de Nombres)");
+            loadExercise(spellingQuestions);
+        }
+
+        function startDialogues() {
+            setCategoryHeader("Mini Conversations (Diálogos Cortos)");
+            loadExercise(dialogueQuestions);
+        }
+
+        function setCategoryHeader(title) {
+            document.getElementById("exercise-category-title").innerHTML = `
+                <i class="fas fa-dumbbell"></i>
+                <span>${title}</span>
+            `;
+            document.getElementById("exercise-counter").innerText = "Modo Práctica";
+        }
+
+        function loadExercise(list) {
+            const random = list[Math.floor(Math.random() * list.length)];
+            const exerciseDiv = document.getElementById("exercise");
+            const resultDiv = document.getElementById("result");
+
+            resultDiv.innerHTML = "";
+
+            exerciseDiv.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <span class="font-extrabold text-base text-slate-900 dark:text-white">${random.q}</span>
+                        <button onclick="speakEnglish('${random.q.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-enso-blue dark:text-blue-300 flex items-center justify-center hover:scale-105 transition" title="Escuchar en Inglés">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-2.5">
+                        ${random.options.map(opt => `
+                            <button onclick="checkAnswer('${opt.replace(/'/g, "\\'")}', '${random.answer.replace(/'/g, "\\'")}')" class="w-full text-left bg-white dark:bg-slate-800 p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-enso-blue dark:hover:border-blue-400 font-bold text-sm text-slate-800 dark:text-slate-100 transition shadow-sm flex items-center justify-between group">
+                                <span>${opt}</span>
+                                <i class="fas fa-play text-xs text-slate-300 group-hover:text-enso-blue transition"></i>
+                            </button>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+            
+            // Speak question automatically
+            speakEnglish(random.q);
+        }
+
+        function checkAnswer(selected, correct) {
+            const resultDiv = document.getElementById("result");
+            speakEnglish(selected);
+
+            if (selected === correct) {
+                playSfx(783.99, 'sine', 0.15); // High success tone
+                addXP(10);
+                streak++;
+                document.getElementById("streak-count").innerText = streak;
+
+                resultDiv.innerHTML = `
+                    <div class="p-3 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 rounded-xl border border-emerald-300 dark:border-emerald-700 text-xs font-bold flex items-center justify-between">
+                        <span>✔️ ¡Excelente! Respuesta correcta (+10 XP)</span>
+                        <i class="fas fa-check-circle text-base"></i>
+                    </div>
+                `;
+            } else {
+                playSfx(220, 'sawtooth', 0.2); // Error tone
+                streak = 0;
+                document.getElementById("streak-count").innerText = streak;
+
+                resultDiv.innerHTML = `
+                    <div class="p-3 bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-200 rounded-xl border border-red-300 dark:border-red-700 text-xs font-bold flex items-center justify-between">
+                        <span>❌ Respuesta Incorrecta. La opción correcta era: <strong>${correct}</strong></span>
+                        <i class="fas fa-times-circle text-base"></i>
+                    </div>
+                `;
             }
         }
 
-        // Initialize view on window load
-        window.onload = function() {
-            showDashboard();
-        };
+        /* ==========================================================================
+           5. EXAM MODE ENGINE (15 QUESTIONS & CERTIFICATE GENERATION)
+           ========================================================================== */
+        let examIndex = 0;
+        let score = 0;
+        let examFeedback = [];
+        let timerSeconds = 300; // 5 min timer
+        let timerInterval = null;
+
+        function startExam() {
+            examIndex = 0;
+            score = 0;
+            examFeedback = [];
+            timerSeconds = 300;
+
+            document.getElementById("exercise-category-title").innerHTML = `
+                <i class="fas fa-graduation-cap text-enso-red"></i>
+                <span class="text-enso-red dark:text-red-400">EXAMEN FINAL DE INGLÉS BÁSICO</span>
+            `;
+
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(updateExamTimer, 1000);
+
+            loadExamQuestion();
+        }
+
+        function updateExamTimer() {
+            timerSeconds--;
+            const mins = Math.floor(timerSeconds / 60);
+            const secs = String(timerSeconds % 60).padStart(2, '0');
+            document.getElementById("exercise-counter").innerText = `⏱️ Tiempo: ${mins}:${secs}`;
+
+            if (timerSeconds <= 0) {
+                clearInterval(timerInterval);
+                showExamResults();
+            }
+        }
+
+        function loadExamQuestion() {
+            const q = examQuestions[examIndex];
+            const exerciseDiv = document.getElementById("exercise");
+            document.getElementById("result").innerHTML = "";
+
+            exerciseDiv.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between bg-blue-50 dark:bg-slate-800/80 p-4 rounded-2xl border border-blue-200 dark:border-slate-700">
+                        <div>
+                            <span class="text-[10px] font-black text-enso-red dark:text-red-400 uppercase">Pregunta ${examIndex + 1} de 15</span>
+                            <h4 class="font-extrabold text-base text-slate-900 dark:text-white mt-0.5">${q.q}</h4>
+                        </div>
+                        <button onclick="speakEnglish('${q.q.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-enso-blue text-white flex items-center justify-center hover:scale-105 transition" title="Escuchar">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+
+                    <!-- Options Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <button onclick="checkExam('A')" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 font-bold text-xs text-left transition flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100 flex items-center justify-center font-black text-[10px]">A</span>
+                            <span>${q.A}</span>
+                        </button>
+                        <button onclick="checkExam('B')" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 font-bold text-xs text-left transition flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100 flex items-center justify-center font-black text-[10px]">B</span>
+                            <span>${q.B}</span>
+                        </button>
+                        <button onclick="checkExam('C')" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 font-bold text-xs text-left transition flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100 flex items-center justify-center font-black text-[10px]">C</span>
+                            <span>${q.C}</span>
+                        </button>
+                        <button onclick="checkExam('D')" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 font-bold text-xs text-left transition flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-100 flex items-center justify-center font-black text-[10px]">D</span>
+                            <span>${q.D}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            speakEnglish(q.q);
+        }
+
+        function checkExam(selected) {
+            const correct = examQuestions[examIndex].answer;
+            let feedback = "";
+
+            if (selected === correct) {
+                score++;
+                playSfx(659.25, 'sine', 0.1);
+                feedback = `✔️ Question ${examIndex + 1}: Correct`;
+            } else {
+                playSfx(220, 'sine', 0.1);
+                feedback = `❌ Question ${examIndex + 1}: Incorrect (Correct: ${correct})`;
+            }
+
+            examFeedback.push(feedback);
+            examIndex++;
+
+            if (examIndex < examQuestions.length) {
+                loadExamQuestion();
+            } else {
+                clearInterval(timerInterval);
+                showExamResults();
+            }
+        }
+
+        function showExamResults() {
+            const percentage = Math.round((score / examQuestions.length) * 100);
+            addXP(score * 15);
+
+            document.getElementById("exercise-category-title").innerText = "RESULTADOS DEL EXAMEN";
+            document.getElementById("exercise-counter").innerText = "Examen Finalizado";
+
+            document.getElementById("exercise").innerHTML = `
+                <div class="text-center py-6 space-y-4">
+                    <div class="text-6xl">${percentage >= 70 ? '🎉' : '📖'}</div>
+                    <h3 class="text-2xl font-black text-slate-900 dark:text-white">
+                        ${percentage >= 70 ? '¡Felicidades! Examen Aprobado' : 'Sigue Practicando'}
+                    </h3>
+                    
+                    <div class="inline-flex items-center space-x-6 bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <div>
+                            <div class="text-slate-400 text-xs font-bold">Puntaje Obtenido</div>
+                            <div class="text-2xl font-black text-enso-blue dark:text-blue-400">${score} / 15</div>
+                        </div>
+                        <div class="border-l border-slate-200 dark:border-slate-700 pl-6">
+                            <div class="text-slate-400 text-xs font-bold">Porcentaje</div>
+                            <div class="text-2xl font-black text-enso-red dark:text-red-400">${percentage}%</div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex flex-wrap justify-center gap-3">
+                        <button onclick="downloadResults()" class="bg-enso-blue hover:bg-blue-900 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce flex items-center space-x-2 shadow-md">
+                            <i class="fas fa-file-download"></i>
+                            <span>Descargar Reporte TXT</span>
+                        </button>
+
+                        <a href="../index.html" class="bg-enso-red hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce flex items-center space-x-2 shadow-md">
+                            <i class="fas fa-home"></i>
+                            <span>Volver al Portal Principal</span>
+                        </a>
+
+                        <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="bg-slate-800 hover:bg-slate-900 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce flex items-center space-x-2">
+                            <i class="fas fa-database text-amber-300"></i>
+                            <span>Repositorio ensopfcmedios.com</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById("result").innerHTML = "";
+        }
+
+        function downloadResults() {
+            const percentage = Math.round((score / examQuestions.length) * 100);
+            let text = `========================================================\n`;
+            text += ` ESCUELA NORMAL SUPERIOR OIBA - PFC 2026\n`;
+            text += ` REPORT DE EVALUACIÓN: ENGLISH BASICS TRAINER v2.0\n`;
+            text += ` Docente Formador: Prof. Santiago Medina\n`;
+            text += ` Repositorio Oficial: www.ensopfcmedios.com\n`;
+            text += `========================================================\n\n`;
+            text += `Puntaje Final: ${score} / 15\n`;
+            text += `Porcentaje: ${percentage}%\n`;
+            text += `Fecha de Presentación: ${new Date().toLocaleString()}\n\n`;
+            text += `DETALLE DE RESPUESTAS:\n`;
+            text += `--------------------------------------------------------\n`;
+            text += examFeedback.join("\n");
+
+            const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Resultado_Ingles_ENSO_${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
     </script>
 </body>
 </html>
