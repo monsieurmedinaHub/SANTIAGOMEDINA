@@ -62,7 +62,6 @@
             transform: scale(0.96);
         }
 
-        /* Custom smooth scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -75,10 +74,6 @@
         }
         .dark ::-webkit-scrollbar-thumb {
             background: #475569;
-        }
-
-        .gradient-border {
-            border-image: linear-gradient(to right, #00296B, #C1121F) 1;
         }
     </style>
 </head>
@@ -147,7 +142,6 @@
 
         <!-- HERO BANNER & MAIN ACCESS -->
         <section class="bg-gradient-to-br from-enso-blue via-blue-900 to-enso-darkblue rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden border border-blue-700/50">
-            <!-- Decorative Background Watermark -->
             <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl font-black pointer-events-none select-none">
                 ENSO
             </div>
@@ -173,8 +167,8 @@
                 <!-- Hero Action Buttons -->
                 <div class="pt-2 flex flex-wrap gap-3">
                     <a href="INGLES/index.html" class="bg-enso-red hover:bg-red-700 text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl btn-bounce flex items-center space-x-3 text-sm sm:text-base border border-red-400/40">
-                        <span class="text-lg">🇬🇧</span>
-                        <span>Ir a Inglés Básico (Trainer v2.0)</span>
+                        <i class="fas fa-book-open text-amber-300"></i>
+                        <span>Ir a Inglés Básico</span>
                         <i class="fas fa-arrow-right text-xs ml-1"></i>
                     </a>
 
@@ -192,37 +186,6 @@
             </div>
 
             <!-- Daily Pedagogical Quote Banner -->
-            <div class="mt-6 pt-6 border-t border-blue-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-blue-200">
-                <div class="flex items-center space-x-2 italic">
-                    <i class="fas fa-quote-left text-enso-gold text-base"></i>
-                    <span id="daily-quote">"La educación no cambia el mundo, cambia a las personas que van a cambiar el mundo." - Paulo Freire</span>
-                </div>
-                <button onclick="readQuote()" class="text-blue-300 hover:text-white flex items-center space-x-1 transition font-semibold whitespace-nowrap bg-blue-950/50 px-2.5 py-1 rounded-lg border border-blue-800">
-                    <i class="fas fa-volume-up text-amber-400"></i>
-                    <span>Escuchar cita</span>
-                </button>
-            </div>
-        </section>
-
-        <!-- MAIN MENU & MODULES CATALOG -->
-        <section id="section-courses" class="space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
-                <div>
-                    <h3 class="text-xl font-extrabold flex items-center space-x-2 text-slate-900 dark:text-white">
-                        <i class="fas fa-th-large text-enso-blue dark:text-blue-400"></i>
-                        <span>Módulos de Estudio & Áreas Académicas</span>
-                    </h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Accede a las aulas virtuales, talleres interactivos y ejercicios de práctica.</p>
-                </div>
-
-                <!-- Search Filter -->
-                <div class="relative max-w-xs w-full">
-                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-                    <input type="text" id="course-search" oninput="filterCourses()" placeholder="Buscar módulo o recurso..." class="w-full bg-white dark:bg-slate-800 text-xs text-slate-800 dark:text-slate-100 pl-8 pr-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue transition">
-                </div>
-            </div>
-
-            <!-- Institutional Motto Banner -->
             <div class="mt-6 pt-6 border-t border-blue-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-blue-200">
                 <div class="flex items-center space-x-2 italic font-semibold">
                     <i class="fas fa-quote-left text-enso-gold text-base"></i>
@@ -264,24 +227,25 @@
 
                     <div class="space-y-3">
                         <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-900/60 text-enso-blue dark:text-blue-300 flex items-center justify-center text-3xl font-black shadow-inner group-hover:scale-110 transition-transform">
-                            🇬🇧
+                            📖
                         </div>
                         <div>
                             <span class="text-[10px] font-extrabold text-enso-red dark:text-red-400 uppercase tracking-wider">Formación en Idiomas</span>
                             <h4 class="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-enso-blue dark:group-hover:text-blue-400 transition-colors">
-                                Inglés Básico 
+                                English Basics Trainer
                             </h4>
                             <p class="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
-                                Entrenador interactivo con evaluación en tiempo real, pronunciación con audio nativo, tarjetas didácticas y examen final de 15 preguntas.
+                                Entrenador interactivo con voz nativa en inglés, tarjetas del abecedario (A-Z) con fonética, deletreo de verbos de acción y examen final de 20 preguntas.
                             </p>
                         </div>
 
                         <!-- Topics tags -->
                         <div class="flex flex-wrap gap-1.5 pt-1">
                             <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Greetings</span>
-                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Alphabet</span>
-                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Spelling</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Alphabet Cards A-Z</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Spelling Verbs</span>
                             <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Dialogues</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">20 Q Exam</span>
                         </div>
                     </div>
 
@@ -359,10 +323,10 @@
                             </button>
                         </div>
                         <h4 class="font-extrabold text-base text-slate-900 dark:text-white mb-1">
-                            Evaluación Final de Inglés Básico Habilitada
+                            Evaluación Final de Inglés Básico Habilitada (20 Preguntas)
                         </h4>
                         <p id="announcement-text-1" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                            Estimados estudiantes del PFC: El módulo de entrenamiento de Inglés Básico ya cuenta con el Examen Final interactivo de 15 preguntas con temporizador. Les recomiendo repasar las tarjetas didácticas antes de realizar su intento.
+                            Estimados estudiantes del PFC: El módulo de English Basics Trainer cuenta con las nuevas Alphabet Cards (A-Z) con voz nativa y el examen final interactivo de 20 preguntas. Les recomiendo repasar antes de realizar su intento.
                         </p>
                     </div>
 
@@ -422,7 +386,7 @@
                             </div>
                             <div>
                                 <h5 class="font-bold text-slate-900 dark:text-white">Cierre Examen Inglés Básico</h5>
-                                <p class="text-slate-500">Plataforma Campus Virtual</p>
+                                <p class="text-slate-500">Evaluación de 20 Preguntas</p>
                             </div>
                         </div>
 
@@ -442,7 +406,7 @@
 
                     <button onclick="downloadSyllabus()" class="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold py-2.5 rounded-xl btn-bounce flex items-center justify-center space-x-2 border border-slate-200 dark:border-slate-700">
                         <i class="fas fa-download"></i>
-                        <span>Descargar Horario PDF/TXT</span>
+                        <span>Descargar Horario TXT</span>
                     </button>
                 </div>
             </section>
@@ -476,7 +440,7 @@
                     <div class="space-y-3 text-xs">
                         <div>
                             <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Tema o Asignatura</label>
-                            <input type="text" id="lp-topic" placeholder="Ej. Greetings & Introduce yourself in English" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
+                            <input type="text" id="lp-topic" placeholder="Ej. Greetings & Alphabet Cards A-Z" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
                         </div>
                         <div>
                             <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Grado Escolar Destino</label>
@@ -571,7 +535,7 @@
                     <div class="font-black text-white text-sm">Acceso Directo</div>
                     <ul class="space-y-1.5">
                         <li><a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300 text-amber-200 transition flex items-center space-x-1.5 font-bold"><i class="fas fa-external-link-alt text-enso-gold text-xs"></i><span>Repositorio ensopfcmedios.com</span></a></li>
-                        <li><a href="INGLES/index.html" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-angle-right text-enso-red"></i><span>Entrenador de Inglés Básico</span></a></li>
+                        <li><a href="INGLES/index.html" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-book-open text-enso-red text-xs"></i><span>English Basics Trainer</span></a></li>
                         <li><a href="javascript:void(0)" onclick="openModal('modal-contact')" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-angle-right text-enso-red"></i><span>Atención a Estudiantes PFC</span></a></li>
                     </ul>
                 </div>
@@ -615,36 +579,6 @@
         </div>
     </div>
 
-    <!-- MODAL 2: GUÍAS PEDAGÓGICAS -->
-    <div id="modal-pedagogy" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-card bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 border border-slate-200 dark:border-slate-700">
-            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
-                <h4 class="font-extrabold text-lg text-slate-900 dark:text-white flex items-center space-x-2">
-                    <i class="fas fa-book-reader text-enso-blue"></i>
-                    <span>Recursos de Práctica Pedagógica</span>
-                </h4>
-                <button onclick="closeModal('modal-pedagogy')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="space-y-3 text-xs text-slate-600 dark:text-slate-300">
-                <div class="p-3 bg-blue-50 dark:bg-slate-900/60 rounded-xl border border-blue-200 dark:border-slate-700 space-y-1">
-                    <div class="font-bold text-enso-blue dark:text-blue-300 text-sm">📘 Guía N° 1: El Diario Pedagógico</div>
-                    <p>Estructura paso a paso para la reflexión crítica de las prácticas educativas en aula.</p>
-                </div>
-                <div class="p-3 bg-amber-50 dark:bg-slate-900/60 rounded-xl border border-amber-200 dark:border-slate-700 space-y-1">
-                    <div class="font-bold text-amber-600 dark:text-amber-400 text-sm">📙 Guía N° 2: Formato de Plan de Clase ENSO</div>
-                    <p>Estándares DBA, objetivos, momentos de clase (Iniciación, Desarrollo, Cierre) y evaluación.</p>
-                </div>
-                <button onclick="downloadPedagogyGuide()" class="w-full bg-enso-blue hover:bg-blue-900 text-white font-extrabold py-3 rounded-xl btn-bounce shadow-md flex items-center justify-center space-x-2">
-                    <i class="fas fa-file-download"></i>
-                    <span>Descargar Kit de Guías Pedagogicas (TXT)</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- JAVASCRIPT CONTROLLER & INTERACTIVITY -->
     <script>
         /* ==========================================================================
@@ -659,7 +593,7 @@
             const icon = document.getElementById("icon-sound");
             if (soundEnabled) {
                 icon.className = "fas fa-volume-up text-amber-300 text-sm";
-                playSfx(587.33, 'sine', 0.12); // D5 Tone
+                playSfx(587.33, 'sine', 0.12);
             } else {
                 icon.className = "fas fa-volume-mute text-red-300 text-sm";
             }
@@ -749,7 +683,7 @@
            5. LESSON PLAN EXPRESS GENERATOR TOOL
            ========================================================================== */
         function generateLessonPlan() {
-            const topic = document.getElementById("lp-topic").value.trim() || "Vocabulario en Inglés y Expresiones Básicas";
+            const topic = document.getElementById("lp-topic").value.trim() || "Vocabulario en Inglés y Alphabet Cards A-Z";
             const grade = document.getElementById("lp-grade").value;
             const outputDiv = document.getElementById("lp-output");
 
@@ -765,9 +699,9 @@
                 <div class="pt-1 border-t border-slate-200 dark:border-slate-700">
                     <p><strong>1. Momentos de la Clase:</strong></p>
                     <ul class="list-disc pl-4 space-y-0.5 mt-0.5">
-                        <li><strong>Iniciación (Motivation):</strong> Warm-up interactivo utilizando la herramienta English Basics Trainer v2.0.</li>
-                        <li><strong>Desarrollo (Practice):</strong> Presentación de vocabulario clave, pronunciación guiada y modelamiento.</li>
-                        <li><strong>Cierre (Assessment):</strong> Evaluación gamificada en parejas y retroalimentación colectiva.</li>
+                        <li><strong>Iniciación (Motivation):</strong> Warm-up interactivo utilizando las Alphabet Cards y audios nativos.</li>
+                        <li><strong>Desarrollo (Practice):</strong> Presentación de vocabulario clave, pronunciación guiada y deletreo de verbos.</li>
+                        <li><strong>Cierre (Assessment):</strong> Evaluación gamificada con el examen de 20 preguntas y retroalimentación colectiva.</li>
                     </ul>
                 </div>
             `;
@@ -851,10 +785,6 @@
             playSfx(350, 'sine', 0.08);
         }
 
-        function openPedagogyModal() {
-            openModal('modal-pedagogy');
-        }
-
         function sendMessage() {
             alert("¡Mensaje enviado correctamente al Profesor Santiago Medina!");
             closeModal('modal-contact');
@@ -866,37 +796,15 @@
             content += ` Cronograma & Recursos - Prof. Santiago Medina\n`;
             content += `========================================================\n\n`;
             content += `1. Taller de Didáctica del Inglés - 12 de Agosto (8:00 AM)\n`;
-            content += `2. Cierre Examen Inglés Básico v2.0 - 20 de Agosto\n`;
+            content += `2. Cierre Examen Inglés Básico (20 Preguntas) - 20 de Agosto\n`;
             content += `3. Simposio de Investigación Pedagógica - 05 de Septiembre\n\n`;
-            content += `Módulo Principal: Inglés Básico Trainer (INGLES/index.html)\n`;
+            content += `Módulo Principal: English Basics Trainer (INGLES/index.html)\n`;
 
             const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
             a.download = `Cronograma_ENSO_PFC_${Date.now()}.txt`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function downloadPedagogyGuide() {
-            let content = `========================================================\n`;
-            content += ` GUÍA DE PRÁCTICA PEDAGÓGICA INVESTIGATIVA (PFC)\n`;
-            content += ` Escuela Normal Superior Oiba - Prof. Santiago Medina\n`;
-            content += `========================================================\n\n`;
-            content += `1. ESTRUCTURA DEL DIARIO PEDAGÓGICO:\n`;
-            content += `   a. Fecha y Grado Observado.\n`;
-            content += `   b. Descripción de los hechos e interacciones pedagógicas.\n`;
-            content += `   c. Reflexión teórica a la luz de autores (Piaget, Vygotsky, Freire).\n`;
-            content += `   d. Propuesta de mejora didáctica.\n\n`;
-            content += `2. SECUENCIA DIDÁCTICA RECOMENDADA:\n`;
-            content += `   - Momentos: Iniciación, Desarrollo y Evaluación.\n`;
-
-            const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = `Guia_Practica_Pedagogica_ENSO.txt`;
             a.click();
             URL.revokeObjectURL(url);
         }
