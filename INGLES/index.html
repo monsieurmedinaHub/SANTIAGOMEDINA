@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" class="h-full">
 <head>
+    <!-- STREAMING_CHUNK:Configuring meta head and dark mode themes... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Basics Trainer | Escuela Normal Superior Oiba</title>
@@ -37,6 +38,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- STREAMING_CHUNK:Applying custom style declarations... -->
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -86,6 +88,7 @@
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-300">
 
+    <!-- STREAMING_CHUNK:Rendering navigation header bar... -->
     <!-- HEADER NAVBAR -->
     <header class="bg-enso-blue text-white shadow-xl sticky top-0 z-50 border-b-4 border-enso-red">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2">
@@ -100,7 +103,7 @@
 
                 <div class="h-6 w-px bg-blue-700/60 hidden sm:block"></div>
 
-                <!-- Brand Title with Book Icon (Replaces GB Flag) -->
+                <!-- Brand Title with Book Icon -->
                 <div>
                     <h1 class="text-sm sm:text-base font-black tracking-tight leading-none uppercase text-white flex items-center gap-1.5">
                         <i class="fas fa-book-open text-amber-300 text-sm"></i>
@@ -135,6 +138,7 @@
         </div>
     </header>
 
+    <!-- STREAMING_CHUNK:Building main container and gamification scoreboards... -->
     <!-- MAIN CONTAINER -->
     <main class="flex-grow max-w-5xl w-full mx-auto p-4 sm:p-6 space-y-6">
 
@@ -175,6 +179,7 @@
 
         </section>
 
+        <!-- STREAMING_CHUNK:Rendering category selection buttons... -->
         <!-- CATEGORY SELECTION MENU -->
         <section class="space-y-3">
             <div class="flex items-center justify-between">
@@ -226,6 +231,7 @@
             </div>
         </section>
 
+        <!-- STREAMING_CHUNK:Constructing interactive workspace canvas area... -->
         <!-- MAIN EXERCISE & PRACTICE AREA -->
         <section class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-enso-blue/40 dark:border-slate-700 shadow-xl space-y-6 relative min-h-[360px] flex flex-col justify-between">
             
@@ -269,6 +275,7 @@
 
     </main>
 
+    <!-- STREAMING_CHUNK:Rendering institution footer... -->
     <!-- FOOTER -->
     <footer class="bg-enso-darkblue text-white mt-10 py-6 border-t-4 border-enso-red text-xs">
         <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
@@ -288,6 +295,7 @@
         </div>
     </footer>
 
+    <!-- STREAMING_CHUNK:Initializing Web Speech API, Audio Engine, Practice Navigation Engine and data arrays... -->
     <script>
         /* ==========================================================================
            1. AUDIO ENGINE (Web Speech API & Web Audio FX)
@@ -499,26 +507,45 @@
         }
 
         /* ==========================================================================
-           4. PRACTICE ENGINE LOGIC
+           4. PRACTICE ENGINE LOGIC WITH "NEXT QUESTION" NAVIGATION
            ========================================================================== */
+        let currentPracticeList = [];
+        let currentPracticeIndex = 0;
+        let currentCategoryTitle = "";
+
+        // Utility to shuffle questions array so every practice attempt feels fresh
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
         function startGreetings() {
-            setCategoryHeader("Greetings & Expressions (Saludos y Despedidas)");
-            loadExercise(greetingsQuestions);
+            initPracticeModule("Greetings & Expressions", greetingsQuestions);
         }
 
         function startAlphabet() {
-            setCategoryHeader("Alphabet Quiz (Evaluación Fonética)");
-            loadExercise(alphabetQuestions);
+            initPracticeModule("Alphabet Quiz", alphabetQuestions);
         }
 
         function startSpelling() {
-            setCategoryHeader("Spelling Practice (Deletreo y Verbos de Acción)");
-            loadExercise(spellingQuestions);
+            initPracticeModule("Spelling Practice", spellingQuestions);
         }
 
         function startDialogues() {
-            setCategoryHeader("Mini Conversations (Diálogos Cortos)");
-            loadExercise(dialogueQuestions);
+            initPracticeModule("Mini Conversations", dialogueQuestions);
+        }
+
+        function initPracticeModule(title, questionsArray) {
+            currentCategoryTitle = title;
+            currentPracticeList = shuffleArray(questionsArray);
+            currentPracticeIndex = 0;
+            
+            setCategoryHeader(title);
+            loadCurrentPracticeExercise();
         }
 
         function setCategoryHeader(title) {
@@ -526,28 +553,57 @@
                 <i class="fas fa-dumbbell"></i>
                 <span>${title}</span>
             `;
-            document.getElementById("exercise-counter").innerText = "Modo Práctica Didáctica";
         }
 
-        function loadExercise(list) {
-            const random = list[Math.floor(Math.random() * list.length)];
+        function loadCurrentPracticeExercise() {
             const exerciseDiv = document.getElementById("exercise");
             const resultDiv = document.getElementById("result");
 
             resultDiv.innerHTML = "";
 
+            if (currentPracticeIndex >= currentPracticeList.length) {
+                // All questions in module answered
+                exerciseDiv.innerHTML = `
+                    <div class="text-center py-6 space-y-4">
+                        <div class="text-5xl">🎉</div>
+                        <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">¡Módulo Completado!</h3>
+                        <p class="text-xs text-slate-500 max-w-sm mx-auto">
+                            Has respondido las ${currentPracticeList.length} preguntas de <strong>${currentCategoryTitle}</strong>.
+                        </p>
+                        <div class="flex flex-wrap justify-center gap-3 pt-2">
+                            <button onclick="initPracticeModule('${currentCategoryTitle}', currentPracticeList)" class="bg-enso-blue hover:bg-blue-900 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce flex items-center space-x-2 shadow-md">
+                                <i class="fas fa-redo"></i>
+                                <span>Repetir Módulo</span>
+                            </button>
+                            <button onclick="startAlphabetCards()" class="bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce flex items-center space-x-2 shadow-md">
+                                <i class="fas fa-th"></i>
+                                <span>Ver Alphabet Cards</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                document.getElementById("exercise-counter").innerText = "Módulo Completado";
+                return;
+            }
+
+            const random = currentPracticeList[currentPracticeIndex];
+            document.getElementById("exercise-counter").innerText = `Pregunta ${currentPracticeIndex + 1} de ${currentPracticeList.length}`;
+
             exerciseDiv.innerHTML = `
                 <div class="space-y-4">
                     <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
-                        <span class="font-extrabold text-base text-slate-900 dark:text-white">${random.q}</span>
-                        <button onclick="speakEnglish('${random.q.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-enso-blue dark:text-blue-300 flex items-center justify-center hover:scale-105 transition flex-shrink-0" title="Escuchar Pregunta">
+                        <div>
+                            <span class="text-[10px] font-black text-enso-blue dark:text-blue-400 uppercase tracking-wider">Ejercicio ${currentPracticeIndex + 1}</span>
+                            <h4 class="font-extrabold text-base text-slate-900 dark:text-white mt-0.5">${random.q}</h4>
+                        </div>
+                        <button onclick="speakEnglish('${random.q.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-enso-blue dark:text-blue-300 flex items-center justify-center hover:scale-105 transition flex-shrink-0 ml-2" title="Escuchar Pregunta">
                             <i class="fas fa-volume-up"></i>
                         </button>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-2.5">
-                        ${random.options.map(opt => `
-                            <button onclick="checkAnswer('${opt.replace(/'/g, "\\'")}', '${random.answer.replace(/'/g, "\\'")}')" class="w-full text-left bg-white dark:bg-slate-800 p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-enso-blue dark:hover:border-blue-400 font-bold text-sm text-slate-800 dark:text-slate-100 transition shadow-sm flex items-center justify-between group">
+                    <div id="options-container" class="grid grid-cols-1 gap-2.5">
+                        ${random.options.map((opt, i) => `
+                            <button onclick="checkAnswer('${opt.replace(/'/g, "\\'")}', '${random.answer.replace(/'/g, "\\'")}', this)" class="option-btn w-full text-left bg-white dark:bg-slate-800 p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-enso-blue dark:hover:border-blue-400 font-bold text-sm text-slate-800 dark:text-slate-100 transition shadow-sm flex items-center justify-between group">
                                 <span>${opt}</span>
                                 <i class="fas fa-play text-xs text-slate-300 group-hover:text-enso-blue transition"></i>
                             </button>
@@ -559,34 +615,63 @@
             speakEnglish(random.q);
         }
 
-        function checkAnswer(selected, correct) {
+        function checkAnswer(selected, correct, clickedBtn) {
             const resultDiv = document.getElementById("result");
             speakEnglish(selected);
 
-            if (selected === correct) {
+            // Disable all option buttons in current question to prevent re-clicks
+            const optionBtns = document.querySelectorAll(".option-btn");
+            optionBtns.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.add("opacity-70", "cursor-not-allowed");
+            });
+
+            const isCorrect = (selected === correct);
+
+            if (isCorrect) {
                 playSfx(783.99, 'sine', 0.15);
                 addXP(10);
                 streak++;
                 document.getElementById("streak-count").innerText = streak;
 
-                resultDiv.innerHTML = `
-                    <div class="p-3 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 rounded-xl border border-emerald-300 dark:border-emerald-700 text-xs font-bold flex items-center justify-between">
-                        <span>✔️ ¡Excelente! Respuesta correcta (+10 XP)</span>
-                        <i class="fas fa-check-circle text-base"></i>
-                    </div>
-                `;
+                if (clickedBtn) {
+                    clickedBtn.classList.remove("border-slate-200", "dark:border-slate-700");
+                    clickedBtn.classList.add("border-emerald-500", "bg-emerald-50", "dark:bg-emerald-950/40");
+                }
             } else {
                 playSfx(220, 'sawtooth', 0.2);
                 streak = 0;
                 document.getElementById("streak-count").innerText = streak;
 
-                resultDiv.innerHTML = `
-                    <div class="p-3 bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-200 rounded-xl border border-red-300 dark:border-red-700 text-xs font-bold flex items-center justify-between">
-                        <span>❌ Respuesta Incorrecta. La opción correcta era: <strong>${correct}</strong></span>
-                        <i class="fas fa-times-circle text-base"></i>
-                    </div>
-                `;
+                if (clickedBtn) {
+                    clickedBtn.classList.remove("border-slate-200", "dark:border-slate-700");
+                    clickedBtn.classList.add("border-red-500", "bg-red-50", "dark:bg-red-950/40");
+                }
             }
+
+            const isLast = (currentPracticeIndex + 1 >= currentPracticeList.length);
+
+            resultDiv.innerHTML = `
+                <div class="space-y-3">
+                    <div class="p-3.5 ${isCorrect ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 border-emerald-300 dark:border-emerald-700' : 'bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-200 border-red-300 dark:border-red-700'} rounded-2xl border text-xs font-bold flex items-center justify-between">
+                        <span>${isCorrect ? '✔️ ¡Excelente! Respuesta correcta (+10 XP)' : `❌ Incorrecto. La respuesta correcta era: <strong>${correct}</strong>`}</span>
+                        <i class="fas ${isCorrect ? 'fa-check-circle' : 'fa-times-circle'} text-base"></i>
+                    </div>
+
+                    <!-- NEXT QUESTION BUTTON -->
+                    <div class="flex justify-end">
+                        <button onclick="nextPracticeQuestion()" class="bg-enso-blue hover:bg-blue-900 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce shadow-md flex items-center space-x-2">
+                            <span>${isLast ? 'Ver Resumen del Módulo' : 'Siguiente Pregunta'}</span>
+                            <i class="fas ${isLast ? 'fa-flag-checkered' : 'fa-arrow-right'} text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function nextPracticeQuestion() {
+            currentPracticeIndex++;
+            loadCurrentPracticeExercise();
         }
 
         /* ==========================================================================
@@ -766,3 +851,4 @@
     </script>
 </body>
 </html>
+```eof
