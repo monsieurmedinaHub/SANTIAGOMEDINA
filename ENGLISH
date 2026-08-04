@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>English Basics Trainer</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background: #2b6cb0;
+        color: white;
+        padding: 25px;
+        text-align: center;
+        border-bottom: 5px solid #1e4f80;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 26px;
+        font-weight: bold;
+    }
+    header p {
+        margin: 5px 0;
+        font-size: 16px;
+    }
+    .container {
+        width: 90%;
+        max-width: 750px;
+        margin: 20px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    button {
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        background: #2b6cb0;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #1e4f80;
+    }
+    .question {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    .option {
+        background: #e2e8f0;
+        padding: 12px;
+        border-radius: 8px;
+        margin: 8px 0;
+        cursor: pointer;
+    }
+    .option:hover {
+        background: #cbd5e0;
+    }
+    #result {
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>ESCUELA NORMAL SUPERIOR OIBA</h1>
+    <p>PROGRAMA DE FORMACIÓN COMPLEMENTARIA</p>
+    <p>INGLÉS BÁSICO – PROFESOR SANTIAGO MEDINA</p>
+</header>
+
+<div class="container">
+    <button onclick="startGreetings()">Practice Greetings</button>
+    <button onclick="startAlphabet()">Practice Alphabet</button>
+    <button onclick="startSpelling()">Practice Spelling</button>
+    <button onclick="startDialogues()">Mini Conversations</button>
+    <button onclick="startExam()">EXAM MODE (15 Questions)</button>
+
+    <div id="exercise"></div>
+    <div id="result"></div>
+</div>
+
+<script>
+/* ------------------ GREETINGS ------------------ */
+const greetingsQuestions = [
+    { q: "Choose the correct greeting for 8:00 AM:", options: ["Hi", "Good night", "Good morning"], answer: "Good morning" },
+    { q: "How do you say 'Buenas tardes'?", options: ["Good afternoon", "Good evening", "Good night"], answer: "Good afternoon" },
+    { q: "Formal greeting when meeting someone for the first time:", options: ["Hi!", "How do you do?", "What's up?"], answer: "How do you do?" },
+    { q: "Choose the correct farewell:", options: ["Good night", "Good morning", "Hello"], answer: "Good night" },
+    { q: "Which greeting is informal?", options: ["Hello!", "Good evening", "How do you do?"], answer: "Hello!" }
+];
+
+function startGreetings() {
+    loadExercise(greetingsQuestions);
+}
+
+/* ------------------ ALPHABET ------------------ */
+const alphabetQuestions = [
+    { q: "Which group does the letter M belong to?", options: ["Group 1 (ends in /i:/)", "Group 2 (starts with /e/)", "Group 3 (special sounds)"], answer: "Group 2 (starts with /e/)" },
+    { q: "Which letter has the sound /dlléi/?", options: ["J", "R", "Y"], answer: "J" },
+    { q: "Which letters end in /i:/?", options: ["F, L, M", "B, C, D, P, T, V", "J, K, R"], answer: "B, C, D, P, T, V" },
+    { q: "Which letter has the sound /uái/?", options: ["Y", "K", "Z"], answer: "Y" },
+    { q: "Which group does the letter S belong to?", options: ["Group 1", "Group 2", "Group 3"], answer: "Group 2" }
+];
+
+function startAlphabet() {
+    loadExercise(alphabetQuestions);
+}
+
+/* ------------------ SPELLING ------------------ */
+const spellingQuestions = [
+    { q: "Spell the name PAULA:", options: ["P-A-U-L-A", "P-O-L-A", "P-A-L-U-A"], answer: "P-A-U-L-A" },
+    { q: "Spell the name JULY:", options: ["J-U-L-Y", "Y-U-L-J", "J-O-L-Y"], answer: "J-U-L-Y" },
+    { q: "Spell the name SHARON:", options: ["S-H-A-R-O-N", "S-H-O-R-A-N", "S-A-H-R-O-N"], answer: "S-H-A-R-O-N" },
+    { q: "Spell the name SEBASTIÁN:", options: ["S-E-B-A-S-T-I-A-N", "S-E-B-A-S-T-I-Á-N", "S-E-V-A-S-T-I-A-N"], answer: "S-E-B-A-S-T-I-Á-N" },
+    { q: "Spell the name ENMANUEL:", options: ["E-N-M-A-N-U-E-L", "E-M-A-N-U-E-L", "E-N-M-O-N-U-E-L"], answer: "E-N-M-A-N-U-E-L" }
+];
+
+function startSpelling() {
+    loadExercise(spellingQuestions);
+}
+
+/* ------------------ MINI DIALOGUES ------------------ */
+const dialogueQuestions = [
+    { q: "Choose the correct reply: 'Good afternoon! What's your name?'", options: ["Good night", "My name is Laura", "How do you do?"], answer: "My name is Laura" },
+    { q: "Complete the dialogue: 'Hello! How are you today?'", options: ["I'm fine, thanks", "Good night", "How do you do?"], answer: "I'm fine, thanks" },
+    { q: "Choose the correct reply: 'Good morning! How do you do?'", options: ["Good evening", "How do you do?", "I'm fine, thanks"], answer: "How do you do?" },
+    { q: "Complete the dialogue: 'Hi! What's your name?'", options: ["Good night", "My name is Paula", "How are you today?"], answer: "My name is Paula" },
+    { q: "Choose the correct ending: 'Good afternoon! I'm fine, thanks. ______'", options: ["Glad to meet you", "Good night", "What's your name?"], answer: "Glad to meet you" }
+];
+
+function startDialogues() {
+    loadExercise(dialogueQuestions);
+}
+
+/* ------------------ EXAM MODE (15 QUESTIONS) ------------------ */
+const examQuestions = [
+    { q: "1. How do you say 'Buenos días'?", A: "Good night", B: "Good morning", C: "Good afternoon", D: "Hi", answer: "B" },
+    { q: "2. Which greeting is formal?", A: "Hi!", B: "Hello!", C: "How do you do?", D: "Hey!", answer: "C" },
+    { q: "3. Sound of letter J:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "B" },
+    { q: "4. Which group does letter F belong to?", A: "Group 1", B: "Group 2", C: "Group 3", D: "None", answer: "B" },
+    { q: "5. Spell the name JULY:", A: "J-O-L-Y", B: "Y-U-L-J", C: "J-U-L-Y", D: "J-U-Y-L", answer: "C" },
+    { q: "6. Choose the correct reply: 'Hello! How are you today?'", A: "Good night", B: "I'm fine, thanks", C: "How do you do?", D: "Good morning", answer: "B" },
+    { q: "7. Which letters end in /i:/?", A: "F, L, M", B: "B, C, D, P, T, V", C: "J, K, R", D: "S, X, N", answer: "B" },
+    { q: "8. Sound of letter Y:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "C" },
+    { q: "9. Choose the correct farewell:", A: "Good night", B: "Good morning", C: "Hello", D: "Hi", answer: "A" },
+    { q: "10. Spell the name PAULA:", A: "P-A-U-L-A", B: "P-O-L-A", C: "P-A-L-U-A", D: "P-A-U-A-L", answer: "A" },
+    { q: "11. Which group does letter S belong to?", A: "Group 1", B: "Group 2", C: "Group 3", D: "None", answer: "B" },
+    { q: "12. Choose the correct reply: 'Good afternoon! What's your name?'", A: "Good night", B: "My name is Laura", C: "How do you do?", D: "I'm fine, thanks", answer: "B" },
+    { q: "13. Sound of letter K:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "A" },
+    { q: "14. Spell the name SHARON:", A: "S-H-A-R-O-N", B: "S-H-O-R-A-N", C: "S-A-H-R-O-N", D: "S-H-A-R-N-O", answer: "A" },
+    { q: "15. Complete: 'Good afternoon! I'm fine, thanks. ______'", A: "Good night", B: "What's your name?", C: "Glad to meet you", D: "How do you do?", answer: "C" }
+];
+
+let examIndex = 0;
+let score = 0;
+let examFeedback = [];
+
+function startExam() {
+    examIndex = 0;
+    score = 0;
+    examFeedback = [];
+    loadExamQuestion();
+}
+
+function loadExamQuestion() {
+    const q = examQuestions[examIndex];
+    document.getElementById("exercise").innerHTML = `
+        <div class="question">${q.q}</div>
+        <div class="option" onclick="checkExam('A')">A. ${q.A}</div>
+        <div class="option" onclick="checkExam('B')">B. ${q.B}</div>
+        <div class="option" onclick="checkExam('C')">C. ${q.C}</div>
+        <div class="option" onclick="checkExam('D')">D. ${q.D}</div>
+    `;
+    document.getElementById("result").innerHTML = "";
+}
+
+function checkExam(selected) {
+    const correct = examQuestions[examIndex].answer;
+    let feedback = "";
+
+    if (selected === correct) {
+        score++;
+        feedback = `✔️ Question ${examIndex + 1}: Correct`;
+    } else {
+        feedback = `❌ Question ${examIndex + 1}: Incorrect (Correct answer: ${correct})`;
+    }
+
+    examFeedback.push(feedback);
+
+    examIndex++;
+    if (examIndex < examQuestions.length) {
+        loadExamQuestion();
+    } else {
+        showExamResults();
+    }
+}
+
+function showExamResults() {
+    const percentage = Math.round((score / examQuestions.length) * 100);
+
+    let feedbackText = examFeedback.join("\n");
+
+    document.getElementById("exercise").innerHTML = "";
+    document.getElementById("result").innerHTML = `
+        <h3>EXAM FINISHED</h3>
+        <p>Score: ${score} / 15</p>
+        <p>Percentage: ${percentage}%</p>
+        <button onclick="downloadResults()">Download Results</button>
+    `;
+}
+
+function downloadResults() {
+    const percentage = Math.round((score / examQuestions.length) * 100);
+    let text = `English Basics Exam Results\n\nScore: ${score}/15\nPercentage: ${percentage}%\n\nDetailed Feedback:\n\n`;
+    text += examFeedback.join("\n");
+
+    const blob = new Blob([text], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "exam_results.txt";
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
+/* ------------------ ENGINE FOR PRACTICE ------------------ */
+function loadExercise(list) {
+    const random = list[Math.floor(Math.random() * list.length)];
+    const exerciseDiv = document.getElementById("exercise");
+    const resultDiv = document.getElementById("result");
+
+    resultDiv.innerHTML = "";
+
+    exerciseDiv.innerHTML = `
+        <div class="question">${random.q}</div>
+        ${random.options.map(opt => `
+            <div class="option" onclick="checkAnswer('${opt}', '${random.answer}')">${opt}</div>
+        `).join("")}
+    `;
+}
+
+function checkAnswer(selected, correct) {
+    const resultDiv = document.getElementById("result");
+    if (selected === correct) {
+        resultDiv.innerHTML = "✔️ Correct!";
+        resultDiv.style.color = "green";
+    } else {
+        resultDiv.innerHTML = "❌ Incorrect. Correct answer: " + correct;
+        resultDiv.style.color = "red";
+    }
+}
+</script>
+
+</body>
+</html>
