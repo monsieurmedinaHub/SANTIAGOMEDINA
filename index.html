@@ -97,7 +97,7 @@
                     <h1 class="text-base sm:text-lg font-black tracking-tight leading-none uppercase text-white">Escuela Normal Superior Oiba</h1>
                     <p class="text-xs text-blue-200 font-semibold tracking-wide flex items-center gap-1.5 mt-0.5">
                         <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        Programa de Formación Complementaria (PFC)
+                        «Forjando maestros para una Colombia grande»
                     </p>
                 </div>
             </div>
@@ -158,12 +158,12 @@
                         🎓 Portal de Aprendizaje 2026
                     </span>
                     <span class="bg-blue-800/80 text-blue-200 text-[11px] font-semibold px-3 py-1 rounded-full border border-blue-700/60 flex items-center gap-1">
-                        <i class="fas fa-star text-amber-300 text-xs"></i> Formación Pedagógica
+                        <i class="fas fa-star text-amber-300 text-xs"></i> PFC Oiba
                     </span>
                 </div>
 
                 <h2 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
-                    Bienvenido al Campus Virtual del Profesor Santiago Medina
+                    Bienvenido al modulo del Profesor Santiago Medina
                 </h2>
 
                 <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
@@ -222,8 +222,39 @@
                 </div>
             </div>
 
+            <!-- Institutional Motto Banner -->
+            <div class="mt-6 pt-6 border-t border-blue-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-blue-200">
+                <div class="flex items-center space-x-2 italic font-semibold">
+                    <i class="fas fa-quote-left text-enso-gold text-base"></i>
+                    <span id="daily-quote">"Forjando maestros para una Colombia grande" — Lema ENSO</span>
+                </div>
+                <button onclick="readQuote()" class="text-blue-300 hover:text-white flex items-center space-x-1 transition font-semibold whitespace-nowrap bg-blue-950/50 px-2.5 py-1 rounded-lg border border-blue-800">
+                    <i class="fas fa-volume-up text-amber-400"></i>
+                    <span>Escuchar lema</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- MAIN MENU & MODULES CATALOG -->
+        <section id="section-courses" class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div>
+                    <h3 class="text-xl font-extrabold flex items-center space-x-2 text-slate-900 dark:text-white">
+                        <i class="fas fa-th-large text-enso-blue dark:text-blue-400"></i>
+                        <span>Módulos de Estudio & Áreas Académicas</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Accede a las aulas virtuales, talleres interactivos y ejercicios de práctica.</p>
+                </div>
+
+                <!-- Search Filter -->
+                <div class="relative max-w-xs w-full">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="course-search" oninput="filterCourses()" placeholder="Buscar módulo o recurso..." class="w-full bg-white dark:bg-slate-800 text-xs text-slate-800 dark:text-slate-100 pl-8 pr-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue transition">
+                </div>
+            </div>
+
             <!-- Modules Grid -->
-            <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 <!-- FEATURED MODULE 1: INGLÉS BÁSICO -->
                 <div class="course-card glass-card rounded-2xl p-6 border-2 border-enso-blue/40 hover:border-enso-red shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
@@ -265,38 +296,7 @@
                     </div>
                 </div>
 
-                <!-- MODULE 2: PEDAGOGÍA Y PRÁCTICA PEDAGÓGICA -->
-                <div class="course-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 hover:border-enso-blue shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
-                    <div class="space-y-3">
-                        <div class="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 flex items-center justify-center text-3xl font-black shadow-inner group-hover:scale-110 transition-transform">
-                            📚
-                        </div>
-                        <div>
-                            <span class="text-[10px] font-extrabold text-amber-600 dark:text-amber-400 uppercase tracking-wider">Núcleo Pedagógico</span>
-                            <h4 class="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-enso-blue dark:group-hover:text-blue-400 transition-colors">
-                                Práctica Pedagógica Investigativa
-                            </h4>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
-                                Orientaciones para la formación de normalistas en observación de aula, diarios de campo, proyectos de aula y diarios pedagógicos.
-                            </p>
-                        </div>
-
-                        <div class="flex flex-wrap gap-1.5 pt-1">
-                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Diarios de Campo</span>
-                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Proyectos</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-500">Recursos PFC</span>
-                        <button onclick="openPedagogyModal()" class="bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 text-white text-xs font-extrabold px-4 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5">
-                            <i class="fas fa-book-open text-xs"></i>
-                            <span>Ver Guías</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- MODULE 3: DIDÁCTICA Y TICS -->
+                <!-- MODULE 2: DIDÁCTICA Y TICS -->
                 <div class="course-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 hover:border-enso-blue shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                     <div class="space-y-3">
                         <div class="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 flex items-center justify-center text-3xl font-black shadow-inner group-hover:scale-110 transition-transform">
@@ -371,19 +371,19 @@
                         <div class="flex items-start justify-between gap-3 mb-2">
                             <div class="flex items-center space-x-2">
                                 <span class="bg-red-100 dark:bg-red-900/60 text-enso-red dark:text-red-300 text-[10px] font-black px-2.5 py-0.5 rounded-md uppercase">
-                                    Práctica Pedagógica
+                                    Recursos Digitales
                                 </span>
-                                <span class="text-xs text-slate-400 font-semibold">Fecha Importante</span>
+                                <span class="text-xs text-slate-400 font-semibold">Repositorio PFC</span>
                             </div>
                             <button onclick="readAnnouncement('announcement-text-2')" class="text-slate-400 hover:text-enso-blue dark:hover:text-blue-300 transition" title="Escuchar anuncio">
                                 <i class="fas fa-volume-up"></i>
                             </button>
                         </div>
                         <h4 class="font-extrabold text-base text-slate-900 dark:text-white mb-1">
-                            Entrega de Diarios de Campo - Primer Semestre
+                            Acceso Directo al Repositorio ensopfcmedios.com
                         </h4>
                         <p id="announcement-text-2" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                            Recuerden subir la sistematización de sus observaciones escolares en formato digital antes de finalizar esta semana. Utilicen el modelo de plan de clase disponible en la caja de herramientas.
+                            A través de nuestro sitio oficial ensopfcmedios.com podrán consultar todos los recursos multimedia, guías y formatos de apoyo diseñados para los docentes en formación.
                         </p>
                     </div>
 
@@ -545,9 +545,12 @@
                     <div class="flex items-center space-x-2 font-black text-white text-sm">
                         <span>🏛️ ENSO</span>
                     </div>
+                    <p class="italic text-amber-300 font-semibold">
+                        "Forjando maestros para una Colombia grande"
+                    </p>
                     <p class="leading-relaxed">
                         Escuela Normal Superior Oiba - Santander, Colombia.<br>
-                        Formando los Maestros del Futuro con Excelencia Pedagógica e Innovación Didáctica.
+                        Programa de Formación Complementaria (PFC).
                     </p>
                 </div>
 
@@ -559,7 +562,7 @@
                     </div>
                     <p>Docente Formador - PFC</p>
                     <p><i class="fas fa-globe mr-1.5 text-amber-300"></i> <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="hover:underline text-amber-300 font-semibold">www.ensopfcmedios.com</a></p>
-                    <p><i class="fas fa-envelope mr-1.5 text-blue-400"></i> contacto.profesor@enso.edu.co</p>
+                    <p><i class="fas fa-envelope mr-1.5 text-blue-400"></i> ensopfcmedios@gmail.com</p>
                     <p><i class="fas fa-map-marker-alt mr-1.5 text-enso-red"></i> Oiba, Santander - Colombia</p>
                 </div>
 
@@ -569,7 +572,6 @@
                     <ul class="space-y-1.5">
                         <li><a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300 text-amber-200 transition flex items-center space-x-1.5 font-bold"><i class="fas fa-external-link-alt text-enso-gold text-xs"></i><span>Repositorio ensopfcmedios.com</span></a></li>
                         <li><a href="INGLES/index.html" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-angle-right text-enso-red"></i><span>Entrenador de Inglés Básico</span></a></li>
-                        <li><a href="javascript:void(0)" onclick="openPedagogyModal()" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-angle-right text-enso-red"></i><span>Guías de Práctica Pedagógica</span></a></li>
                         <li><a href="javascript:void(0)" onclick="openModal('modal-contact')" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-angle-right text-enso-red"></i><span>Atención a Estudiantes PFC</span></a></li>
                     </ul>
                 </div>
