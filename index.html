@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Educativo – Escuela Normal Superior Oiba | Prof. Santiago Medina</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,7 +20,8 @@
                             lightred: '#780000',
                             gold: '#FFB703',
                             sky: '#3A86EF',
-                            accent: '#2A9D8F'
+                            accent: '#2A9D8F',
+                            purple: '#7209B7'
                         }
                     },
                     fontFamily: {
@@ -74,6 +75,13 @@
         }
         .dark ::-webkit-scrollbar-thumb {
             background: #475569;
+        }
+
+        .course-card {
+            transition: all 0.3s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-4px);
         }
     </style>
 </head>
@@ -161,27 +169,28 @@
                 </h2>
 
                 <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
-                    Espacio académico para los normalistas superiores del PFC. Explora módulos interactivos de inglés, herramientas de planificación didáctica, recursos pedagógicos y boletines informativos.
+                    Espacio académico para los normalistas superiores del PFC. Explora módulos interactivos de inglés, tecnología educativa (TICs), herramientas de planificación didáctica y recursos pedagógicos.
                 </p>
 
                 <!-- Hero Action Buttons -->
                 <div class="pt-2 flex flex-wrap gap-3">
-                    <a href="INGLES/index.html" class="bg-enso-red hover:bg-red-700 text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl btn-bounce flex items-center space-x-3 text-sm sm:text-base border border-red-400/40">
+                    <a href="INGLES/index.html" class="bg-enso-red hover:bg-red-700 text-white font-extrabold px-5 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl btn-bounce flex items-center space-x-2.5 text-xs sm:text-sm border border-red-400/40">
                         <i class="fas fa-book-open text-amber-300"></i>
-                        <span>Ir a Inglés Básico</span>
-                        <i class="fas fa-arrow-right text-xs ml-1"></i>
+                        <span>Inglés Básico</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
                     </a>
 
-                    <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 text-white font-bold px-5 py-3.5 rounded-2xl border border-white/30 btn-bounce flex items-center space-x-2 text-sm backdrop-blur-sm">
+                    <a href="TICS/index.html" class="bg-purple-700 hover:bg-purple-800 text-white font-extrabold px-5 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl btn-bounce flex items-center space-x-2.5 text-xs sm:text-sm border border-purple-400/40">
+                        <i class="fas fa-laptop-code text-purple-200"></i>
+                        <span>TICs Aplicadas</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+
+                    <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 text-white font-bold px-4 py-3.5 rounded-2xl border border-white/30 btn-bounce flex items-center space-x-2 text-xs sm:text-sm backdrop-blur-sm">
                         <i class="fas fa-globe text-amber-300"></i>
-                        <span>Repositorio ensopfcmedios.com</span>
-                        <i class="fas fa-external-link-alt text-xs opacity-80"></i>
+                        <span>ensopfcmedios.com</span>
+                        <i class="fas fa-external-link-alt text-[10px] opacity-80"></i>
                     </a>
-
-                    <button onclick="scrollToSection('section-toolkit')" class="bg-white/10 hover:bg-white/20 text-white font-bold px-5 py-3.5 rounded-2xl border border-white/20 btn-bounce flex items-center space-x-2 text-sm">
-                        <i class="fas fa-tools text-amber-300"></i>
-                        <span>Herramientas PFC</span>
-                    </button>
                 </div>
             </div>
 
@@ -219,10 +228,10 @@
             <!-- Modules Grid -->
             <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
-                <!-- FEATURED MODULE 1: INGLÉS BÁSICO -->
+                <!-- MODULE 1: INGLÉS BÁSICO -->
                 <div class="course-card glass-card rounded-2xl p-6 border-2 border-enso-blue/40 hover:border-enso-red shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
                     <div class="absolute top-0 right-0 bg-enso-red text-white text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase">
-                        Principal ⭐
+                        Inglés ⭐
                     </div>
 
                     <div class="space-y-3">
@@ -260,34 +269,43 @@
                     </div>
                 </div>
 
-                <!-- MODULE 2: DIDÁCTICA Y TICS -->
-                <div class="course-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 hover:border-enso-blue shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <!-- MODULE 2: TICS APLICADAS A LA ENSEÑANZA -->
+                <div class="course-card glass-card rounded-2xl p-6 border-2 border-purple-500/40 hover:border-purple-600 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-purple-700 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase">
+                        Tecnología 💻
+                    </div>
+
                     <div class="space-y-3">
                         <div class="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 flex items-center justify-center text-3xl font-black shadow-inner group-hover:scale-110 transition-transform">
                             💻
                         </div>
                         <div>
                             <span class="text-[10px] font-extrabold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Tecnología Educativa</span>
-                            <h4 class="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-enso-blue dark:group-hover:text-blue-400 transition-colors">
+                            <h4 class="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
                                 TICs Aplicadas a la Enseñanza
                             </h4>
                             <p class="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
-                                Estrategias para diseñar materiales interactivos, evaluación formativa digital y entornos virtuales de aprendizaje escolar.
+                                Estrategias para diseñar materiales interactivos OVA, evaluación de calidad de software educativo, simulador de casos de aula y examen de 20 preguntas.
                             </p>
                         </div>
 
                         <div class="flex flex-wrap gap-1.5 pt-1">
-                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Software Educativo</span>
-                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">OVA</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Catálogo TICs</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Diseñador OVA</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Rúbrica Software</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Casos de Aula</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Test 20Q</span>
                         </div>
                     </div>
 
                     <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-500">Taller Práctico</span>
-                        <button onclick="scrollToSection('section-toolkit')" class="bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 text-white text-xs font-extrabold px-4 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5">
-                            <i class="fas fa-magic text-xs"></i>
-                            <span>Herramientas</span>
-                        </button>
+                        <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                            <i class="fas fa-check-circle"></i> Disponible
+                        </span>
+                        <a href="TICS/index.html" class="bg-purple-700 hover:bg-purple-800 text-white text-xs font-extrabold px-4 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5 shadow-md">
+                            <span>Ingresar al Módulo</span>
+                            <i class="fas fa-external-link-alt text-[10px]"></i>
+                        </a>
                     </div>
                 </div>
 
@@ -331,23 +349,23 @@
                     </div>
 
                     <!-- Announcement 2 -->
-                    <div class="glass-card rounded-2xl p-5 border-l-4 border-l-enso-red border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                    <div class="glass-card rounded-2xl p-5 border-l-4 border-l-purple-600 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
                         <div class="flex items-start justify-between gap-3 mb-2">
                             <div class="flex items-center space-x-2">
-                                <span class="bg-red-100 dark:bg-red-900/60 text-enso-red dark:text-red-300 text-[10px] font-black px-2.5 py-0.5 rounded-md uppercase">
-                                    Recursos Digitales
+                                <span class="bg-purple-100 dark:bg-purple-900/60 text-purple-700 dark:text-purple-300 text-[10px] font-black px-2.5 py-0.5 rounded-md uppercase">
+                                    Tecnología Educativa
                                 </span>
-                                <span class="text-xs text-slate-400 font-semibold">Repositorio PFC</span>
+                                <span class="text-xs text-slate-400 font-semibold">Módulo TICs</span>
                             </div>
-                            <button onclick="readAnnouncement('announcement-text-2')" class="text-slate-400 hover:text-enso-blue dark:hover:text-blue-300 transition" title="Escuchar anuncio">
+                            <button onclick="readAnnouncement('announcement-text-2')" class="text-slate-400 hover:text-purple-600 transition" title="Escuchar anuncio">
                                 <i class="fas fa-volume-up"></i>
                             </button>
                         </div>
                         <h4 class="font-extrabold text-base text-slate-900 dark:text-white mb-1">
-                            Acceso Directo al Repositorio ensopfcmedios.com
+                            Nuevo Módulo: TICs Aplicadas a la Enseñanza
                         </h4>
                         <p id="announcement-text-2" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                            A través de nuestro sitio oficial ensopfcmedios.com podrán consultar todos los recursos multimedia, guías y formatos de apoyo diseñados para los docentes en formación.
+                            Ya se encuentra disponible el simulador de casos de aula, el diseñador didáctico de OVA y el cuestionario interactivo de 20 preguntas sobre competencias digitales docentes.
                         </p>
                     </div>
 
@@ -380,12 +398,12 @@
 
                         <!-- Event 2 -->
                         <div class="flex items-start space-x-3 pb-3 border-b border-slate-100 dark:border-slate-800">
-                            <div class="w-10 h-10 rounded-xl bg-enso-red text-white font-black flex flex-col items-center justify-center flex-shrink-0 text-[10px]">
+                            <div class="w-10 h-10 rounded-xl bg-purple-700 text-white font-black flex flex-col items-center justify-center flex-shrink-0 text-[10px]">
                                 <span>AGO</span>
                                 <span class="text-sm leading-none font-extrabold">20</span>
                             </div>
                             <div>
-                                <h5 class="font-bold text-slate-900 dark:text-white">Cierre Examen Inglés Básico</h5>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Cierre Examen TICs y Mediación</h5>
                                 <p class="text-slate-500">Evaluación de 20 Preguntas</p>
                             </div>
                         </div>
@@ -440,7 +458,7 @@
                     <div class="space-y-3 text-xs">
                         <div>
                             <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Tema o Asignatura</label>
-                            <input type="text" id="lp-topic" placeholder="Ej. Greetings & Alphabet Cards A-Z" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
+                            <input type="text" id="lp-topic" placeholder="Ej. Greetings & Alphabet Cards / TICs en Ciencias" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
                         </div>
                         <div>
                             <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Grado Escolar Destino</label>
@@ -536,6 +554,7 @@
                     <ul class="space-y-1.5">
                         <li><a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300 text-amber-200 transition flex items-center space-x-1.5 font-bold"><i class="fas fa-external-link-alt text-enso-gold text-xs"></i><span>Repositorio ensopfcmedios.com</span></a></li>
                         <li><a href="INGLES/index.html" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-book-open text-enso-red text-xs"></i><span>English Basics Trainer</span></a></li>
+                        <li><a href="TICS/index.html" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-laptop-code text-purple-400 text-xs"></i><span>TICs Aplicadas a la Enseñanza</span></a></li>
                         <li><a href="javascript:void(0)" onclick="openModal('modal-contact')" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-angle-right text-enso-red"></i><span>Atención a Estudiantes PFC</span></a></li>
                     </ul>
                 </div>
@@ -683,7 +702,7 @@
            5. LESSON PLAN EXPRESS GENERATOR TOOL
            ========================================================================== */
         function generateLessonPlan() {
-            const topic = document.getElementById("lp-topic").value.trim() || "Vocabulario en Inglés y Alphabet Cards A-Z";
+            const topic = document.getElementById("lp-topic").value.trim() || "Vocabulario en Inglés / Uso de TICs";
             const grade = document.getElementById("lp-grade").value;
             const outputDiv = document.getElementById("lp-output");
 
@@ -699,9 +718,9 @@
                 <div class="pt-1 border-t border-slate-200 dark:border-slate-700">
                     <p><strong>1. Momentos de la Clase:</strong></p>
                     <ul class="list-disc pl-4 space-y-0.5 mt-0.5">
-                        <li><strong>Iniciación (Motivation):</strong> Warm-up interactivo utilizando las Alphabet Cards y audios nativos.</li>
-                        <li><strong>Desarrollo (Practice):</strong> Presentación de vocabulario clave, pronunciación guiada y deletreo de verbos.</li>
-                        <li><strong>Cierre (Assessment):</strong> Evaluación gamificada con el examen de 20 preguntas y retroalimentación colectiva.</li>
+                        <li><strong>Iniciación (Motivation):</strong> Warm-up interactivo utilizando recursos multimedia o audio nativo.</li>
+                        <li><strong>Desarrollo (Practice):</strong> Presentación de conceptos clave, trabajo colaborativo guiado y ejercitación.</li>
+                        <li><strong>Cierre (Assessment):</strong> Evaluación gamificada mediante examen automatizado y retroalimentación colectiva.</li>
                     </ul>
                 </div>
             `;
@@ -794,11 +813,14 @@
             let content = `========================================================\n`;
             content += ` ESCUELA NORMAL SUPERIOR OIBA - PFC 2026\n`;
             content += ` Cronograma & Recursos - Prof. Santiago Medina\n`;
+            content += ` Repositorio Oficial: www.ensopfcmedios.com\n`;
             content += `========================================================\n\n`;
             content += `1. Taller de Didáctica del Inglés - 12 de Agosto (8:00 AM)\n`;
-            content += `2. Cierre Examen Inglés Básico (20 Preguntas) - 20 de Agosto\n`;
+            content += `2. Cierre Examen TICs y Mediación - 20 de Agosto\n`;
             content += `3. Simposio de Investigación Pedagógica - 05 de Septiembre\n\n`;
-            content += `Módulo Principal: English Basics Trainer (INGLES/index.html)\n`;
+            content += `Módulos Disponibles:\n`;
+            content += `- English Basics Trainer (INGLES/index.html)\n`;
+            content += `- TICs Aplicadas a la Enseñanza (TICS/index.html)\n`;
 
             const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
             const url = URL.createObjectURL(blob);
