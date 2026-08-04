@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="es" class="h-full">
 <head>
-    <!-- STREAMING_CHUNK:Configuring head meta tags and external libraries... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Basics Trainer v2.0 | Escuela Normal Superior Oiba</title>
+    <title>English Basics Trainer | Escuela Normal Superior Oiba</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,7 +37,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- STREAMING_CHUNK:Styling visual effects and animations... -->
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -79,17 +77,18 @@
             background: #475569;
         }
 
-        .letter-card {
-            transition: all 0.2s ease-in-out;
+        .card-pulse {
+            animation: pulse-glow 2s infinite alternate;
         }
-        .letter-card:hover {
-            transform: translateY(-4px) scale(1.03);
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 15px rgba(0, 41, 107, 0.2); }
+            100% { box-shadow: 0 0 25px rgba(193, 18, 31, 0.4); }
         }
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-300">
 
-    <!-- STREAMING_CHUNK:Building header navigation bar with institutional links... -->
     <!-- HEADER NAVBAR -->
     <header class="bg-enso-blue text-white shadow-xl sticky top-0 z-50 border-b-4 border-enso-red">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2">
@@ -107,8 +106,7 @@
                 <!-- Brand Title -->
                 <div>
                     <h1 class="text-sm sm:text-base font-black tracking-tight leading-none uppercase text-white flex items-center gap-1.5">
-                        <span>🇬🇧 English Basics Trainer</span>
-                        <span class="bg-amber-400 text-enso-darkblue text-[10px] font-black px-1.5 py-0.5 rounded">v2.0</span>
+                        <span>English Basics Trainer</span>
                     </h1>
                     <p class="text-[11px] text-blue-200 font-semibold tracking-wide">
                         Escuela Normal Superior Oiba • Prof. Santiago Medina
@@ -139,9 +137,8 @@
         </div>
     </header>
 
-    <!-- STREAMING_CHUNK:Rendering main container and gamification stats... -->
     <!-- MAIN CONTAINER -->
-    <main class="flex-grow max-w-5xl w-full mx-auto p-4 sm:p-6 space-y-6">
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 sm:p-6 space-y-6">
 
         <!-- GAMIFICATION STATS BANNER -->
         <section class="glass-card rounded-2xl p-4 border border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-md">
@@ -180,7 +177,6 @@
 
         </section>
 
-        <!-- STREAMING_CHUNK:Rendering category selection buttons including Alphabet Cards... -->
         <!-- CATEGORY SELECTION MENU -->
         <section class="space-y-3">
             <div class="flex items-center justify-between">
@@ -190,51 +186,43 @@
                 </h3>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
                 
                 <button onclick="startGreetings()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
                     <div class="text-xl mb-1 group-hover:scale-110 transition-transform">👋</div>
                     <div class="font-extrabold text-xs">Greetings</div>
-                    <div class="text-[10px] opacity-70">10+ Saludos</div>
-                </button>
-
-                <!-- NEW ALPHABET CARDS MODULE -->
-                <button onclick="startAlphabetCards()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-amber-400 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
-                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">🎴</div>
-                    <div class="font-extrabold text-xs text-amber-600 dark:text-amber-400 group-hover:text-white">Alphabet Cards</div>
-                    <div class="text-[10px] opacity-70">Tarjetas A-Z</div>
+                    <div class="text-[10px] opacity-70">Saludos</div>
                 </button>
 
                 <button onclick="startAlphabet()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
                     <div class="text-xl mb-1 group-hover:scale-110 transition-transform">🔤</div>
-                    <div class="font-extrabold text-xs">Alphabet Quiz</div>
-                    <div class="text-[10px] opacity-70">Test Fonético</div>
+                    <div class="font-extrabold text-xs">Alphabet</div>
+                    <div class="text-[10px] opacity-70">Abecedario</div>
                 </button>
 
                 <button onclick="startSpelling()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
                     <div class="text-xl mb-1 group-hover:scale-110 transition-transform">✍️</div>
                     <div class="font-extrabold text-xs">Spelling</div>
-                    <div class="text-[10px] opacity-70">Deletreo y Verbos</div>
+                    <div class="text-[10px] opacity-70">Deletreo</div>
                 </button>
 
                 <button onclick="startDialogues()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
                     <div class="text-xl mb-1 group-hover:scale-110 transition-transform">💬</div>
                     <div class="font-extrabold text-xs">Dialogues</div>
-                    <div class="text-[10px] opacity-70">Diálogos Cortos</div>
+                    <div class="text-[10px] opacity-70">Diálogos</div>
                 </button>
 
                 <button onclick="startExam()" class="col-span-2 sm:col-span-1 bg-gradient-to-br from-enso-red to-red-700 text-white border-2 border-red-500 p-3 rounded-2xl text-left btn-bounce transition shadow-md group">
                     <div class="text-xl mb-1 group-hover:scale-110 transition-transform">🎓</div>
                     <div class="font-black text-xs uppercase tracking-wider">Exam Mode</div>
-                    <div class="text-[10px] text-red-200">20 Preguntas</div>
+                    <div class="text-[10px] text-red-200">15 Preguntas</div>
                 </button>
 
             </div>
         </section>
 
-        <!-- STREAMING_CHUNK:Building dynamic exercise workspace container... -->
         <!-- MAIN EXERCISE & PRACTICE AREA -->
-        <section class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-enso-blue/40 dark:border-slate-700 shadow-xl space-y-6 relative min-h-[360px] flex flex-col justify-between">
+        <section class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-enso-blue/40 dark:border-slate-700 shadow-xl space-y-6 relative min-h-[320px] flex flex-col justify-between">
             
             <!-- Top Status Indicator -->
             <div id="exercise-header" class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
@@ -249,7 +237,7 @@
             <div id="exercise" class="space-y-4 my-auto">
                 <div class="text-center py-8 space-y-3">
                     <div class="text-5xl animate-bounce">🎓</div>
-                    <h2 class="text-xl font-extrabold text-slate-800 dark:text-white">¡Bienvenido al Entrenador de Inglés Básico v2.0!</h2>
+                    <h2 class="text-xl font-extrabold text-slate-800 dark:text-white">¡Bienvenido al Entrenador de Inglés Básico!</h2>
                     <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
                         Explora las nuevas <strong>Alphabet Cards (A-Z)</strong>, practica saludos, deletreo de verbos de acción y presenta la <strong>Evaluación Final de 20 preguntas</strong>.
                     </p>
@@ -257,7 +245,7 @@
             </div>
 
             <!-- Dynamic Feedback Alert Box -->
-            <div id="result" class="min-h-[20px]"></div>
+            <div id="result" class="min-h-[40px]"></div>
 
             <!-- Bottom Secondary Actions -->
             <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs">
@@ -276,10 +264,9 @@
 
     </main>
 
-    <!-- STREAMING_CHUNK:Rendering institution footer... -->
     <!-- FOOTER -->
     <footer class="bg-enso-darkblue text-white mt-10 py-6 border-t-4 border-enso-red text-xs">
-        <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
                 <div class="font-extrabold text-white text-sm">Escuela Normal Superior Oiba</div>
                 <div class="text-blue-200">Programa de Formación Complementaria (PFC) • Prof. Santiago Medina</div>
@@ -296,7 +283,6 @@
         </div>
     </footer>
 
-    <!-- STREAMING_CHUNK:Initializing Web Speech API, audio sound engine and state variables... -->
     <script>
         /* ==========================================================================
            1. AUDIO ENGINE (Web Speech API & Web Audio FX)
@@ -341,7 +327,7 @@
             synth.cancel(); // Stop current audio
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'en-US';
-            utterance.rate = 0.85; // Natural pace for learning
+            utterance.rate = 0.9; // Natural pace
             synth.speak(utterance);
         }
 
@@ -349,9 +335,9 @@
             playerXP += points;
             document.getElementById("player-xp").innerText = `${playerXP} XP`;
             
-            if (playerXP > 150) {
+            if (playerXP > 100) {
                 document.getElementById("player-level").innerText = "Normalista Avanzado 🎓";
-            } else if (playerXP > 60) {
+            } else if (playerXP > 40) {
                 document.getElementById("player-level").innerText = "Estudiante Intermedio 📚";
             }
         }
@@ -371,168 +357,67 @@
         }
 
         /* ==========================================================================
-           3. DATA BANK (Alphabet Flashcards, Greetings, Spelling, Dialogues, Exam)
+           3. QUESTION DATA BANK
            ========================================================================== */
-        
-        // 26 ALPHABET CARDS WITH PHONETICS & EXAMPLES
-        const alphabetCardsData = [
-            { letter: "A", sound: "/eɪ/", word: "Apple" },
-            { letter: "B", sound: "/biː/", word: "Book" },
-            { letter: "C", sound: "/siː/", word: "Cat" },
-            { letter: "D", sound: "/diː/", word: "Dog" },
-            { letter: "E", sound: "/iː/", word: "Elephant" },
-            { letter: "F", sound: "/ɛf/", word: "Fish" },
-            { letter: "G", sound: "/dʒiː/", word: "Giraffe" },
-            { letter: "H", sound: "/eɪtʃ/", word: "House" },
-            { letter: "I", sound: "/aɪ/", word: "Ice" },
-            { letter: "J", sound: "/dʒeɪ/", word: "Juice" },
-            { letter: "K", sound: "/keɪ/", word: "Kite" },
-            { letter: "L", sound: "/ɛl/", word: "Lion" },
-            { letter: "M", sound: "/ɛm/", word: "Monkey" },
-            { letter: "N", sound: "/ɛn/", word: "Nest" },
-            { letter: "O", sound: "/oʊ/", word: "Orange" },
-            { letter: "P", sound: "/piː/", word: "Pen" },
-            { letter: "Q", sound: "/kjuː/", word: "Queen" },
-            { letter: "R", sound: "/ɑːr/", word: "Rabbit" },
-            { letter: "S", sound: "/ɛs/", word: "Sun" },
-            { letter: "T", sound: "/tiː/", word: "Teacher" },
-            { letter: "U", sound: "/juː/", word: "Umbrella" },
-            { letter: "V", sound: "/viː/", word: "Violin" },
-            { letter: "W", sound: "/ˈdʌbəl juː/", word: "Water" },
-            { letter: "X", sound: "/ɛks/", word: "Xylophone" },
-            { letter: "Y", sound: "/waɪ/", word: "Yacht" },
-            { letter: "Z", sound: "/zɛd/", word: "Zebra" }
-        ];
-
-        // EXPANDED GREETINGS QUESTIONS (12 Questions)
         const greetingsQuestions = [
             { q: "Formal greeting when meeting someone for the first time:", options: ["Hi!", "How do you do?", "What's up?"], answer: "How do you do?" },
-            { q: "Choose the correct greeting for 8:00 AM:", options: ["Good night", "Good morning", "Good afternoon"], answer: "Good morning" },
-            { q: "Choose the informal greeting used among friends:", options: ["Good evening", "How do you do?", "What's up?"], answer: "What's up?" },
-            { q: "Choose the correct greeting for 3:00 PM:", options: ["Good morning", "Good afternoon", "Good night"], answer: "Good afternoon" },
-            { q: "Choose the greeting used when arriving at 7:00 PM:", options: ["Good evening", "Good night", "Good morning"], answer: "Good evening" },
-            { q: "What do you say when saying goodbye at night before going to sleep?", options: ["Good evening", "Good night", "Good afternoon"], answer: "Good night" },
-            { q: "How do you respond politely to 'Nice to meet you'?", options: ["Nice to meet you too", "Good morning", "What's up?"], answer: "Nice to meet you too" },
-            { q: "Which greeting is used in formal emails or presentations?", options: ["Hey there!", "Dear Sir / Madam", "Yo!"], answer: "Dear Sir / Madam" },
-            { q: "Choose the correct response to 'How are you today?':", options: ["I'm doing well, thank you!", "Good night", "My name is John"], answer: "I'm doing well, thank you!" },
-            { q: "Which of the following expressions is a farewell?", options: ["See you later!", "Good morning", "How do you do?"], answer: "See you later!" },
-            { q: "Complete: 'Have a _______ day!'", options: ["great", "hello", "goodnight"], answer: "great" },
-            { q: "How do you casually ask someone how they are doing?", options: ["How's it going?", "What is your name?", "Where are you from?"], answer: "How's it going?" }
+            { q: "Choose the correct greeting for the morning:", options: ["Good night", "Good morning", "Good afternoon"], answer: "Good morning" },
+            { q: "Choose the informal greeting:", options: ["Hello", "Good evening", "What's up?"], answer: "What's up?" }
         ];
 
-        // ALPHABET PHONETICS QUESTIONS
         const alphabetQuestions = [
             { q: "Sound of letter J:", options: ["/kei/", "/dlléi/", "/uái/"], answer: "/dlléi/" },
             { q: "Sound of letter Y:", options: ["/kei/", "/dlléi/", "/uái/"], answer: "/uái/" },
-            { q: "Which letters end in /i:/?", options: ["F, L, M", "B, C, D, P, T, V", "S, X, N"], answer: "B, C, D, P, T, V" },
-            { q: "Sound of letter K:", options: ["/kei/", "/dlléi/", "/zed/"], answer: "/kei/" },
-            { q: "Which group does letter F belong to phonetically?", options: ["Group 1 (/i:/)", "Group 2 (/e/)", "Group 3 (/ai/)"], answer: "Group 2 (/e/)" },
-            { q: "Sound of letter W in English:", options: ["/dʌbəl ju:/", "/doblve/", "/dʌbl-v/"], answer: "/dʌbəl ju:/" },
-            { q: "Which letter is pronounced as /aɪ/?", options: ["Letter E", "Letter I", "Letter A"], answer: "Letter I" }
+            { q: "Which letters end in /i:/?", options: ["F, L, M", "B, C, D, P, T, V", "S, X, N"], answer: "B, C, D, P, T, V" }
         ];
 
-        // SPELLING & ACTION VERBS QUESTIONS
         const spellingQuestions = [
             { q: "Spell the name JULY:", options: ["J-O-L-Y", "J-U-L-Y", "Y-U-L-J"], answer: "J-U-L-Y" },
-            { q: "Spell the action verb WRITE:", options: ["W-R-I-T-E", "W-R-E-T-I", "R-I-T-E-W"], answer: "W-R-I-T-E" },
-            { q: "Spell the action verb DANCE:", options: ["D-A-N-S-E", "D-A-N-C-E", "D-O-N-C-E"], answer: "D-A-N-C-E" },
-            { q: "Spell the action verb SPEAK:", options: ["S-P-E-A-K", "S-P-E-K-E", "S-P-A-E-K"], answer: "S-P-E-A-K" },
-            { q: "Spell the action verb LISTEN:", options: ["L-I-S-T-E-N", "L-E-S-T-I-N", "L-I-S-N-E-T"], answer: "L-I-S-T-E-N" },
-            { q: "Spell the action verb TEACH:", options: ["T-E-A-C-H", "T-E-C-H-A", "T-A-E-C-H"], answer: "T-E-A-C-H" },
-            { q: "Spell the action verb JUMP:", options: ["J-U-M-P", "J-A-M-P", "G-U-M-P"], answer: "J-U-M-P" },
             { q: "Spell the name PAULA:", options: ["P-A-U-L-A", "P-O-L-A", "P-A-L-U-A"], answer: "P-A-U-L-A" },
             { q: "Spell the name SHARON:", options: ["S-H-A-R-O-N", "S-H-O-R-A-N", "S-A-H-R-O-N"], answer: "S-H-A-R-O-N" }
         ];
 
-        // MINI DIALOGUES QUESTIONS
         const dialogueQuestions = [
             { q: "Choose the correct reply: 'Good afternoon! What's your name?'", options: ["Good night", "My name is Laura", "How do you do?"], answer: "My name is Laura" },
             { q: "Complete the dialogue: 'Hello! How are you today?'", options: ["I'm fine, thanks", "Good night", "How do you do?"], answer: "I'm fine, thanks" },
             { q: "Choose the correct reply: 'Good morning! How do you do?'", options: ["Good evening", "How do you do?", "I'm fine, thanks"], answer: "How do you do?" },
-            { q: "Complete the dialogue: 'Hi! Where are you from?'", options: ["I'm from Colombia", "My name is Carlos", "Good afternoon"], answer: "I'm from Colombia" },
-            { q: "Choose the correct ending: 'Good afternoon! I'm fine, thanks. ______'", options: ["Glad to meet you", "Good night", "What's your name?"], answer: "Glad to meet you" },
-            { q: "Complete the dialogue: 'What do you do for a living?'", options: ["I'm a student at ENSO", "I live in Oiba", "I am 18 years old"], answer: "I'm a student at ENSO" }
+            { q: "Complete the dialogue: 'Hi! What's your name?'", options: ["Good night", "My name is Paula", "How are you today?"], answer: "My name is Paula" },
+            { q: "Choose the correct ending: 'Good afternoon! I'm fine, thanks. ______'", options: ["Glad to meet you", "Good night", "What's your name?"], answer: "Glad to meet you" }
         ];
 
-        // STREAMING_CHUNK:Defining updated 20 questions array for Exam Mode...
-        // EXAM MODE - EXACTLY 20 QUESTIONS
         const examQuestions = [
             { q: "1. How do you say 'Buenos días'?", A: "Good night", B: "Good morning", C: "Good afternoon", D: "Hi", answer: "B" },
-            { q: "2. Which greeting is formal when meeting someone for the first time?", A: "Hi!", B: "Hello!", C: "How do you do?", D: "Hey!", answer: "C" },
+            { q: "2. Which greeting is formal?", A: "Hi!", B: "Hello!", C: "How do you do?", D: "Hey!", answer: "C" },
             { q: "3. Sound of letter J:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "B" },
-            { q: "4. Which group does letter F belong to phonetically?", A: "Group 1 (/i:/)", B: "Group 2 (/e/)", C: "Group 3 (/ai/)", D: "None", answer: "B" },
+            { q: "4. Which group does letter F belong to?", A: "Group 1", B: "Group 2", C: "Group 3", D: "None", answer: "B" },
             { q: "5. Spell the name JULY:", A: "J-O-L-Y", B: "Y-U-L-J", C: "J-U-L-Y", D: "J-U-Y-L", answer: "C" },
             { q: "6. Choose the correct reply: 'Hello! How are you today?'", A: "Good night", B: "I'm fine, thanks", C: "How do you do?", D: "Good morning", answer: "B" },
             { q: "7. Which letters end in /i:/?", A: "F, L, M", B: "B, C, D, P, T, V", C: "J, K, R", D: "S, X, N", answer: "B" },
             { q: "8. Sound of letter Y:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "C" },
-            { q: "9. Choose the correct farewell when leaving at night:", A: "Good night", B: "Good morning", C: "Hello", D: "Hi", answer: "A" },
-            { q: "10. Spell the action verb WRITE:", A: "W-R-I-T-E", B: "W-R-E-T-I", C: "R-I-T-E-W", D: "W-I-R-T-E", answer: "A" },
+            { q: "9. Choose the correct farewell:", A: "Good night", B: "Good morning", C: "Hello", D: "Hi", answer: "A" },
+            { q: "10. Spell the name PAULA:", A: "P-A-U-L-A", B: "P-O-L-A", C: "P-A-L-U-A", D: "P-A-U-A-L", answer: "A" },
             { q: "11. Which group does letter S belong to?", A: "Group 1", B: "Group 2", C: "Group 3", D: "None", answer: "B" },
             { q: "12. Choose the correct reply: 'Good afternoon! What's your name?'", A: "Good night", B: "My name is Laura", C: "How do you do?", D: "I'm fine, thanks", answer: "B" },
             { q: "13. Sound of letter K:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "A" },
-            { q: "14. Spell the action verb TEACH:", A: "T-E-A-C-H", B: "T-E-C-H-A", C: "T-A-E-C-H", D: "T-E-A-H-C", answer: "A" },
-            { q: "15. Complete: 'Good afternoon! I'm fine, thanks. ______'", A: "Good night", B: "What's your name?", C: "Glad to meet you", D: "How do you do?", answer: "C" },
-            { q: "16. How do you spell the action verb DANCE?", A: "D-A-N-S-E", B: "D-A-N-C-E", C: "D-O-N-C-E", D: "D-A-N-C-I", answer: "B" },
-            { q: "17. What is the sound of letter W in English?", A: "/dʌbəl ju:/", B: "/doblve/", C: "/dʌbl-v/", D: "/vee/", answer: "A" },
-            { q: "18. Complete the dialogue: 'Where are you from?'", A: "I'm fine, thanks", B: "I'm from Colombia", C: "My name is Paula", D: "Good morning", answer: "B" },
-            { q: "19. Which greeting is appropriate for 3:00 PM?", A: "Good morning", B: "Good afternoon", C: "Good night", D: "Good evening", answer: "B" },
-            { q: "20. How do you spell the action verb LISTEN?", A: "L-I-S-T-E-N", B: "L-E-S-T-I-N", C: "L-I-S-N-E-T", D: "L-Y-S-T-E-N", answer: "A" }
+            { q: "14. Spell the name SHARON:", A: "S-H-A-R-O-N", B: "S-H-O-R-A-N", C: "S-A-H-R-O-N", D: "S-H-A-R-N-O", answer: "A" },
+            { q: "15. Complete: 'Good afternoon! I'm fine, thanks. ______'", A: "Good night", B: "What's your name?", C: "Glad to meet you", D: "How do you do?", answer: "C" }
         ];
 
         /* ==========================================================================
-           4. ALPHABET CARDS MODULE LOGIC
-           ========================================================================== */
-        // STREAMING_CHUNK:Implementing Alphabet Cards grid rendering and audio trigger...
-        function startAlphabetCards() {
-            setCategoryHeader("Alphabet Flashcards (Tarjetas A-Z con Fonética)");
-            
-            const exerciseDiv = document.getElementById("exercise");
-            document.getElementById("result").innerHTML = "";
-
-            let html = `
-                <div class="space-y-4">
-                    <p class="text-xs text-slate-500 dark:text-slate-400 text-center font-semibold">
-                        Haz clic o toca cualquier tarjeta para **escuchar la pronunciación nativa en inglés** de la letra y su palabra de ejemplo.
-                    </p>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-3 max-h-[420px] overflow-y-auto p-1">
-            `;
-
-            alphabetCardsData.forEach(card => {
-                html += `
-                    <div onclick="speakEnglish('${card.letter}. ${card.word}'); playSfx(523, 'sine', 0.08);" class="letter-card bg-white dark:bg-slate-800 p-3 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-amber-400 dark:hover:border-amber-400 text-center cursor-pointer shadow-sm group">
-                        <div class="text-3xl font-black text-enso-blue dark:text-blue-400 group-hover:scale-110 transition-transform">${card.letter}</div>
-                        <div class="text-[11px] font-bold text-amber-600 dark:text-amber-400">${card.sound}</div>
-                        <div class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold mt-1">${card.word}</div>
-                        <div class="mt-2 text-slate-300 group-hover:text-amber-500 text-xs">
-                            <i class="fas fa-volume-up"></i>
-                        </div>
-                    </div>
-                `;
-            });
-
-            html += `
-                    </div>
-                </div>
-            `;
-
-            exerciseDiv.innerHTML = html;
-        }
-
-        /* ==========================================================================
-           5. PRACTICE ENGINE LOGIC
+           4. PRACTICE ENGINE LOGIC
            ========================================================================== */
         function startGreetings() {
-            setCategoryHeader("Greetings & Expressions (Saludos y Despedidas)");
+            setCategoryHeader("Greetings (Saludos y Expresiones)");
             loadExercise(greetingsQuestions);
         }
 
         function startAlphabet() {
-            setCategoryHeader("Alphabet Quiz (Evaluación Fonética)");
+            setCategoryHeader("Alphabet & Phonetics (Abecedario)");
             loadExercise(alphabetQuestions);
         }
 
         function startSpelling() {
-            setCategoryHeader("Spelling Practice (Deletreo y Verbos de Acción)");
+            setCategoryHeader("Spelling Practice (Deletreo de Nombres)");
             loadExercise(spellingQuestions);
         }
 
@@ -546,7 +431,7 @@
                 <i class="fas fa-dumbbell"></i>
                 <span>${title}</span>
             `;
-            document.getElementById("exercise-counter").innerText = "Modo Práctica Didáctica";
+            document.getElementById("exercise-counter").innerText = "Modo Práctica";
         }
 
         function loadExercise(list) {
@@ -560,7 +445,7 @@
                 <div class="space-y-4">
                     <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
                         <span class="font-extrabold text-base text-slate-900 dark:text-white">${random.q}</span>
-                        <button onclick="speakEnglish('${random.q.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-enso-blue dark:text-blue-300 flex items-center justify-center hover:scale-105 transition flex-shrink-0" title="Escuchar Pregunta">
+                        <button onclick="speakEnglish('${random.q.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-enso-blue dark:text-blue-300 flex items-center justify-center hover:scale-105 transition" title="Escuchar en Inglés">
                             <i class="fas fa-volume-up"></i>
                         </button>
                     </div>
@@ -611,24 +496,23 @@
         }
 
         /* ==========================================================================
-           6. EXAM MODE ENGINE (20 QUESTIONS & CERTIFICATE GENERATION)
+           5. EXAM MODE ENGINE (15 QUESTIONS & CERTIFICATE GENERATION)
            ========================================================================== */
-        // STREAMING_CHUNK:Configuring Exam Mode engine with 20 questions and timer...
         let examIndex = 0;
         let score = 0;
         let examFeedback = [];
-        let timerSeconds = 420; // 7 min timer
+        let timerSeconds = 300; // 5 min timer
         let timerInterval = null;
 
         function startExam() {
             examIndex = 0;
             score = 0;
             examFeedback = [];
-            timerSeconds = 420;
+            timerSeconds = 300;
 
             document.getElementById("exercise-category-title").innerHTML = `
                 <i class="fas fa-graduation-cap text-enso-red"></i>
-                <span class="text-enso-red dark:text-red-400">EXAMEN FINAL DE INGLÉS BÁSICO (20 PREGUNTAS)</span>
+                <span class="text-enso-red dark:text-red-400">EXAMEN FINAL DE INGLÉS BÁSICO</span>
             `;
 
             if (timerInterval) clearInterval(timerInterval);
@@ -658,10 +542,10 @@
                 <div class="space-y-4">
                     <div class="flex items-center justify-between bg-blue-50 dark:bg-slate-800/80 p-4 rounded-2xl border border-blue-200 dark:border-slate-700">
                         <div>
-                            <span class="text-[10px] font-black text-enso-red dark:text-red-400 uppercase">Pregunta ${examIndex + 1} de 20</span>
+                            <span class="text-[10px] font-black text-enso-red dark:text-red-400 uppercase">Pregunta ${examIndex + 1} de 15</span>
                             <h4 class="font-extrabold text-base text-slate-900 dark:text-white mt-0.5">${q.q}</h4>
                         </div>
-                        <button onclick="speakEnglish('${q.q.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-enso-blue text-white flex items-center justify-center hover:scale-105 transition flex-shrink-0" title="Escuchar">
+                        <button onclick="speakEnglish('${q.q.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-enso-blue text-white flex items-center justify-center hover:scale-105 transition" title="Escuchar">
                             <i class="fas fa-volume-up"></i>
                         </button>
                     </div>
@@ -701,7 +585,7 @@
                 feedback = `✔️ Question ${examIndex + 1}: Correct`;
             } else {
                 playSfx(220, 'sine', 0.1);
-                feedback = `❌ Question ${examIndex + 1}: Incorrect (Correct answer: ${correct})`;
+                feedback = `❌ Question ${examIndex + 1}: Incorrect (Correct: ${correct})`;
             }
 
             examFeedback.push(feedback);
@@ -719,7 +603,7 @@
             const percentage = Math.round((score / examQuestions.length) * 100);
             addXP(score * 15);
 
-            document.getElementById("exercise-category-title").innerText = "RESULTADOS DEL EXAMEN (20 PREGUNTAS)";
+            document.getElementById("exercise-category-title").innerText = "RESULTADOS DEL EXAMEN";
             document.getElementById("exercise-counter").innerText = "Examen Finalizado";
 
             document.getElementById("exercise").innerHTML = `
@@ -732,7 +616,7 @@
                     <div class="inline-flex items-center space-x-6 bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
                         <div>
                             <div class="text-slate-400 text-xs font-bold">Puntaje Obtenido</div>
-                            <div class="text-2xl font-black text-enso-blue dark:text-blue-400">${score} / 20</div>
+                            <div class="text-2xl font-black text-enso-blue dark:text-blue-400">${score} / 15</div>
                         </div>
                         <div class="border-l border-slate-200 dark:border-slate-700 pl-6">
                             <div class="text-slate-400 text-xs font-bold">Porcentaje</div>
@@ -766,14 +650,14 @@
             const percentage = Math.round((score / examQuestions.length) * 100);
             let text = `========================================================\n`;
             text += ` ESCUELA NORMAL SUPERIOR OIBA - PFC 2026\n`;
-            text += ` REPORT DE EVALUACIÓN: ENGLISH BASICS TRAINER v2.0\n`;
+            text += ` REPORT DE EVALUACIÓN: ENGLISH BASICS TRAINER\n`;
             text += ` Docente Formador: Prof. Santiago Medina\n`;
             text += ` Repositorio Oficial: www.ensopfcmedios.com\n`;
             text += `========================================================\n\n`;
             text += `Puntaje Final: ${score} / 20\n`;
             text += `Porcentaje: ${percentage}%\n`;
             text += `Fecha de Presentación: ${new Date().toLocaleString()}\n\n`;
-            text += `DETALLE DE RESPUESTAS (20 PREGUNTAS):\n`;
+            text += `DETALLE DE RESPUESTAS:\n`;
             text += `--------------------------------------------------------\n`;
             text += examFeedback.join("\n");
 
@@ -781,28 +665,10 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
-            a.download = `Resultado_Ingles_ENSO_20Q_${Date.now()}.txt`;
+            a.download = `Resultado_Ingles_ENSO_${Date.now()}.txt`;
             a.click();
             URL.revokeObjectURL(url);
         }
     </script>
 </body>
 </html>
-```eof
-
-¡Todos los cambios y nuevos módulos han sido integrados en **English Basics Trainer v2.0**!
-
-### 🌟 Resumen de las adiciones:
-1. **Nuevo Módulo `Alphabet Cards` (🎴)**:
-   - Cuadrícula con las **26 letras del abecedario (A–Z)**.
-   - Muestra la pronunciación fonética (ej: `/eɪ/`, `/biː/`) y una palabra de ejemplo con voz sintética al tocar cada tarjeta.
-2. **Examen Final Ampliado a 20 Preguntas (🎓)**:
-   - Contador oficial y puntaje calculado sobre **20 preguntas**.
-   - Temporizador ajustado a 7 minutos.
-   - Generación del archivo TXT con el desglose de las 20 respuestas.
-3. **Deletreo con Verbos de Acción (✍️)**:
-   - Ejercicios de deletreo con verbos como `WRITE`, `DANCE`, `SPEAK`, `LISTEN`, `TEACH`, `JUMP`.
-4. **Modulo Greetings Ampliado (👋)**:
-   - Más de 10 ejemplos y situaciones sobre saludos formales, informales y despedidas.
-5. **Navegación**:
-   - Botón directo para **Volver al Portal Principal** (`../index.html`) y acceso al repositorio oficial **[www.ensopfcmedios.com](https://www.ensopfcmedios.com)**.
