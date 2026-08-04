@@ -1,73 +1,903 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full">
 <head>
-<meta charset="UTF-8">
-<title>Portal Educativo – Profesor Santiago Medina</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #eef2f7;
-        margin: 0;
-        padding: 0;
-    }
-    header {
-        background: #00296B;          /* Azul principal */
-        color: white;
-        padding: 25px;
-        text-align: center;
-        border-bottom: 5px solid #C1121F;  /* Rojo como acento */
-    }
-    h1 {
-        margin: 0;
-        font-size: 28px;
-    }
-    p {
-        margin: 5px 0;
-        font-size: 16px;
-    }
-    .container {
-        width: 90%;
-        max-width: 700px;
-        margin: 30px auto;
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        text-align: center;
-        border: 2px solid #00296B;    /* Marco azul */
-    }
-    a.button {
-        display: block;
-        background: #00296B;          /* Botón azul */
-        color: white;
-        padding: 15px;
-        margin: 15px 0;
-        border-radius: 10px;
-        font-size: 20px;
-        text-decoration: none;
-        font-weight: bold;
-        border: 2px solid #C1121F;    /* Borde rojo */
-    }
-    a.button:hover {
-        background: #C1121F;          /* Hover rojo */
-        border-color: #00296B;        /* Borde azul */
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Educativo – Escuela Normal Superior Oiba | Prof. Santiago Medina</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        enso: {
+                            blue: '#00296B',
+                            darkblue: '#001D4A',
+                            red: '#C1121F',
+                            lightred: '#780000',
+                            gold: '#FFB703',
+                            sky: '#3A86EF',
+                            accent: '#2A9D8F'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            user-select: none;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-bounce {
+            transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-bounce:active {
+            transform: scale(0.96);
+        }
+
+        /* Custom smooth scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+
+        .gradient-border {
+            border-image: linear-gradient(to right, #00296B, #C1121F) 1;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-300">
 
-<header>
-    <h1>ESCUELA NORMAL SUPERIOR OIBA</h1>
-    <p>PROGRAMA DE FORMACIÓN COMPLEMENTARIA</p>
-    <p>Recursos del Profesor Santiago Medina</p>
-</header>
+    <!-- HEADER & INSTITUTIONAL NAVBAR -->
+    <header class="bg-enso-blue text-white shadow-xl sticky top-0 z-50 border-b-4 border-enso-red">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            
+            <!-- Institution Brand -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-11 h-11 rounded-2xl bg-white text-enso-blue flex items-center justify-center font-black text-xl shadow-md border-2 border-enso-red transform hover:scale-105 transition-transform">
+                    🏛️
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-black tracking-tight leading-none uppercase text-white">Escuela Normal Superior Oiba</h1>
+                    <p class="text-xs text-blue-200 font-semibold tracking-wide flex items-center gap-1.5 mt-0.5">
+                        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Programa de Formación Complementaria (PFC)
+                    </p>
+                </div>
+            </div>
 
-<div class="container">
-    <h2>Menú Principal</h2>
+            <!-- Profile & Quick Control Panel -->
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                
+                <!-- Teacher Info Pill -->
+                <div class="hidden md:flex items-center space-x-2.5 bg-enso-darkblue/70 border border-blue-400/30 px-3 py-1.5 rounded-xl">
+                    <div class="w-8 h-8 rounded-full bg-enso-red text-white flex items-center justify-center font-extrabold text-xs border border-white/40">
+                        SM
+                    </div>
+                    <div class="text-left text-xs">
+                        <div class="font-bold text-white">Prof. Santiago Medina</div>
+                        <div class="text-blue-300 text-[10px]">Docente Formador</div>
+                    </div>
+                </div>
 
-    <a class="button" href="INGLES/index.html">Inglés Básico</a>
+                <!-- Sound FX Toggle -->
+                <button id="btn-sound-toggle" onclick="toggleSound()" class="w-9 h-9 rounded-xl bg-blue-900/60 hover:bg-blue-800 border border-blue-700/50 flex items-center justify-center transition" title="Activar/Desactivar Sonidos de Interacción">
+                    <i id="icon-sound" class="fas fa-volume-up text-amber-300 text-sm"></i>
+                </button>
 
-</div>
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-blue-900/60 hover:bg-blue-800 border border-blue-700/50 flex items-center justify-center transition" title="Cambiar Tema Oscuro/Claro">
+                    <i id="icon-theme" class="fas fa-moon text-amber-300 text-sm"></i>
+                </button>
 
+                <!-- Repositorio ENSO PFC Badge/Link -->
+                <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center space-x-1.5 bg-enso-gold/20 hover:bg-enso-gold/30 text-amber-300 font-bold text-xs px-3 py-1.5 rounded-xl border border-amber-400/30 transition btn-bounce" title="Ir al Repositorio Oficial">
+                    <i class="fas fa-database text-xs"></i>
+                    <span>Repositorio</span>
+                    <i class="fas fa-external-link-alt text-[10px]"></i>
+                </a>
+
+                <!-- Quick Contact Modal Button -->
+                <button onclick="openModal('modal-contact')" class="bg-enso-red hover:bg-red-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl btn-bounce shadow-md flex items-center space-x-1.5">
+                    <i class="fas fa-paper-plane text-xs"></i>
+                    <span class="hidden sm:inline">Contacto</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 space-y-8">
+
+        <!-- HERO BANNER & MAIN ACCESS -->
+        <section class="bg-gradient-to-br from-enso-blue via-blue-900 to-enso-darkblue rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden border border-blue-700/50">
+            <!-- Decorative Background Watermark -->
+            <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl font-black pointer-events-none select-none">
+                ENSO
+            </div>
+
+            <div class="relative z-10 max-w-3xl space-y-4">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="bg-enso-red text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                        🎓 Portal de Aprendizaje 2026
+                    </span>
+                    <span class="bg-blue-800/80 text-blue-200 text-[11px] font-semibold px-3 py-1 rounded-full border border-blue-700/60 flex items-center gap-1">
+                        <i class="fas fa-star text-amber-300 text-xs"></i> Formación Pedagógica
+                    </span>
+                </div>
+
+                <h2 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+                    Bienvenido al Campus Virtual del Profesor Santiago Medina
+                </h2>
+
+                <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
+                    Espacio académico para los normalistas superiores del PFC. Explora módulos interactivos de inglés, herramientas de planificación didáctica, recursos pedagógicos y boletines informativos.
+                </p>
+
+                <!-- Hero Action Buttons -->
+                <div class="pt-2 flex flex-wrap gap-3">
+                    <a href="INGLES/index.html" class="bg-enso-red hover:bg-red-700 text-white font-extrabold px-6 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl btn-bounce flex items-center space-x-3 text-sm sm:text-base border border-red-400/40">
+                        <span class="text-lg">🇬🇧</span>
+                        <span>Ir a Inglés Básico (Trainer v2.0)</span>
+                        <i class="fas fa-arrow-right text-xs ml-1"></i>
+                    </a>
+
+                    <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 text-white font-bold px-5 py-3.5 rounded-2xl border border-white/30 btn-bounce flex items-center space-x-2 text-sm backdrop-blur-sm">
+                        <i class="fas fa-globe text-amber-300"></i>
+                        <span>Repositorio ensopfcmedios.com</span>
+                        <i class="fas fa-external-link-alt text-xs opacity-80"></i>
+                    </a>
+
+                    <button onclick="scrollToSection('section-toolkit')" class="bg-white/10 hover:bg-white/20 text-white font-bold px-5 py-3.5 rounded-2xl border border-white/20 btn-bounce flex items-center space-x-2 text-sm">
+                        <i class="fas fa-tools text-amber-300"></i>
+                        <span>Herramientas PFC</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Daily Pedagogical Quote Banner -->
+            <div class="mt-6 pt-6 border-t border-blue-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-blue-200">
+                <div class="flex items-center space-x-2 italic">
+                    <i class="fas fa-quote-left text-enso-gold text-base"></i>
+                    <span id="daily-quote">"La educación no cambia el mundo, cambia a las personas que van a cambiar el mundo." - Paulo Freire</span>
+                </div>
+                <button onclick="readQuote()" class="text-blue-300 hover:text-white flex items-center space-x-1 transition font-semibold whitespace-nowrap bg-blue-950/50 px-2.5 py-1 rounded-lg border border-blue-800">
+                    <i class="fas fa-volume-up text-amber-400"></i>
+                    <span>Escuchar cita</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- MAIN MENU & MODULES CATALOG -->
+        <section id="section-courses" class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div>
+                    <h3 class="text-xl font-extrabold flex items-center space-x-2 text-slate-900 dark:text-white">
+                        <i class="fas fa-th-large text-enso-blue dark:text-blue-400"></i>
+                        <span>Módulos de Estudio & Áreas Académicas</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Accede a las aulas virtuales, talleres interactivos y ejercicios de práctica.</p>
+                </div>
+
+                <!-- Search Filter -->
+                <div class="relative max-w-xs w-full">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="course-search" oninput="filterCourses()" placeholder="Buscar módulo o recurso..." class="w-full bg-white dark:bg-slate-800 text-xs text-slate-800 dark:text-slate-100 pl-8 pr-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue transition">
+                </div>
+            </div>
+
+            <!-- Modules Grid -->
+            <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                
+                <!-- FEATURED MODULE 1: INGLÉS BÁSICO -->
+                <div class="course-card glass-card rounded-2xl p-6 border-2 border-enso-blue/40 hover:border-enso-red shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 bg-enso-red text-white text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase">
+                        Principal ⭐
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-100 dark:bg-blue-900/60 text-enso-blue dark:text-blue-300 flex items-center justify-center text-3xl font-black shadow-inner group-hover:scale-110 transition-transform">
+                            🇬🇧
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-extrabold text-enso-red dark:text-red-400 uppercase tracking-wider">Formación en Idiomas</span>
+                            <h4 class="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-enso-blue dark:group-hover:text-blue-400 transition-colors">
+                                Inglés Básico - Trainer v2.0
+                            </h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+                                Entrenador interactivo con evaluación en tiempo real, pronunciación con audio nativo, tarjetas didácticas y examen final de 15 preguntas.
+                            </p>
+                        </div>
+
+                        <!-- Topics tags -->
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Greetings</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Alphabet</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Spelling</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Dialogues</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                            <i class="fas fa-check-circle"></i> Disponible
+                        </span>
+                        <a href="INGLES/index.html" class="bg-enso-blue hover:bg-blue-900 text-white text-xs font-extrabold px-4 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5 shadow-md">
+                            <span>Ingresar al Módulo</span>
+                            <i class="fas fa-external-link-alt text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- MODULE 2: PEDAGOGÍA Y PRÁCTICA PEDAGÓGICA -->
+                <div class="course-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 hover:border-enso-blue shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 flex items-center justify-center text-3xl font-black shadow-inner group-hover:scale-110 transition-transform">
+                            📚
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-extrabold text-amber-600 dark:text-amber-400 uppercase tracking-wider">Núcleo Pedagógico</span>
+                            <h4 class="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-enso-blue dark:group-hover:text-blue-400 transition-colors">
+                                Práctica Pedagógica Investigativa
+                            </h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+                                Orientaciones para la formación de normalistas en observación de aula, diarios de campo, proyectos de aula y diarios pedagógicos.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Diarios de Campo</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Proyectos</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <span class="text-xs font-bold text-slate-500">Recursos PFC</span>
+                        <button onclick="openPedagogyModal()" class="bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 text-white text-xs font-extrabold px-4 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5">
+                            <i class="fas fa-book-open text-xs"></i>
+                            <span>Ver Guías</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- MODULE 3: DIDÁCTICA Y TICS -->
+                <div class="course-card glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 hover:border-enso-blue shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div class="space-y-3">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 flex items-center justify-center text-3xl font-black shadow-inner group-hover:scale-110 transition-transform">
+                            💻
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-extrabold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Tecnología Educativa</span>
+                            <h4 class="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-enso-blue dark:group-hover:text-blue-400 transition-colors">
+                                TICs Aplicadas a la Enseñanza
+                            </h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+                                Estrategias para diseñar materiales interactivos, evaluación formativa digital y entornos virtuales de aprendizaje escolar.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">Software Educativo</span>
+                            <span class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-bold px-2 py-0.5 rounded-md">OVA</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-5 mt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <span class="text-xs font-bold text-slate-500">Taller Práctico</span>
+                        <button onclick="scrollToSection('section-toolkit')" class="bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 text-white text-xs font-extrabold px-4 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5">
+                            <i class="fas fa-magic text-xs"></i>
+                            <span>Herramientas</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TWO COLUMN LAYOUT: ANNOUNCEMENTS & CALENDAR -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- ANNOUNCEMENTS BOARD (2 cols) -->
+            <section class="lg:col-span-2 space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <h3 class="text-lg font-extrabold flex items-center space-x-2 text-slate-900 dark:text-white">
+                        <i class="fas fa-bullhorn text-enso-red"></i>
+                        <span>Boletín de Anuncios y Avisos PFC</span>
+                    </h3>
+                    <span class="text-xs text-slate-500 font-semibold">Actualizado hoy</span>
+                </div>
+
+                <div class="space-y-3" id="announcements-container">
+                    
+                    <!-- Announcement 1 -->
+                    <div class="glass-card rounded-2xl p-5 border-l-4 border-l-enso-blue border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-start justify-between gap-3 mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-blue-100 dark:bg-blue-900/60 text-enso-blue dark:text-blue-300 text-[10px] font-black px-2.5 py-0.5 rounded-md uppercase">
+                                    Inglés Básico
+                                </span>
+                                <span class="text-xs text-slate-400 font-semibold">Publicado por Prof. Santiago</span>
+                            </div>
+                            <button onclick="readAnnouncement('announcement-text-1')" class="text-slate-400 hover:text-enso-blue dark:hover:text-blue-300 transition" title="Escuchar anuncio">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                        <h4 class="font-extrabold text-base text-slate-900 dark:text-white mb-1">
+                            Evaluación Final de Inglés Básico Habilitada
+                        </h4>
+                        <p id="announcement-text-1" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Estimados estudiantes del PFC: El módulo de entrenamiento de Inglés Básico ya cuenta con el Examen Final interactivo de 15 preguntas con temporizador. Les recomiendo repasar las tarjetas didácticas antes de realizar su intento.
+                        </p>
+                    </div>
+
+                    <!-- Announcement 2 -->
+                    <div class="glass-card rounded-2xl p-5 border-l-4 border-l-enso-red border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-start justify-between gap-3 mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-red-100 dark:bg-red-900/60 text-enso-red dark:text-red-300 text-[10px] font-black px-2.5 py-0.5 rounded-md uppercase">
+                                    Práctica Pedagógica
+                                </span>
+                                <span class="text-xs text-slate-400 font-semibold">Fecha Importante</span>
+                            </div>
+                            <button onclick="readAnnouncement('announcement-text-2')" class="text-slate-400 hover:text-enso-blue dark:hover:text-blue-300 transition" title="Escuchar anuncio">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                        <h4 class="font-extrabold text-base text-slate-900 dark:text-white mb-1">
+                            Entrega de Diarios de Campo - Primer Semestre
+                        </h4>
+                        <p id="announcement-text-2" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Recuerden subir la sistematización de sus observaciones escolares en formato digital antes de finalizar esta semana. Utilicen el modelo de plan de clase disponible en la caja de herramientas.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ACADEMIC SCHEDULE & EVENTS (1 col) -->
+            <section class="space-y-4">
+                <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <h3 class="text-lg font-extrabold flex items-center space-x-2 text-slate-900 dark:text-white">
+                        <i class="far fa-calendar-alt text-enso-gold"></i>
+                        <span>Cronograma PFC</span>
+                    </h3>
+                </div>
+
+                <div class="glass-card rounded-2xl p-5 border border-slate-200 dark:border-slate-800 space-y-4">
+                    <div class="space-y-3 text-xs">
+                        
+                        <!-- Event 1 -->
+                        <div class="flex items-start space-x-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-enso-blue text-white font-black flex flex-col items-center justify-center flex-shrink-0 text-[10px]">
+                                <span>AGO</span>
+                                <span class="text-sm leading-none font-extrabold">12</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Taller de Didáctica del Inglés</h5>
+                                <p class="text-slate-500">Aula Máxima ENSO - 8:00 AM</p>
+                            </div>
+                        </div>
+
+                        <!-- Event 2 -->
+                        <div class="flex items-start space-x-3 pb-3 border-b border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-enso-red text-white font-black flex flex-col items-center justify-center flex-shrink-0 text-[10px]">
+                                <span>AGO</span>
+                                <span class="text-sm leading-none font-extrabold">20</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Cierre Examen Inglés Básico</h5>
+                                <p class="text-slate-500">Plataforma Campus Virtual</p>
+                            </div>
+                        </div>
+
+                        <!-- Event 3 -->
+                        <div class="flex items-start space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500 text-white font-black flex flex-col items-center justify-center flex-shrink-0 text-[10px]">
+                                <span>SEP</span>
+                                <span class="text-sm leading-none font-extrabold">05</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Simposio de Investigación Pedagogica</h5>
+                                <p class="text-slate-500">Presentación de Trabajos de Grado</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button onclick="downloadSyllabus()" class="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold py-2.5 rounded-xl btn-bounce flex items-center justify-center space-x-2 border border-slate-200 dark:border-slate-700">
+                        <i class="fas fa-download"></i>
+                        <span>Descargar Horario PDF/TXT</span>
+                    </button>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- TOOLKIT SECTION FOR FUTURE TEACHERS -->
+        <section id="section-toolkit" class="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <div>
+                <h3 class="text-xl font-extrabold flex items-center space-x-2 text-slate-900 dark:text-white">
+                    <i class="fas fa-toolbox text-enso-sky"></i>
+                    <span>Caja de Herramientas Pedagógicas PFC</span>
+                </h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Utilidades diseñadas especialmente para la planificación e innovación de los docentes en formación.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- TOOL 1: GENERADOR RÁPIDO DE PLAN DE CLASE -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-enso-blue dark:text-blue-300 flex items-center justify-center text-xl font-bold">
+                            📝
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-base text-slate-900 dark:text-white">Generador Express de Plan de Clase</h4>
+                            <p class="text-xs text-slate-500">Estructura una secuencia didáctica rápidamente.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 text-xs">
+                        <div>
+                            <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Tema o Asignatura</label>
+                            <input type="text" id="lp-topic" placeholder="Ej. Greetings & Introduce yourself in English" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
+                        </div>
+                        <div>
+                            <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Grado Escolar Destino</label>
+                            <select id="lp-grade" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
+                                <option value="Grados Preescolar y 1°">Grados Preescolar y 1°</option>
+                                <option value="Grados 2° y 3° Primaria">Grados 2° y 3° Primaria</option>
+                                <option value="Grados 4° y 5° Primaria">Grados 4° y 5° Primaria</option>
+                                <option value="Formación Complementaria PFC">Formación Complementaria PFC</option>
+                            </select>
+                        </div>
+                        <button onclick="generateLessonPlan()" class="w-full bg-enso-blue hover:bg-blue-900 text-white font-extrabold py-2.5 rounded-xl btn-bounce shadow-md flex items-center justify-center space-x-2">
+                            <i class="fas fa-cogs"></i>
+                            <span>Generar Esquema de Clase</span>
+                        </button>
+                    </div>
+
+                    <!-- Output Preview Container -->
+                    <div id="lp-output" class="hidden p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300 space-y-2 max-h-48 overflow-y-auto">
+                    </div>
+                </div>
+
+                <!-- TOOL 2: POMODORO STUDY TIMER FOR NORMALISTAS -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-4 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/50 text-enso-red dark:text-red-300 flex items-center justify-center text-xl font-bold">
+                                ⏱️
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-base text-slate-900 dark:text-white">Temporizador de Estudio Pedagógico</h4>
+                                <p class="text-xs text-slate-500">Método Pomodoro para sesiones de lectura y diseño didáctico.</p>
+                            </div>
+                        </div>
+
+                        <!-- Timer Display -->
+                        <div class="text-center py-4 bg-slate-900 text-white rounded-2xl border-2 border-enso-red/40 my-2">
+                            <div id="timer-display" class="text-4xl font-black font-mono tracking-wider">25:00</div>
+                            <div id="timer-status" class="text-[10px] text-amber-400 font-extrabold uppercase tracking-widest mt-1">Sesión de Concentración</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-center space-x-3">
+                        <button onclick="startStudyTimer()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5">
+                            <i class="fas fa-play"></i>
+                            <span>Iniciar</span>
+                        </button>
+                        <button onclick="pauseStudyTimer()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs px-5 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5">
+                            <i class="fas fa-pause"></i>
+                            <span>Pausar</span>
+                        </button>
+                        <button onclick="resetStudyTimer()" class="bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl btn-bounce">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- INSTITUTION FOOTER & CREDITS -->
+        <footer class="bg-enso-darkblue text-white rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl border-t-4 border-enso-red">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-blue-200">
+                
+                <!-- Col 1: Institution -->
+                <div class="space-y-2">
+                    <div class="flex items-center space-x-2 font-black text-white text-sm">
+                        <span>🏛️ ENSO</span>
+                    </div>
+                    <p class="leading-relaxed">
+                        Escuela Normal Superior Oiba - Santander, Colombia.<br>
+                        Formando los Maestros del Futuro con Excelencia Pedagógica e Innovación Didáctica.
+                    </p>
+                </div>
+
+                <!-- Col 2: Teacher Contact -->
+                <div class="space-y-2">
+                    <div class="font-black text-white text-sm flex items-center space-x-2">
+                        <i class="fas fa-user-tie text-enso-red"></i>
+                        <span>Profesor Santiago Medina</span>
+                    </div>
+                    <p>Docente Formador - PFC</p>
+                    <p><i class="fas fa-globe mr-1.5 text-amber-300"></i> <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="hover:underline text-amber-300 font-semibold">www.ensopfcmedios.com</a></p>
+                    <p><i class="fas fa-envelope mr-1.5 text-blue-400"></i> contacto.profesor@enso.edu.co</p>
+                    <p><i class="fas fa-map-marker-alt mr-1.5 text-enso-red"></i> Oiba, Santander - Colombia</p>
+                </div>
+
+                <!-- Col 3: Quick Direct Links -->
+                <div class="space-y-2">
+                    <div class="font-black text-white text-sm">Acceso Directo</div>
+                    <ul class="space-y-1.5">
+                        <li><a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300 text-amber-200 transition flex items-center space-x-1.5 font-bold"><i class="fas fa-external-link-alt text-enso-gold text-xs"></i><span>Repositorio ensopfcmedios.com</span></a></li>
+                        <li><a href="INGLES/index.html" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-angle-right text-enso-red"></i><span>Entrenador de Inglés Básico</span></a></li>
+                        <li><a href="javascript:void(0)" onclick="openPedagogyModal()" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-angle-right text-enso-red"></i><span>Guías de Práctica Pedagógica</span></a></li>
+                        <li><a href="javascript:void(0)" onclick="openModal('modal-contact')" class="hover:text-white transition flex items-center space-x-1.5"><i class="fas fa-angle-right text-enso-red"></i><span>Atención a Estudiantes PFC</span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-blue-900/80 text-center text-[11px] text-blue-300 flex flex-col sm:flex-row items-center justify-between gap-2">
+                <span>© 2026 Escuela Normal Superior Oiba - Todos los derechos reservados.</span>
+                <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="font-bold text-amber-300 hover:underline flex items-center gap-1">🌐 www.ensopfcmedios.com</a>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- MODAL 1: CONTACTO PROFESOR -->
+    <div id="modal-contact" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-slate-200 dark:border-slate-700">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
+                <h4 class="font-extrabold text-lg text-slate-900 dark:text-white flex items-center space-x-2">
+                    <i class="fas fa-paper-plane text-enso-red"></i>
+                    <span>Contacto - Prof. Santiago Medina</span>
+                </h4>
+                <button onclick="closeModal('modal-contact')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3 text-xs text-slate-600 dark:text-slate-300">
+                <p>Envía tus inquietudes respecto a los talleres de inglés, diarios de campo o guías didácticas.</p>
+                <div>
+                    <label class="block font-bold mb-1">Tu Nombre Completo</label>
+                    <input type="text" placeholder="Ej. Ana María Gómez" class="w-full bg-slate-50 dark:bg-slate-900 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700">
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">Mensaje o Consulta</label>
+                    <textarea rows="3" placeholder="Escribe tu mensaje aquí..." class="w-full bg-slate-50 dark:bg-slate-900 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700"></textarea>
+                </div>
+                <button onclick="sendMessage()" class="w-full bg-enso-red hover:bg-red-700 text-white font-extrabold py-3 rounded-xl btn-bounce shadow-md">
+                    Enviar Mensaje Directo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: GUÍAS PEDAGÓGICAS -->
+    <div id="modal-pedagogy" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 border border-slate-200 dark:border-slate-700">
+            <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
+                <h4 class="font-extrabold text-lg text-slate-900 dark:text-white flex items-center space-x-2">
+                    <i class="fas fa-book-reader text-enso-blue"></i>
+                    <span>Recursos de Práctica Pedagógica</span>
+                </h4>
+                <button onclick="closeModal('modal-pedagogy')" class="text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3 text-xs text-slate-600 dark:text-slate-300">
+                <div class="p-3 bg-blue-50 dark:bg-slate-900/60 rounded-xl border border-blue-200 dark:border-slate-700 space-y-1">
+                    <div class="font-bold text-enso-blue dark:text-blue-300 text-sm">📘 Guía N° 1: El Diario Pedagógico</div>
+                    <p>Estructura paso a paso para la reflexión crítica de las prácticas educativas en aula.</p>
+                </div>
+                <div class="p-3 bg-amber-50 dark:bg-slate-900/60 rounded-xl border border-amber-200 dark:border-slate-700 space-y-1">
+                    <div class="font-bold text-amber-600 dark:text-amber-400 text-sm">📙 Guía N° 2: Formato de Plan de Clase ENSO</div>
+                    <p>Estándares DBA, objetivos, momentos de clase (Iniciación, Desarrollo, Cierre) y evaluación.</p>
+                </div>
+                <button onclick="downloadPedagogyGuide()" class="w-full bg-enso-blue hover:bg-blue-900 text-white font-extrabold py-3 rounded-xl btn-bounce shadow-md flex items-center justify-center space-x-2">
+                    <i class="fas fa-file-download"></i>
+                    <span>Descargar Kit de Guías Pedagogicas (TXT)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT CONTROLLER & INTERACTIVITY -->
+    <script>
+        /* ==========================================================================
+           1. AUDIO SYNTHESIS & SOUND FX ENGINE (Web Speech API & Web Audio)
+           ========================================================================== */
+        let soundEnabled = true;
+        const synth = window.speechSynthesis;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById("icon-sound");
+            if (soundEnabled) {
+                icon.className = "fas fa-volume-up text-amber-300 text-sm";
+                playSfx(587.33, 'sine', 0.12); // D5 Tone
+            } else {
+                icon.className = "fas fa-volume-mute text-red-300 text-sm";
+            }
+        }
+
+        function playSfx(freq, type = 'sine', duration = 0.15) {
+            if (!soundEnabled) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.log("Audio FX error:", e);
+            }
+        }
+
+        function speakTextSpanish(text) {
+            if (!synth) return;
+            synth.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'es-CO';
+            utterance.rate = 0.95;
+            synth.speak(utterance);
+        }
+
+        function readQuote() {
+            const quoteText = document.getElementById("daily-quote").innerText;
+            speakTextSpanish(quoteText);
+            playSfx(659.25, 'sine', 0.1);
+        }
+
+        function readAnnouncement(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            speakTextSpanish(text);
+            playSfx(523.25, 'sine', 0.1);
+        }
+
+        /* ==========================================================================
+           2. THEME CONTROLLER (DARK / LIGHT MODE)
+           ========================================================================== */
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const icon = document.getElementById("icon-theme");
+            if (document.documentElement.classList.contains('dark')) {
+                icon.className = "fas fa-sun text-amber-300 text-sm";
+            } else {
+                icon.className = "fas fa-moon text-amber-300 text-sm";
+            }
+            playSfx(440, 'sine', 0.08);
+        }
+
+        /* ==========================================================================
+           3. NAVIGATION & SCROLL HELPER
+           ========================================================================== */
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        /* ==========================================================================
+           4. COURSE SEARCH FILTER ENGINE
+           ========================================================================== */
+        function filterCourses() {
+            const query = document.getElementById("course-search").value.toLowerCase();
+            const cards = document.querySelectorAll(".course-card");
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        /* ==========================================================================
+           5. LESSON PLAN EXPRESS GENERATOR TOOL
+           ========================================================================== */
+        function generateLessonPlan() {
+            const topic = document.getElementById("lp-topic").value.trim() || "Vocabulario en Inglés y Expresiones Básicas";
+            const grade = document.getElementById("lp-grade").value;
+            const outputDiv = document.getElementById("lp-output");
+
+            playSfx(783.99, 'sine', 0.15);
+
+            outputDiv.innerHTML = `
+                <div class="font-extrabold text-enso-blue dark:text-blue-300 text-sm flex items-center justify-between">
+                    <span>📋 Esquema Didáctico Generado</span>
+                    <button onclick="copyLessonPlan()" class="text-[10px] bg-enso-red text-white px-2 py-0.5 rounded hover:bg-red-700">Copiar</button>
+                </div>
+                <div><strong>Tema:</strong> ${topic}</div>
+                <div><strong>Población Destino:</strong> ${grade}</div>
+                <div class="pt-1 border-t border-slate-200 dark:border-slate-700">
+                    <p><strong>1. Momentos de la Clase:</strong></p>
+                    <ul class="list-disc pl-4 space-y-0.5 mt-0.5">
+                        <li><strong>Iniciación (Motivation):</strong> Warm-up interactivo utilizando la herramienta English Basics Trainer v2.0.</li>
+                        <li><strong>Desarrollo (Practice):</strong> Presentación de vocabulario clave, pronunciación guiada y modelamiento.</li>
+                        <li><strong>Cierre (Assessment):</strong> Evaluación gamificada en parejas y retroalimentación colectiva.</li>
+                    </ul>
+                </div>
+            `;
+
+            outputDiv.classList.remove("hidden");
+        }
+
+        function copyLessonPlan() {
+            const text = document.getElementById("lp-output").innerText;
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert("¡Plan de clase copiado al portapapeles!");
+        }
+
+        /* ==========================================================================
+           6. STUDY TIMER (POMODORO) ENGINE
+           ========================================================================== */
+        let timerMinutes = 25;
+        let timerSeconds = 0;
+        let timerInterval = null;
+        let isTimerRunning = false;
+
+        function updateTimerDisplay() {
+            const mins = String(timerMinutes).padStart(2, '0');
+            const secs = String(timerSeconds).padStart(2, '0');
+            document.getElementById("timer-display").innerText = `${mins}:${secs}`;
+        }
+
+        function startStudyTimer() {
+            if (isTimerRunning) return;
+            isTimerRunning = true;
+            playSfx(600, 'sine', 0.1);
+
+            timerInterval = setInterval(() => {
+                if (timerSeconds === 0) {
+                    if (timerMinutes === 0) {
+                        clearInterval(timerInterval);
+                        isTimerRunning = false;
+                        playSfx(880, 'sine', 0.4);
+                        alert("¡Tiempo cumplido! Tómate un descanso pedagógico de 5 minutos.");
+                        return;
+                    }
+                    timerMinutes--;
+                    timerSeconds = 59;
+                } else {
+                    timerSeconds--;
+                }
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function pauseStudyTimer() {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            playSfx(400, 'sine', 0.1);
+        }
+
+        function resetStudyTimer() {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            timerMinutes = 25;
+            timerSeconds = 0;
+            updateTimerDisplay();
+            playSfx(300, 'sine', 0.1);
+        }
+
+        /* ==========================================================================
+           7. MODALS & DOWNLOAD ENGINE
+           ========================================================================== */
+        function openModal(id) {
+            document.getElementById(id).classList.remove("hidden");
+            playSfx(523.25, 'sine', 0.08);
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add("hidden");
+            playSfx(350, 'sine', 0.08);
+        }
+
+        function openPedagogyModal() {
+            openModal('modal-pedagogy');
+        }
+
+        function sendMessage() {
+            alert("¡Mensaje enviado correctamente al Profesor Santiago Medina!");
+            closeModal('modal-contact');
+        }
+
+        function downloadSyllabus() {
+            let content = `========================================================\n`;
+            content += ` ESCUELA NORMAL SUPERIOR OIBA - PFC 2026\n`;
+            content += ` Cronograma & Recursos - Prof. Santiago Medina\n`;
+            content += `========================================================\n\n`;
+            content += `1. Taller de Didáctica del Inglés - 12 de Agosto (8:00 AM)\n`;
+            content += `2. Cierre Examen Inglés Básico v2.0 - 20 de Agosto\n`;
+            content += `3. Simposio de Investigación Pedagógica - 05 de Septiembre\n\n`;
+            content += `Módulo Principal: Inglés Básico Trainer (INGLES/index.html)\n`;
+
+            const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Cronograma_ENSO_PFC_${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadPedagogyGuide() {
+            let content = `========================================================\n`;
+            content += ` GUÍA DE PRÁCTICA PEDAGÓGICA INVESTIGATIVA (PFC)\n`;
+            content += ` Escuela Normal Superior Oiba - Prof. Santiago Medina\n`;
+            content += `========================================================\n\n`;
+            content += `1. ESTRUCTURA DEL DIARIO PEDAGÓGICO:\n`;
+            content += `   a. Fecha y Grado Observado.\n`;
+            content += `   b. Descripción de los hechos e interacciones pedagógicas.\n`;
+            content += `   c. Reflexión teórica a la luz de autores (Piaget, Vygotsky, Freire).\n`;
+            content += `   d. Propuesta de mejora didáctica.\n\n`;
+            content += `2. SECUENCIA DIDÁCTICA RECOMENDADA:\n`;
+            content += `   - Momentos: Iniciación, Desarrollo y Evaluación.\n`;
+
+            const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Guia_Practica_Pedagogica_ENSO.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
 </body>
 </html>
-
