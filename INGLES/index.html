@@ -58,6 +58,23 @@
         background: #C1121F;      /* Rojo */
         border-color: #00296B;    /* Azul */
     }
+    .flecha {
+    display: inline-block;
+    background: #00296B;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 22px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 3px solid #C1121F;
+    transition: 0.3s;
+}
+
+.flecha:hover {
+    background: #C1121F;
+    border-color: #00296B;
+}
 </style>
 </head>
 <body>
@@ -252,6 +269,6 @@ function checkAnswer(selected, correct) {
     }
 }
 </script>
-
+<a class="flecha" href="../index.html">⬅</a>
 </body>
 </html>
