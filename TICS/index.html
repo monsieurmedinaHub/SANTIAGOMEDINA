@@ -1,324 +1,1155 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full">
 <head>
-<meta charset="UTF-8">
-<title>TICS Aplicadas a la Enseñanza</title>
+    <!-- STREAMING_CHUNK:Configuring meta tags and Tailwind CSS styling engine... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TICs Aplicadas a la Enseñanza | Escuela Normal Superior Oiba</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        enso: {
+                            blue: '#00296B',
+                            darkblue: '#001D4A',
+                            red: '#C1121F',
+                            lightred: '#780000',
+                            gold: '#FFB703',
+                            sky: '#3A86EF',
+                            accent: '#2A9D8F',
+                            purple: '#7209B7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #eef2f7;
-        margin: 0;
-        padding: 0;
-    }
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    header {
-        background: #00296B;
-        color: white;
-        padding: 25px;
-        text-align: center;
-        border-bottom: 6px solid #C1121F;
-    }
+    <!-- STREAMING_CHUNK:Declaring custom glassmorphism and animation CSS... -->
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            user-select: none;
+        }
 
-    header h1 {
-        margin: 0;
-        font-size: 26px;
-        font-weight: bold;
-    }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+        }
 
-    .container {
-        width: 90%;
-        max-width: 700px;
-        margin: 30px auto;
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        text-align: center;
-        border: 3px solid #00296B;
-        box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
-    }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-    button {
-        background: #00296B;
-        color: white;
-        padding: 12px 20px;
-        margin: 10px 0;
-        border-radius: 10px;
-        font-size: 18px;
-        cursor: pointer;
-        font-weight: bold;
-        border: 3px solid #C1121F;
-        transition: 0.3s;
-        width: 100%;
-    }
+        .btn-bounce {
+            transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s, box-shadow 0.2s;
+        }
 
-    button:hover {
-        background: #C1121F;
-        border-color: #00296B;
-        transform: scale(1.03);
-    }
+        .btn-bounce:active {
+            transform: scale(0.96);
+        }
 
-    .volver {
-        display: inline-block;
-        background: #00296B;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 50%;
-        font-size: 22px;
-        text-decoration: none;
-        font-weight: bold;
-        border: 3px solid #C1121F;
-        transition: 0.3s;
-        margin-bottom: 20px;
-    }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
 
-    .volver:hover {
-        background: #C1121F;
-        border-color: #00296B;
-        transform: scale(1.1);
-    }
-
-    .question {
-        font-size: 20px;
-        margin: 15px 0;
-        font-weight: bold;
-    }
-
-    .option {
-        background: #f8f8f8;
-        padding: 14px;
-        margin: 10px 0;
-        border-radius: 10px;
-        cursor: pointer;
-        border: 3px solid #ddd;
-        font-size: 18px;
-        transition: 0.25s;
-        box-shadow: 0px 2px 4px rgba(0,0,0,0.15);
-        text-align: left;
-    }
-
-    .option:hover {
-        background: #e6e6e6;
-        border-color: #00296B;
-        transform: scale(1.02);
-    }
-
-    .selected {
-        background: #C1121F;
-        color: white;
-        border-color: #00296B;
-        box-shadow: 0px 4px 8px rgba(0,0,0,0.25);
-        transform: scale(1.03);
-    }
-
-    #result {
-        margin-top: 15px;
-        font-size: 18px;
-        font-weight: bold;
-    }
-</style>
+        .tool-card {
+            transition: all 0.25s ease-in-out;
+        }
+        .tool-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
 </head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-300">
 
-<body>
+    <!-- STREAMING_CHUNK:Building top navigation header bar... -->
+    <!-- HEADER NAVBAR -->
+    <header class="bg-enso-blue text-white shadow-xl sticky top-0 z-50 border-b-4 border-enso-purple">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2">
+            
+            <!-- Return to Main Portal Button -->
+            <div class="flex items-center space-x-3">
+                <a href="../index.html" class="bg-enso-red hover:bg-red-700 text-white font-extrabold text-xs px-3.5 py-2.5 rounded-xl btn-bounce shadow-md flex items-center space-x-2 border border-red-400/30" title="Volver al Portal Educativo Principal">
+                    <i class="fas fa-arrow-left text-sm"></i>
+                    <span class="hidden sm:inline">Volver al Portal</span>
+                    <span class="sm:hidden">Inicio</span>
+                </a>
 
-<header>
-    <h1>TICS Aplicadas a la Enseñanza</h1>
-</header>
+                <div class="h-6 w-px bg-blue-700/60 hidden sm:block"></div>
 
-<div class="container">
+                <!-- Brand Title -->
+                <div>
+                    <h1 class="text-sm sm:text-base font-black tracking-tight leading-none uppercase text-white flex items-center gap-1.5">
+                        <i class="fas fa-laptop-code text-purple-300 text-sm"></i>
+                        <span>TICs Aplicadas a la Enseñanza</span>
+                    </h1>
+                    <p class="text-[11px] text-blue-200 font-semibold tracking-wide">
+                        Escuela Normal Superior Oiba • Prof. Santiago Medina
+                    </p>
+                </div>
+            </div>
 
-    <a class="volver" href="../index.html">⬅</a>
+            <!-- Quick Access Links & Toggles -->
+            <div class="flex items-center space-x-2">
+                <!-- Repository Link -->
+                <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="bg-enso-gold/20 hover:bg-enso-gold/30 text-amber-300 font-bold text-xs px-3 py-2 rounded-xl border border-amber-400/30 transition btn-bounce flex items-center space-x-1.5" title="Ir al Repositorio Oficial ensopfcmedios.com">
+                    <i class="fas fa-database text-xs"></i>
+                    <span class="hidden md:inline">www.ensopfcmedios.com</span>
+                    <i class="fas fa-external-link-alt text-[10px]"></i>
+                </a>
 
-    <button onclick="startIntro()">Introducción a las TICS</button>
-    <button onclick="startTools()">Herramientas Digitales</button>
-    <button onclick="startResources()">Recursos Educativos Digitales</button>
-    <button onclick="startEvaluation()">Evaluación con TICS</button>
-    <button onclick="startSecurity()">Seguridad Digital</button>
-    <button onclick="startExam()">EXAM MODE (20 Questions)</button>
+                <!-- Sound FX Toggle -->
+                <button id="btn-sound-toggle" onclick="toggleSound()" class="w-9 h-9 rounded-xl bg-blue-900/60 hover:bg-blue-800 border border-blue-700/50 flex items-center justify-center transition" title="Activar/Desactivar Sonido">
+                    <i id="icon-sound" class="fas fa-volume-up text-amber-300 text-sm"></i>
+                </button>
 
-    <div id="exercise"></div>
-    <div id="result"></div>
-</div>
+                <!-- Dark Mode Toggle -->
+                <button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-blue-900/60 hover:bg-blue-800 border border-blue-700/50 flex items-center justify-center transition" title="Tema Oscuro/Claro">
+                    <i id="icon-theme" class="fas fa-moon text-amber-300 text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
-<script>
-/* ------------------ INTRODUCCIÓN A LAS TICS ------------------ */
-const introQuestions = [
-    { q: "¿Qué significa TICS?", options: ["Tecnologías de la Información y la Comunicación", "Técnicas Integradas de Computación", "Tratamiento Informático y Comunicación Social"], answer: "Tecnologías de la Información y la Comunicación" },
-    { q: "¿Cuál es un beneficio de las TICS en educación?", options: ["Aumentan la desinformación", "Facilitan el acceso al conocimiento", "Eliminan la interacción docente-estudiante"], answer: "Facilitan el acceso al conocimiento" },
-    { q: "¿Qué competencia digital es esencial para un docente?", options: ["Saber programar videojuegos", "Saber usar herramientas digitales educativas", "Saber reparar computadores"], answer: "Saber usar herramientas digitales educativas" }
-];
+    <!-- STREAMING_CHUNK:Rendering main container and gamification dashboard... -->
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 space-y-6">
 
-function startIntro() {
-    loadExercise(introQuestions);
-}
+        <!-- GAMIFICATION & PROGRESS BANNER -->
+        <section class="glass-card rounded-2xl p-4 border border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-md">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 flex items-center justify-center text-2xl font-black shadow-inner">
+                    🚀
+                </div>
+                <div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Competencia Digital Docente</div>
+                    <div class="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span id="player-level">Innovador Pedagógico</span>
+                        <span class="text-xs bg-purple-700 text-white px-2 py-0.5 rounded-full font-bold" id="player-xp">0 XP</span>
+                    </div>
+                </div>
+            </div>
 
-/* ------------------ HERRAMIENTAS DIGITALES ------------------ */
-const toolsQuestions = [
-    { q: "¿Cuál herramienta sirve para crear presentaciones interactivas?", options: ["Genially", "Classroom", "Padlet"], answer: "Genially" },
-    { q: "¿Cuál herramienta permite gestionar clases virtuales?", options: ["Kahoot", "Google Classroom", "Canva"], answer: "Google Classroom" },
-    { q: "¿Cuál herramienta sirve para crear evaluaciones gamificadas?", options: ["Kahoot", "Word", "Excel"], answer: "Kahoot" }
-];
+            <div class="flex items-center space-x-6 text-xs">
+                <div class="text-center">
+                    <div class="text-slate-400 font-bold uppercase text-[10px]">Modelos Didácticos</div>
+                    <div class="font-black text-purple-600 dark:text-purple-400 text-sm flex items-center justify-center gap-1">
+                        <i class="fas fa-cubes"></i>
+                        <span>TPACK / SAMR</span>
+                    </div>
+                </div>
 
-function startTools() {
-    loadExercise(toolsQuestions);
-}
+                <div class="text-center border-l border-slate-200 dark:border-slate-700 pl-6">
+                    <div class="text-slate-400 font-bold uppercase text-[10px]">Lectura Guiada</div>
+                    <div class="font-extrabold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                        <i class="fas fa-volume-up text-xs"></i>
+                        <span>Voz Activa</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-/* ------------------ RECURSOS EDUCATIVOS DIGITALES ------------------ */
-const resourcesQuestions = [
-    { q: "¿Qué tipo de recurso se puede crear con Canva?", options: ["Infografías", "Bases de datos", "Sistemas operativos"], answer: "Infografías" },
-    { q: "¿Qué herramienta permite crear videos educativos fácilmente?", options: ["PowerPoint", "Genially", "Paint"], answer: "PowerPoint" },
-    { q: "¿Qué herramienta permite crear formularios de evaluación?", options: ["Google Forms", "Photoshop", "Audacity"], answer: "Google Forms" }
-];
+        <!-- STREAMING_CHUNK:Building interactive navigation tabs... -->
+        <!-- MODULE SELECTION TABS -->
+        <section class="space-y-3">
+            <h3 class="text-xs font-extrabold text-slate-600 dark:text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                <i class="fas fa-th-large text-purple-600 dark:text-purple-400"></i>
+                <span>Selecciona una Dimensión de Trabajo:</span>
+            </h3>
 
-function startResources() {
-    loadExercise(resourcesQuestions);
-}
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2">
+                <button onclick="showSection('tools-catalog')" id="tab-tools-catalog" class="tab-btn bg-white dark:bg-slate-800 border-2 border-purple-500 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-0.5 group-hover:scale-110 transition-transform">🛠️</div>
+                    <div class="font-extrabold text-xs">Catálogo TICs</div>
+                    <div class="text-[9px] opacity-70">Bancos de Apps</div>
+                </button>
 
-/* ------------------ EVALUACIÓN CON TICS ------------------ */
-const evaluationQuestions = [
-    { q: "¿Qué ventaja tiene la evaluación digital?", options: ["Retroalimentación inmediata", "Mayor dificultad para los estudiantes", "No permite calificar"], answer: "Retroalimentación inmediata" },
-    { q: "¿Qué herramienta permite crear rúbricas digitales?", options: ["Excel", "Classroom", "Paint"], answer: "Classroom" },
-    { q: "¿Qué herramienta permite crear exámenes automáticos?", options: ["Google Forms", "Word", "PowerPoint"], answer: "Google Forms" }
-];
+                <button onclick="showSection('ova-designer')" id="tab-ova-designer" class="tab-btn bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-0.5 group-hover:scale-110 transition-transform">✨</div>
+                    <div class="font-extrabold text-xs">Diseñador OVA</div>
+                    <div class="text-[9px] opacity-70">Objetos Virtuales</div>
+                </button>
 
-function startEvaluation() {
-    loadExercise(evaluationQuestions);
-}
+                <button onclick="showSection('rubric-calculator')" id="tab-rubric-calculator" class="tab-btn bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-0.5 group-hover:scale-110 transition-transform">📊</div>
+                    <div class="font-extrabold text-xs">Evaluador Software</div>
+                    <div class="text-[9px] opacity-70">Matriz Rúbrica</div>
+                </button>
 
-/* ------------------ SEGURIDAD DIGITAL ------------------ */
-const securityQuestions = [
-    { q: "¿Qué es una buena práctica de seguridad digital?", options: ["Compartir contraseñas", "Usar contraseñas seguras", "Instalar software desconocido"], answer: "Usar contraseñas seguras" },
-    { q: "¿Qué es phishing?", options: ["Un ataque para robar información", "Un programa educativo", "Una herramienta de diseño"], answer: "Un ataque para robar información" },
-    { q: "¿Qué se debe evitar en internet?", options: ["Dar datos personales", "Usar antivirus", "Actualizar el sistema"], answer: "Dar datos personales" }
-];
+                <button onclick="showSection('case-simulator')" id="tab-case-simulator" class="tab-btn bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-0.5 group-hover:scale-110 transition-transform">🏫</div>
+                    <div class="font-extrabold text-xs">Casos de Aula</div>
+                    <div class="text-[9px] opacity-70">Simulador Real</div>
+                </button>
 
-function startSecurity() {
-    loadExercise(securityQuestions);
-}
+                <button onclick="showSection('practice-quiz')" id="tab-practice-quiz" class="tab-btn bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-0.5 group-hover:scale-110 transition-transform">📝</div>
+                    <div class="font-extrabold text-xs">Práctica por Tema</div>
+                    <div class="text-[9px] opacity-70">5 Módulos</div>
+                </button>
 
-/* ------------------ EXAM MODE (20 QUESTIONS) ------------------ */
-const examQuestions = [
-    { q: "1. ¿Qué significa TICS?", A: "Tecnologías de la Información y la Comunicación", B: "Tratamiento Informático y Comunicación Social", C: "Técnicas Integradas de Computación", D: "Telecomunicaciones Internacionales", answer: "A" },
-    { q: "2. ¿Cuál es una herramienta para presentaciones interactivas?", A: "Genially", B: "Excel", C: "Paint", D: "Audacity", answer: "A" },
-    { q: "3. ¿Cuál herramienta gestiona clases virtuales?", A: "Kahoot", B: "Google Classroom", C: "Canva", D: "Word", answer: "B" },
-    { q: "4. ¿Qué recurso se crea con Canva?", A: "Infografías", B: "Bases de datos", C: "Sistemas operativos", D: "Drivers", answer: "A" },
-    { q: "5. ¿Qué herramienta crea formularios automáticos?", A: "Photoshop", B: "Google Forms", C: "Audacity", D: "Paint", answer: "B" },
-    { q: "6. ¿Qué ventaja tiene la evaluación digital?", A: "Retroalimentación inmediata", B: "Mayor dificultad", C: "No permite calificar", D: "Elimina la interacción", answer: "A" },
-    { q: "7. ¿Qué es phishing?", A: "Un ataque para robar información", B: "Una app educativa", C: "Un editor de video", D: "Un antivirus", answer: "A" },
-    { q: "8. ¿Qué se debe evitar?", A: "Dar datos personales", B: "Usar antivirus", C: "Actualizar el sistema", D: "Usar contraseñas seguras", answer: "A" },
-    { q: "9. ¿Qué herramienta permite crear rúbricas digitales?", A: "Classroom", B: "Paint", C: "Excel", D: "Word", answer: "A" },
-    { q: "10. ¿Qué herramienta permite crear exámenes automáticos?", A: "Google Forms", B: "PowerPoint", C: "Photoshop", D: "Audacity", answer: "A" },
-    { q: "11. ¿Qué competencia digital es esencial?", A: "Saber usar herramientas educativas", B: "Reparar computadores", C: "Programar videojuegos", D: "Instalar drivers", answer: "A" },
-    { q: "12. ¿Qué herramienta permite gamificar evaluaciones?", A: "Kahoot", B: "Word", C: "Excel", D: "Paint", answer: "A" },
-    { q: "13. ¿Qué herramienta permite crear videos educativos?", A: "PowerPoint", B: "Paint", C: "Excel", D: "Audacity", answer: "A" },
-    { q: "14. ¿Qué herramienta permite crear presentaciones interactivas?", A: "Genially", B: "Photoshop", C: "Audacity", D: "Excel", answer: "A" },
-    { q: "15. ¿Qué herramienta permite gestionar clases virtuales?", A: "Google Classroom", B: "Paint", C: "Excel", D: "Word", answer: "A" },
-    { q: "16. ¿Qué es una buena práctica de seguridad digital?", A: "Usar contraseñas seguras", B: "Compartir contraseñas", C: "Instalar software desconocido", D: "Ignorar actualizaciones", answer: "A" },
-    { q: "17. ¿Qué se debe evitar en internet?", A: "Dar datos personales", B: "Usar antivirus", C: "Actualizar el sistema", D: "Usar contraseñas seguras", answer: "A" },
-    { q: "18. ¿Qué herramienta permite crear infografías?", A: "Canva", B: "Excel", C: "Paint", D: "Audacity", answer: "A" },
-    { q: "19. ¿Qué herramienta permite crear formularios?", A: "Google Forms", B: "Photoshop", C: "Excel", D: "Paint", answer: "A" },
-    { q: "20. ¿Qué ventaja tienen las TICS?", A: "Facilitan el acceso al conocimiento", B: "Eliminan la interacción", C: "Aumentan la desinformación", D: "Dificultan el aprendizaje", answer: "A" }
-];
+                <button onclick="startICTExam()" id="tab-ict-quiz" class="col-span-2 sm:col-span-2 lg:col-span-2 bg-gradient-to-br from-purple-700 to-indigo-800 text-white border-2 border-purple-500 p-2.5 rounded-2xl text-left btn-bounce transition shadow-md group">
+                    <div class="text-lg mb-0.5 group-hover:scale-110 transition-transform">🎓</div>
+                    <div class="font-black text-xs uppercase tracking-wider">EXAM MODE</div>
+                    <div class="text-[9px] text-purple-200">20 Preguntas Integradas</div>
+                </button>
+            </div>
+        </section>
 
-let examIndex = 0;
-let score = 0;
-let examFeedback = [];
+        <!-- STREAMING_CHUNK:Section 1 - Catalog of Tools workspace... -->
+        <!-- SECTION 1: CATALOG OF EDUCATIONAL ICT TOOLS -->
+        <section id="sec-tools-catalog" class="glass-card rounded-3xl p-6 border-2 border-purple-500/30 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div>
+                    <h3 class="text-lg font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fas fa-shapes text-purple-600 dark:text-purple-400"></i>
+                        <span>Ecosistema de Herramientas Digitales Educativas</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Plataformas recomendadas para docentes en formación del PFC.</p>
+                </div>
 
-function startExam() {
-    examIndex = 0;
-    score = 0;
-    examFeedback = [];
-    loadExamQuestion();
-}
+                <!-- Category Filter -->
+                <div class="flex flex-wrap gap-1.5 text-xs">
+                    <button onclick="filterTools('all')" class="tool-filter-btn active-filter bg-purple-700 text-white px-3 py-1.5 rounded-xl font-bold transition">Todas</button>
+                    <button onclick="filterTools('gamification')" class="tool-filter-btn bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-xl font-bold transition">Gamificación</button>
+                    <button onclick="filterTools('ova')" class="tool-filter-btn bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-xl font-bold transition">Contenidos OVA</button>
+                    <button onclick="filterTools('eval')" class="tool-filter-btn bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-xl font-bold transition">Evaluación</button>
+                </div>
+            </div>
 
-function loadExamQuestion() {
-    const q = examQuestions[examIndex];
-    document.getElementById("exercise").innerHTML = `
-        <div class="question">${q.q}</div>
-        <div class="option" onclick="checkExam('A')">A. ${q.A}</div>
-        <div class="option" onclick="checkExam('B')">B. ${q.B}</div>
-        <div class="option" onclick="checkExam('C')">C. ${q.C}</div>
-        <div class="option" onclick="checkExam('D')">D. ${q.D}</div>
-    `;
-    document.getElementById("result").innerHTML = "";
-}
+            <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Tool cards rendered dynamically by JS -->
+            </div>
+        </section>
 
-function checkExam(selected) {
-    const correct = examQuestions[examIndex].answer;
-    let feedback = "";
+        <!-- STREAMING_CHUNK:Section 2 - OVA Virtual Learning Object Designer... -->
+        <!-- SECTION 2: OVA DESIGN WIZARD -->
+        <section id="sec-ova-designer" class="glass-card rounded-3xl p-6 border-2 border-purple-500/30 space-y-6 hidden">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+                <h3 class="text-lg font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                    <i class="fas fa-magic text-purple-600 dark:text-purple-400"></i>
+                    <span>Diseñador Didáctico de OVA (Objeto Virtual de Aprendizaje)</span>
+                </h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Estructura la ficha técnica y momentos pedagógicos de un recurso multimedia.</p>
+            </div>
 
-    if (selected === correct) {
-        score++;
-        feedback = `✔️ Question ${examIndex + 1}: Correct`;
-    } else {
-        feedback = `❌ Question ${examIndex + 1}: Incorrect (Correct answer: ${correct})`;
-    }
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Input Form -->
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Nombre del OVA</label>
+                        <input type="text" id="ova-title" placeholder="Ej. Viaje Interactivo por la Geografía de Colombia" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-purple-600">
+                    </div>
 
-    examFeedback.push(feedback);
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Nivel Educativo</label>
+                            <select id="ova-grade" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-purple-600">
+                                <option value="Preescolar a 2° Primaria">Preescolar a 2° Primaria</option>
+                                <option value="3° a 5° Primaria">3° a 5° Primaria</option>
+                                <option value="Secundaria y PFC">Secundaria y PFC</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Herramienta Principal</label>
+                            <select id="ova-tool" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-purple-600">
+                                <option value="Genially / Canva Interactivo">Genially / Canva</option>
+                                <option value="Educaplay / H5P">Educaplay / H5P</option>
+                                <option value="Scratch / Programación">Scratch / Algoritmos</option>
+                                <option value="Video Interactivo Edpuzzle">Video Edpuzzle</option>
+                            </select>
+                        </div>
+                    </div>
 
-    examIndex++;
-    if (examIndex < examQuestions.length) {
-        loadExamQuestion();
-    } else {
-        showExamResults();
-    }
-}
+                    <div>
+                        <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Objetivo de Aprendizaje (DBA / Competencia)</label>
+                        <textarea id="ova-objective" rows="2" placeholder="Describa qué competencia desarrollará el estudiante..." class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-purple-600"></textarea>
+                    </div>
 
-function showExamResults() {
-    const percentage = Math.round((score / examQuestions.length) * 100);
+                    <div>
+                        <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Estrategia de Evaluación Formativa</label>
+                        <input type="text" id="ova-eval" placeholder="Ej. Cuestionario gamificado automatizado con retroalimentación inmediata." class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-purple-600">
+                    </div>
 
-    document.getElementById("exercise").innerHTML = "";
-    document.getElementById("result").innerHTML = `
-        <h3>EXAM FINISHED</h3>
-        <p>Score: ${score} / 20</p>
-        <p>Percentage: ${percentage}%</p>
-        <button onclick="downloadResults()">Download Results</button>
-    `;
-}
+                    <button onclick="generateOVASpec()" class="w-full bg-purple-700 hover:bg-purple-800 text-white font-extrabold py-3 rounded-xl btn-bounce shadow-md flex items-center justify-center space-x-2">
+                        <i class="fas fa-file-code"></i>
+                        <span>Generar Ficha Didáctica de OVA</span>
+                    </button>
+                </div>
 
-function downloadResults() {
-    const percentage = Math.round((score / examQuestions.length) * 100);
-    let text = `TICS Exam Results\n\nScore: ${score}/20\nPercentage: ${percentage}%\n\nDetailed Feedback:\n\n`;
-    text += examFeedback.join("\n");
+                <!-- Preview Output -->
+                <div class="bg-slate-50 dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col justify-between space-y-3">
+                    <div id="ova-preview" class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                        <div class="text-center py-10 space-y-2 text-slate-400">
+                            <i class="fas fa-drafting-compass text-4xl"></i>
+                            <p class="font-bold">Diligencie el formulario para estructurar el diseño didáctico de su OVA.</p>
+                        </div>
+                    </div>
 
-    const blob = new Blob([text], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
+                    <button id="btn-copy-ova" onclick="copyOVASpec()" class="hidden w-full bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs py-2.5 rounded-xl btn-bounce flex items-center justify-center space-x-2">
+                        <i class="fas fa-copy"></i>
+                        <span>Copiar Esquema al Portapapeles</span>
+                    </button>
+                </div>
+            </div>
+        </section>
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "tics_exam_results.txt";
-    a.click();
+        <!-- STREAMING_CHUNK:Section 3 - Software Rubric Quality Evaluator... -->
+        <!-- SECTION 3: EDUCATIONAL SOFTWARE EVALUATION RUBRIC -->
+        <section id="sec-rubric-calculator" class="glass-card rounded-3xl p-6 border-2 border-purple-500/30 space-y-6 hidden">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+                <h3 class="text-lg font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                    <i class="fas fa-calculator text-purple-600 dark:text-purple-400"></i>
+                    <span>Matriz de Evaluación de Calidad de Software Educativo</span>
+                </h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Valore la calidad pedagógica y técnica de apps o plataformas antes de aplicarlas en el aula.</p>
+            </div>
 
-    URL.revokeObjectURL(url);
-}
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Metrics Input -->
+                <div class="lg:col-span-2 space-y-4 text-xs">
+                    <div class="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-1">
+                        <div class="flex justify-between font-extrabold text-slate-900 dark:text-white">
+                            <span>1. Calidad Pedagógica y Didáctica</span>
+                            <span id="score-pedagogy-val" class="text-purple-600">4 / 5</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500">¿Promueve el aprendizaje activo, reflexivo y alineado al currículo?</p>
+                        <input type="range" id="score-pedagogy" min="1" max="5" value="4" oninput="calculateSoftwareScore()" class="w-full accent-purple-600">
+                    </div>
 
-/* ------------------ ENGINE FOR PRACTICE ------------------ */
-function loadExercise(list) {
-    const random = list[Math.floor(Math.random() * list.length)];
-    const exerciseDiv = document.getElementById("exercise");
-    const resultDiv = document.getElementById("result");
+                    <div class="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-1">
+                        <div class="flex justify-between font-extrabold text-slate-900 dark:text-white">
+                            <span>2. Usabilidad e Interfaz Intuitiva</span>
+                            <span id="score-usability-val" class="text-purple-600">4 / 5</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500">¿Es fácil de navegar para los estudiantes sin requerir entrenamiento complejo?</p>
+                        <input type="range" id="score-usability" min="1" max="5" value="4" oninput="calculateSoftwareScore()" class="w-full accent-purple-600">
+                    </div>
 
-    resultDiv.innerHTML = "";
+                    <div class="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-1">
+                        <div class="flex justify-between font-extrabold text-slate-900 dark:text-white">
+                            <span>3. Accesibilidad e Inclusión</span>
+                            <span id="score-accessibility-val" class="text-purple-600">3 / 5</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500">¿Funciona en dispositivos móviles y con conectividad limitada?</p>
+                        <input type="range" id="score-accessibility" min="1" max="5" value="3" oninput="calculateSoftwareScore()" class="w-full accent-purple-600">
+                    </div>
 
-    exerciseDiv.innerHTML = `
-        <div class="question">${random.q}</div>
-        ${random.options.map(opt => `
-            <div class="option" onclick="checkAnswer('${opt}', '${random.answer}')">${opt}</div>
-        `).join("")}
-    `;
-}
+                    <div class="bg-slate-50 dark:bg-slate-800/80 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-1">
+                        <div class="flex justify-between font-extrabold text-slate-900 dark:text-white">
+                            <span>4. Seguridad y Protección de Datos</span>
+                            <span id="score-security-val" class="text-purple-600">5 / 5</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500">¿Es un entorno seguro, libre de anuncios invasivos y apto para menores?</p>
+                        <input type="range" id="score-security" min="1" max="5" value="5" oninput="calculateSoftwareScore()" class="w-full accent-purple-600">
+                    </div>
+                </div>
 
-function checkAnswer(selected, correct) {
-    const resultDiv = document.getElementById("result");
-    if (selected === correct) {
-        resultDiv.innerHTML = "✔️ Correct!";
-        resultDiv.style.color = "green";
-    } else {
-        resultDiv.innerHTML = "❌ Incorrect. Correct answer: " + correct;
-        resultDiv.style.color = "red";
-    }
-}
-</script>
+                <!-- Result Gauge -->
+                <div class="bg-gradient-to-br from-slate-900 to-enso-darkblue text-white p-6 rounded-3xl flex flex-col items-center justify-center text-center space-y-4 shadow-xl">
+                    <div class="text-xs text-purple-300 font-extrabold uppercase tracking-widest">Índice de Idoneidad TIC</div>
+                    
+                    <div class="w-28 h-28 rounded-full border-4 border-purple-500 flex flex-col items-center justify-center bg-slate-800/80 shadow-inner">
+                        <span id="total-rubric-score" class="text-3xl font-black">80%</span>
+                        <span id="total-rubric-status" class="text-[10px] text-emerald-400 font-bold uppercase">Recomendado</span>
+                    </div>
 
+                    <p id="rubric-recommendation" class="text-xs text-slate-300 leading-relaxed">
+                        El recurso cumple con los estándares pedagógicos y técnicos para su implementación en el aula escolar.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- STREAMING_CHUNK:Section 4 - Classroom Case Dilemma Simulator... -->
+        <!-- SECTION 4: CLASSROOM CASE SIMULATOR -->
+        <section id="sec-case-simulator" class="glass-card rounded-3xl p-6 border-2 border-purple-500/30 space-y-6 hidden">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-3">
+                <h3 class="text-lg font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                    <i class="fas fa-chalkboard-teacher text-purple-600 dark:text-purple-400"></i>
+                    <span>Simulador de Casos de Aula y Mediación TIC</span>
+                </h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Enfrente dilemas pedagógicos reales y elija la mejor estrategia mediada por tecnología.</p>
+            </div>
+
+            <div id="case-container" class="space-y-4">
+                <!-- Active case loaded by JS -->
+            </div>
+        </section>
+
+        <!-- STREAMING_CHUNK:Section 5 - Thematic Practice Quizzes (5 Categories with Next Question System)... -->
+        <!-- SECTION 5: THEMATIC PRACTICE QUIZZES -->
+        <section id="sec-practice-quiz" class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-purple-500/40 space-y-6 hidden min-h-[360px] flex flex-col justify-between">
+            <div class="space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                    <span class="text-xs font-black uppercase tracking-wider text-purple-600 dark:text-purple-400 flex items-center gap-1.5" id="practice-category-title">
+                        <i class="fas fa-list-check"></i>
+                        <span>Práctica Guiada por Módulos Temáticos</span>
+                    </span>
+                    <span id="practice-counter" class="text-xs font-bold text-slate-400">Selecciona un tema abajo</span>
+                </div>
+
+                <!-- Practice Category Selector Buttons -->
+                <div class="flex flex-wrap gap-2 text-xs pt-1">
+                    <button onclick="startIntroPractice()" class="bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-200 hover:bg-purple-700 hover:text-white px-3 py-1.5 rounded-xl font-bold transition btn-bounce">1. Introducción TICs</button>
+                    <button onclick="startToolsPractice()" class="bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-200 hover:bg-purple-700 hover:text-white px-3 py-1.5 rounded-xl font-bold transition btn-bounce">2. Herramientas</button>
+                    <button onclick="startResourcesPractice()" class="bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-200 hover:bg-purple-700 hover:text-white px-3 py-1.5 rounded-xl font-bold transition btn-bounce">3. Recursos Digitales</button>
+                    <button onclick="startEvaluationPractice()" class="bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-200 hover:bg-purple-700 hover:text-white px-3 py-1.5 rounded-xl font-bold transition btn-bounce">4. Evaluación TICs</button>
+                    <button onclick="startSecurityPractice()" class="bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-200 hover:bg-purple-700 hover:text-white px-3 py-1.5 rounded-xl font-bold transition btn-bounce">5. Seguridad Digital</button>
+                </div>
+            </div>
+
+            <div id="practice-workspace" class="space-y-4 my-auto">
+                <div class="text-center py-8 space-y-2">
+                    <div class="text-5xl">💡</div>
+                    <h3 class="text-base font-extrabold text-slate-800 dark:text-white">¡Selecciona un módulo de práctica arriba!</h3>
+                    <p class="text-xs text-slate-500 max-w-md mx-auto">Responde las preguntas paso a paso con el botón <strong>Siguiente Pregunta</strong> y retroalimentación inmediata.</p>
+                </div>
+            </div>
+
+            <div id="practice-result" class="min-h-[20px]"></div>
+        </section>
+
+        <!-- STREAMING_CHUNK:Section 6 - Integrated 20-Question Exam Mode... -->
+        <!-- SECTION 6: INTEGRATED 20-QUESTION EXAM MODE -->
+        <section id="sec-ict-quiz" class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-purple-500/40 space-y-6 hidden min-h-[360px] flex flex-col justify-between">
+            <div id="quiz-header" class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                <span class="text-xs font-black uppercase tracking-wider text-purple-600 dark:text-purple-400 flex items-center gap-1.5">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>EXAM MODE (20 Preguntas Integradas de TICs)</span>
+                </span>
+                <span id="quiz-counter" class="text-xs font-bold text-slate-400">⏱️ Tiempo: 07:00</span>
+            </div>
+
+            <div id="quiz-workspace" class="space-y-4 my-auto">
+                <!-- Question content injected by JS -->
+            </div>
+
+            <div id="quiz-result" class="min-h-[20px]"></div>
+        </section>
+
+    </main>
+
+    <!-- STREAMING_CHUNK:Rendering institution footer... -->
+    <!-- FOOTER -->
+    <footer class="bg-enso-darkblue text-white mt-10 py-6 border-t-4 border-enso-purple text-xs">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <div class="font-extrabold text-white text-sm">Escuela Normal Superior Oiba</div>
+                <div class="text-blue-200">Programa de Formación Complementaria (PFC) • Prof. Santiago Medina</div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <a href="../index.html" class="bg-blue-900/80 hover:bg-blue-800 text-white px-3 py-1.5 rounded-xl border border-blue-700 font-bold transition">
+                    <i class="fas fa-undo mr-1"></i> Portal Principal
+                </a>
+                <a href="https://www.ensopfcmedios.com" target="_blank" rel="noopener noreferrer" class="bg-enso-gold/20 text-amber-300 px-3 py-1.5 rounded-xl border border-amber-400/40 font-bold transition hover:bg-enso-gold/30">
+                    🌐 www.ensopfcmedios.com
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- STREAMING_CHUNK:Initializing JS engines, audio synthesis, practice navigation and exam handler... -->
+    <script>
+        /* ==========================================================================
+           1. AUDIO ENGINE & SYNTHESIS
+           ========================================================================== */
+        let soundEnabled = true;
+        let playerXP = 0;
+        const synth = window.speechSynthesis;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById("icon-sound");
+            if (soundEnabled) {
+                icon.className = "fas fa-volume-up text-amber-300 text-sm";
+                playSfx(587.33, 'sine', 0.12);
+            } else {
+                icon.className = "fas fa-volume-mute text-red-300 text-sm";
+            }
+        }
+
+        function playSfx(freq, type = 'sine', duration = 0.15) {
+            if (!soundEnabled) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.log("Audio FX error:", e);
+            }
+        }
+
+        function speakSpanish(text) {
+            if (!synth) return;
+            synth.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'es-CO';
+            utterance.rate = 0.95;
+            synth.speak(utterance);
+        }
+
+        function addXP(points) {
+            playerXP += points;
+            document.getElementById("player-xp").innerText = `${playerXP} XP`;
+            if (playerXP > 120) {
+                document.getElementById("player-level").innerText = "Líder en Innovación TIC 🏆";
+            } else if (playerXP > 50) {
+                document.getElementById("player-level").innerText = "Docente Digital Intermedio 💻";
+            }
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const icon = document.getElementById("icon-theme");
+            if (document.documentElement.classList.contains('dark')) {
+                icon.className = "fas fa-sun text-amber-300 text-sm";
+            } else {
+                icon.className = "fas fa-moon text-amber-300 text-sm";
+            }
+            playSfx(440, 'sine', 0.08);
+        }
+
+        /* ==========================================================================
+           2. SECTION SWITCHER
+           ========================================================================== */
+        function showSection(sectionId) {
+            const sections = ['tools-catalog', 'ova-designer', 'rubric-calculator', 'case-simulator', 'practice-quiz', 'ict-quiz'];
+            sections.forEach(id => {
+                const secEl = document.getElementById(`sec-${id}`);
+                const tabEl = document.getElementById(`tab-${id}`);
+                if (id === sectionId) {
+                    secEl.classList.remove('hidden');
+                    if (tabEl) {
+                        tabEl.classList.add('border-purple-500');
+                        tabEl.classList.remove('border-slate-200', 'dark:border-slate-700');
+                    }
+                } else {
+                    secEl.classList.add('hidden');
+                    if (tabEl && id !== 'ict-quiz') {
+                        tabEl.classList.remove('border-purple-500');
+                        tabEl.classList.add('border-slate-200', 'dark:border-slate-700');
+                    }
+                }
+            });
+
+            playSfx(523.25, 'sine', 0.08);
+        }
+
+        /* ==========================================================================
+           3. CATALOG OF TOOLS DATA & FILTER
+           ========================================================================== */
+        const toolsData = [
+            { name: "Kahoot! / Quizizz", cat: "gamification", icon: "🎮", desc: "Plataformas de evaluación formativa mediante cuestionarios gamificados en tiempo real.", use: "Retroalimentación e iniciación de clase." },
+            { name: "Genially / Canva", cat: "ova", icon: "🎨", desc: "Creación de infografías interactivas, mapas conceptuales dinámicos y presentaciones OVA.", use: "Desarrollo conceptual e investigación." },
+            { name: "Padlet / Miro", cat: "ova", icon: "📌", desc: "Muros virtuales colaborativos para lluvias de ideas, diarios de campo y proyectos grupales.", use: "Trabajo colaborativo y coevaluación." },
+            { name: "H5P / Educaplay", cat: "eval", icon: "🧩", desc: "Generación de actividades educativas interactivas (crucigramas, videos interactivos, emparejamiento).", use: "Ejercicios de fijación de conceptos." },
+            { name: "Edpuzzle / YouTube", cat: "eval", icon: "🎬", desc: "Transformación de videos en lecciones interactivas con preguntas incrustadas.", use: "Aula invertida (Flipped Classroom)." },
+            { name: "Google Classroom / Forms", cat: "eval", icon: "📋", desc: "Gestión de clases virtuales, entrega de tareas y creación de exámenes automatizados.", use: "Evaluación continua y rúbricas." },
+            { name: "Scratch", cat: "gamification", icon: "🐱", desc: "Lenguaje de programación por bloques para desarrollo del pensamiento computacional.", use: "Resolución de problemas y narrativa digital." }
+        ];
+
+        function renderTools(filter = 'all') {
+            const grid = document.getElementById("tools-grid");
+            grid.innerHTML = "";
+
+            const filtered = filter === 'all' ? toolsData : toolsData.filter(t => t.cat === filter);
+
+            filtered.forEach(t => {
+                grid.innerHTML += `
+                    <div class="tool-card bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-2 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xl">${t.icon}</span>
+                                <span class="text-[10px] bg-purple-100 dark:bg-purple-900/60 text-purple-700 dark:text-purple-300 font-extrabold px-2 py-0.5 rounded-md uppercase">${t.cat}</span>
+                            </div>
+                            <h4 class="font-extrabold text-sm text-slate-900 dark:text-white mt-1">${t.name}</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mt-1">${t.desc}</p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-100 dark:border-slate-700 text-[11px] text-purple-700 dark:text-purple-300 font-bold">
+                            💡 Uso Didáctico: ${t.use}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterTools(cat) {
+            renderTools(cat);
+            playSfx(600, 'sine', 0.08);
+        }
+
+        /* ==========================================================================
+           4. OVA SPECIFICATION GENERATOR
+           ========================================================================== */
+        function generateOVASpec() {
+            const title = document.getElementById("ova-title").value.trim() || "Objeto Virtual de Aprendizaje Interactivo";
+            const grade = document.getElementById("ova-grade").value;
+            const tool = document.getElementById("ova-tool").value;
+            const obj = document.getElementById("ova-objective").value.trim() || "Promover el pensamiento crítico a través de actividades interactivas.";
+            const evalStrategy = document.getElementById("ova-eval").value.trim() || "Cuestionario de autoevaluación al finalizar el módulo.";
+
+            const preview = document.getElementById("ova-preview");
+            const btnCopy = document.getElementById("btn-copy-ova");
+
+            preview.innerHTML = `
+                <div class="font-extrabold text-purple-700 dark:text-purple-300 text-sm border-b pb-2 border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                    <span>📑 Ficha Técnica del OVA</span>
+                    <span class="text-[10px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full font-bold">ENSO PFC</span>
+                </div>
+                <div><strong>Título del OVA:</strong> ${title}</div>
+                <div><strong>Población Destino:</strong> ${grade}</div>
+                <div><strong>Plataforma / Software:</strong> ${tool}</div>
+                <div><strong>Objetivo Pedagógico:</strong> ${obj}</div>
+                <div class="pt-2 border-t border-slate-200 dark:border-slate-700">
+                    <p><strong>Estructura Didáctica Recomendada (3 Momentos):</strong></p>
+                    <ul class="list-disc pl-4 space-y-1 mt-1">
+                        <li><strong>1. Exploración:</strong> Video corto activador o pregunta orientadora.</li>
+                        <li><strong>2. Estructuración:</strong> Recurso interactivo principal elaborado en ${tool}.</li>
+                        <li><strong>3. Transferencia & Evaluación:</strong> ${evalStrategy}</li>
+                    </ul>
+                </div>
+            `;
+
+            btnCopy.classList.remove("hidden");
+            addXP(15);
+            playSfx(783.99, 'sine', 0.15);
+        }
+
+        function copyOVASpec() {
+            const text = document.getElementById("ova-preview").innerText;
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert("¡Ficha técnica del OVA copiada al portapapeles!");
+        }
+
+        /* ==========================================================================
+           5. RUBRIC CALCULATOR
+           ========================================================================== */
+        function calculateSoftwareScore() {
+            const p = parseInt(document.getElementById("score-pedagogy").value);
+            const u = parseInt(document.getElementById("score-usability").value);
+            const a = parseInt(document.getElementById("score-accessibility").value);
+            const s = parseInt(document.getElementById("score-security").value);
+
+            document.getElementById("score-pedagogy-val").innerText = `${p} / 5`;
+            document.getElementById("score-usability-val").innerText = `${u} / 5`;
+            document.getElementById("score-accessibility-val").innerText = `${a} / 5`;
+            document.getElementById("score-security-val").innerText = `${s} / 5`;
+
+            const total = Math.round(((p + u + a + s) / 20) * 100);
+            document.getElementById("total-rubric-score").innerText = `${total}%`;
+
+            const statusEl = document.getElementById("total-rubric-status");
+            const recEl = document.getElementById("rubric-recommendation");
+
+            if (total >= 80) {
+                statusEl.innerText = "Altamente Recomendado";
+                statusEl.className = "text-[10px] text-emerald-400 font-bold uppercase";
+                recEl.innerText = "Excelente recurso pedagógico. Cumple con estándares de interactividad, usabilidad y seguridad para el aula.";
+            } else if (total >= 60) {
+                statusEl.innerText = "Aceptable con Ajustes";
+                statusEl.className = "text-[10px] text-amber-400 font-bold uppercase";
+                recEl.innerText = "El recurso es utilizable pero requiere mediación docente constante o mejoras en conectividad/accesibilidad.";
+            } else {
+                statusEl.innerText = "No Recomendado";
+                statusEl.className = "text-[10px] text-red-400 font-bold uppercase";
+                recEl.innerText = "Presenta deficiencias técnicas o pedagógicas que dificultan el aprendizaje autónomo de los estudiantes.";
+            }
+        }
+
+        /* ==========================================================================
+           6. CASE SIMULATOR
+           ========================================================================== */
+        const casesData = [
+            {
+                title: "Caso 1: Aula Rural con Conectividad Limitada",
+                desc: "Usted labora en una sede rural multigrado sin acceso a internet continuo. Desea integrar TICs para la enseñanza de las Ciencias Naturales.",
+                options: [
+                    { text: "A. Exigir a los padres que recarguen datos móviles para ver videos en directo.", correct: false, reason: "Inviable económicamente para las familias y genera brecha de exclusión." },
+                    { text: "B. Diseñar Guías Digitales e interactivos offline cargados previamente en las tablets de la sede.", correct: true, reason: "¡Excelente! La estrategia offline garantiza la equidad y continuidad educativa." },
+                    { text: "C. Descartar el uso de tecnología y trabajar únicamente con tablero.", correct: false, reason: "Desaprovecha las herramientas tecnológicas portátiles instaladas en la institución." }
+                ]
+            },
+            {
+                title: "Caso 2: Aula Invertida (Flipped Classroom) en Primaria",
+                desc: "Desea que sus estudiantes preparen previamente un tema de historia antes de la clase presencial.",
+                options: [
+                    { text: "A. Enviar un documento PDF de 40 páginas para memorizar en casa.", correct: false, reason: "Poco interactivo e inadecuado para la edad de los estudiantes." },
+                    { text: "B. Asignar un video interactivo corto en Edpuzzle con preguntas integradas de 3 minutos.", correct: true, reason: "¡Correcto! El formato corto con pausas activas fomenta la autonomía y comprensión previa." },
+                    { text: "C. Realizar una transmisión en vivo de 2 horas en la noche.", correct: false, reason: "Satura el tiempo familiar y no respeta los ritmos de aprendizaje." }
+                ]
+            }
+        ];
+
+        let currentCaseIdx = 0;
+
+        function loadCase() {
+            const container = document.getElementById("case-container");
+            const c = casesData[currentCaseIdx];
+
+            container.innerHTML = `
+                <div class="bg-slate-50 dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-black text-purple-600 dark:text-purple-400 uppercase">${c.title}</span>
+                        <button onclick="speakSpanish('${c.desc.replace(/'/g, "\\'")}')" class="text-slate-400 hover:text-purple-600">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+                    <p class="text-xs text-slate-700 dark:text-slate-300 font-medium">${c.desc}</p>
+
+                    <div class="space-y-2 pt-2">
+                        ${c.options.map((opt, i) => `
+                            <button onclick="evaluateCaseChoice(${i})" class="w-full text-left bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-purple-600 text-xs font-bold transition shadow-sm">
+                                ${opt.text}
+                            </button>
+                        `).join("")}
+                    </div>
+
+                    <div id="case-feedback" class="mt-2 text-xs"></div>
+                </div>
+            `;
+        }
+
+        function evaluateCaseChoice(optIdx) {
+            const c = casesData[currentCaseIdx];
+            const opt = c.options[optIdx];
+            const fb = document.getElementById("case-feedback");
+
+            if (opt.correct) {
+                playSfx(783.99, 'sine', 0.15);
+                addXP(20);
+                fb.innerHTML = `
+                    <div class="p-3 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200 rounded-xl border border-emerald-300 font-bold">
+                        ✔️ ${opt.reason}
+                    </div>
+                `;
+            } else {
+                playSfx(220, 'sawtooth', 0.2);
+                fb.innerHTML = `
+                    <div class="p-3 bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-200 rounded-xl border border-red-300 font-bold">
+                        ❌ ${opt.reason}
+                    </div>
+                `;
+            }
+        }
+
+        /* ==========================================================================
+           7. THEMATIC PRACTICE ENGINE WITH "NEXT QUESTION" SYSTEM
+           ========================================================================== */
+        const introQuestions = [
+            { q: "¿Qué significan las siglas TICs?", options: ["Tecnologías de la Información y la Comunicación", "Técnicas Integradas de Computación", "Tratamiento Informático y Comunicación Social"], answer: "Tecnologías de la Información y la Comunicación" },
+            { q: "¿Cuál es un beneficio de las TICs en educación?", options: ["Aumentan la desinformación", "Facilitan el acceso al conocimiento", "Eliminan la interacción docente-estudiante"], answer: "Facilitan el acceso al conocimiento" },
+            { q: "¿Qué competencia digital es esencial para un docente?", options: ["Saber programar videojuegos", "Saber usar herramientas digitales educativas", "Saber reparar computadores"], answer: "Saber usar herramientas digitales educativas" }
+        ];
+
+        const toolsQuestions = [
+            { q: "¿Cuál herramienta sirve para crear presentaciones interactivas?", options: ["Genially", "Classroom", "Padlet"], answer: "Genially" },
+            { q: "¿Cuál herramienta permite gestionar clases virtuales?", options: ["Kahoot", "Google Classroom", "Canva"], answer: "Google Classroom" },
+            { q: "¿Cuál herramienta sirve para crear evaluaciones gamificadas?", options: ["Kahoot", "Word", "Excel"], answer: "Kahoot" }
+        ];
+
+        const resourcesQuestions = [
+            { q: "¿Qué tipo de recurso se puede crear con Canva?", options: ["Infografías", "Bases de datos", "Sistemas operativos"], answer: "Infografías" },
+            { q: "¿Qué herramienta permite crear presentaciones dinámicas fácilmente?", options: ["PowerPoint", "Genially", "Paint"], answer: "PowerPoint" },
+            { q: "¿Qué herramienta permite crear formularios de evaluación?", options: ["Google Forms", "Photoshop", "Audacity"], answer: "Google Forms" }
+        ];
+
+        const evaluationQuestions = [
+            { q: "¿Qué ventaja tiene la evaluación digital?", options: ["Retroalimentación inmediata", "Mayor dificultad para los estudiantes", "No permite calificar"], answer: "Retroalimentación inmediata" },
+            { q: "¿Qué herramienta permite integrar rúbricas digitales?", options: ["Google Classroom", "Paint", "Excel"], answer: "Google Classroom" },
+            { q: "¿Qué herramienta permite crear exámenes automáticos?", options: ["Google Forms", "Word", "PowerPoint"], answer: "Google Forms" }
+        ];
+
+        const securityQuestions = [
+            { q: "¿Qué es una buena práctica de seguridad digital?", options: ["Compartir contraseñas", "Usar contraseñas seguras", "Instalar software desconocido"], answer: "Usar contraseñas seguras" },
+            { q: "¿Qué es el phishing en internet?", options: ["Un ataque para robar información personal", "Un programa educativo", "Una herramienta de diseño"], answer: "Un ataque para robar información personal" },
+            { q: "¿Qué se debe evitar en internet?", options: ["Dar datos personales en páginas dudosas", "Usar antivirus", "Actualizar el sistema"], answer: "Dar datos personales en páginas dudosas" }
+        ];
+
+        let currentTicsList = [];
+        let currentTicsIndex = 0;
+        let currentTicsCategoryTitle = "";
+
+        function startIntroPractice() {
+            initTicsPractice("Introducción a las TICs", introQuestions);
+        }
+
+        function startToolsPractice() {
+            initTicsPractice("Herramientas Digitales", toolsQuestions);
+        }
+
+        function startResourcesPractice() {
+            initTicsPractice("Recursos Educativos Digitales", resourcesQuestions);
+        }
+
+        function startEvaluationPractice() {
+            initTicsPractice("Evaluación con TICs", evaluationQuestions);
+        }
+
+        function startSecurityPractice() {
+            initTicsPractice("Seguridad Digital", securityQuestions);
+        }
+
+        function initTicsPractice(title, questionsArr) {
+            showSection('practice-quiz');
+            currentTicsCategoryTitle = title;
+            currentTicsList = [...questionsArr];
+            currentTicsIndex = 0;
+
+            document.getElementById("practice-category-title").innerHTML = `
+                <i class="fas fa-list-check"></i>
+                <span>${title}</span>
+            `;
+
+            loadCurrentTicsExercise();
+        }
+
+        function loadCurrentTicsExercise() {
+            const workspace = document.getElementById("practice-workspace");
+            const resultDiv = document.getElementById("practice-result");
+            resultDiv.innerHTML = "";
+
+            if (currentTicsIndex >= currentTicsList.length) {
+                workspace.innerHTML = `
+                    <div class="text-center py-6 space-y-4">
+                        <div class="text-5xl">🎉</div>
+                        <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">¡Módulo Completado!</h3>
+                        <p class="text-xs text-slate-500 max-w-sm mx-auto">
+                            Has respondido las preguntas de <strong>${currentTicsCategoryTitle}</strong>.
+                        </p>
+                        <button onclick="startICTExam()" class="bg-purple-700 hover:bg-purple-800 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce">
+                            <span>Ir al EXAM MODE (20 Preguntas) 🎓</span>
+                        </button>
+                    </div>
+                `;
+                document.getElementById("practice-counter").innerText = "Módulo Completado";
+                return;
+            }
+
+            const q = currentTicsList[currentTicsIndex];
+            document.getElementById("practice-counter").innerText = `Pregunta ${currentTicsIndex + 1} de ${currentTicsList.length}`;
+
+            workspace.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between bg-purple-50 dark:bg-slate-800 p-4 rounded-2xl border border-purple-200 dark:border-slate-700">
+                        <div>
+                            <span class="text-[10px] font-black text-purple-700 dark:text-purple-300 uppercase">Ejercicio ${currentTicsIndex + 1}</span>
+                            <h4 class="font-extrabold text-base text-slate-900 dark:text-white mt-0.5">${q.q}</h4>
+                        </div>
+                        <button onclick="speakSpanish('${q.q.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-purple-700 text-white flex items-center justify-center flex-shrink-0 ml-2" title="Escuchar">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-2.5">
+                        ${q.options.map((opt) => `
+                            <button onclick="checkTicsPracticeAnswer('${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\'")}', this)" class="tics-opt-btn w-full text-left bg-white dark:bg-slate-800 p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-purple-600 font-bold text-xs text-slate-800 dark:text-slate-100 transition shadow-sm">
+                                <span>${opt}</span>
+                            </button>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+
+            speakSpanish(q.q);
+        }
+
+        function checkTicsPracticeAnswer(selected, correct, clickedBtn) {
+            const btns = document.querySelectorAll(".tics-opt-btn");
+            btns.forEach(b => b.disabled = true);
+
+            const resultDiv = document.getElementById("practice-result");
+            const isCorrect = (selected === correct);
+
+            if (isCorrect) {
+                playSfx(783.99, 'sine', 0.15);
+                addXP(10);
+                if (clickedBtn) clickedBtn.classList.add("border-emerald-500", "bg-emerald-50");
+            } else {
+                playSfx(220, 'sawtooth', 0.2);
+                if (clickedBtn) clickedBtn.classList.add("border-red-500", "bg-red-50");
+            }
+
+            const isLast = (currentTicsIndex + 1 >= currentTicsList.length);
+
+            resultDiv.innerHTML = `
+                <div class="space-y-3">
+                    <div class="p-3.5 ${isCorrect ? 'bg-emerald-100 text-emerald-800 border-emerald-300' : 'bg-red-100 text-red-800 border-red-300'} rounded-2xl border text-xs font-bold flex justify-between items-center">
+                        <span>${isCorrect ? '✔️ ¡Respuesta Correcta! (+10 XP)' : `❌ Incorrecto. La respuesta era: <strong>${correct}</strong>`}</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <button onclick="nextTicsPracticeQuestion()" class="bg-purple-700 hover:bg-purple-800 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl btn-bounce">
+                            <span>${isLast ? 'Ver Resumen' : 'Siguiente Pregunta ➡️'}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function nextTicsPracticeQuestion() {
+            currentTicsIndex++;
+            loadCurrentTicsExercise();
+        }
+
+        /* ==========================================================================
+           8. INTEGRATED 20-QUESTION EXAM MODE ENGINE
+           ========================================================================== */
+        const examQuestions = [
+            { q: "1. ¿Qué significa TICS?", A: "Tecnologías de la Información y la Comunicación", B: "Tratamiento Informático y Comunicación Social", C: "Técnicas Integradas de Computación", D: "Telecomunicaciones Internacionales", answer: "A" },
+            { q: "2. ¿Cuál es una herramienta para presentaciones interactivas?", A: "Genially", B: "Excel", C: "Paint", D: "Audacity", answer: "A" },
+            { q: "3. ¿Cuál herramienta gestiona clases virtuales?", A: "Kahoot", B: "Google Classroom", C: "Canva", D: "Word", answer: "B" },
+            { q: "4. ¿Qué recurso se crea frecuentemente con Canva?", A: "Infografías y diseños", B: "Bases de datos relacionales", C: "Sistemas operativos", D: "Drivers de hardware", answer: "A" },
+            { q: "5. ¿Qué herramienta crea formularios y exámenes automáticos?", A: "Photoshop", B: "Google Forms", C: "Audacity", D: "Paint", answer: "B" },
+            { q: "6. ¿Qué ventaja principal tiene la evaluación digital?", A: "Retroalimentación inmediata", B: "Mayor dificultad técnica", C: "No permite calificar cuantitativamente", D: "Elimina la mediación docente", answer: "A" },
+            { q: "7. ¿Qué es el phishing en internet?", A: "Un ataque cibernético para engañar y robar información personal", B: "Una aplicación educativa de diseño", C: "Un editor de video interactivo", D: "Un antivirus escolar", answer: "A" },
+            { q: "8. ¿Qué se debe evitar para garantizar la seguridad digital?", A: "Compartir datos personales o contraseñas en sitios no verificados", B: "Usar programas antivirus", C: "Actualizar el sistema operativo", D: "Crear contraseñas complejas", answer: "A" },
+            { q: "9. ¿Qué herramienta permite integrar rúbricas digitales de evaluación?", A: "Google Classroom", B: "Paint", C: "Excel sin plantillas", D: "Notepad", answer: "A" },
+            { q: "10. ¿Qué significa el modelo TPACK en tecnología educativa?", A: "Technological Pedagogical Content Knowledge", B: "Total Public Academic Center Knowledge", C: "Teaching Program and Computer Keys", D: "Technical Process for Academic Control", answer: "A" },
+            { q: "11. En el modelo SAMR, la fase donde la tecnología crea nuevas tareas antes inconcebibles es:", A: "Redefinición", B: "Sustitución", C: "Aumento", D: "Modificación", answer: "A" },
+            { q: "12. ¿Qué herramienta permite gamificar evaluaciones mediante concursos en vivo?", A: "Kahoot!", B: "Word", C: "Calculator", D: "Paint", answer: "A" },
+            { q: "13. ¿Qué es un OVA (Objeto Virtual de Aprendizaje)?", A: "Un recurso digital estructurado con propósito educativo y reutilizable", B: "Un archivo comprimido estático", C: "Un antivirus institucional", D: "Un formato de audio", answer: "A" },
+            { q: "14. ¿Qué permiten las licencias Creative Commons?", A: "Compartir y usar obras con permisos definidos por el autor", B: "Prohibir todo uso pedagógico", C: "Eliminar los derechos morales de autor", D: "Vender contenido ajeno", answer: "A" },
+            { q: "15. La brecha digital en las escuelas se refiere no solo al acceso a dispositivos sino también a:", A: "Las competencias digitales de uso pedagógico", B: "El modelo del computador", C: "El tamaño de la pantalla", D: "El color del laboratorio", answer: "A" },
+            { q: "16. ¿Qué es una buena práctica de seguridad digital?", A: "Usar contraseñas seguras y autenticación en dos pasos", B: "Compartir claves con compañeros", C: "Descargar software pirata", D: "Ignorar parches de seguridad", answer: "A" },
+            { q: "17. ¿Qué plataforma permite crear muros virtuales colaborativos para lluvias de ideas?", A: "Padlet", B: "Excel", C: "Paint", D: "Audacity", answer: "A" },
+            { q: "18. El enfoque de 'Aula Invertida' (Flipped Classroom) consiste en:", A: "Estudiar contenidos teóricos en casa y realizar prácticas interactivas en el aula", B: "Invertir la disposición del mobiliario", C: "Eliminar el trabajo en casa", D: "Ver televisión en clase", answer: "A" },
+            { q: "19. ¿Qué lenguaje de programación por bloques es muy usado para desarrollar el pensamiento computacional?", A: "Scratch", B: "Assembly", C: "C++", D: "Binary", answer: "A" },
+            { q: "20. ¿Cuál es la ventaja de las TICs en el proceso de enseñanza?", A: "Facilitan el acceso diversificado al conocimiento y la autonomía", B: "Aumentan la desinformación", C: "Sustituyen la figura del docente", D: "Dificultan el aprendizaje colaborativo", answer: "A" }
+        ];
+
+        let quizIndex = 0;
+        let quizScore = 0;
+        let isQuizActive = false;
+        let quizFeedback = [];
+
+        function startICTExam() {
+            showSection('ict-quiz');
+            quizIndex = 0;
+            quizScore = 0;
+            quizFeedback = [];
+            isQuizActive = true;
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            const workspace = document.getElementById("quiz-workspace");
+            const resultDiv = document.getElementById("quiz-result");
+
+            resultDiv.innerHTML = "";
+
+            if (quizIndex >= examQuestions.length) {
+                showQuizResults();
+                return;
+            }
+
+            const q = examQuestions[quizIndex];
+            document.getElementById("quiz-counter").innerText = `Pregunta ${quizIndex + 1} de 20`;
+
+            workspace.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between bg-purple-50 dark:bg-slate-800 p-4 rounded-2xl border border-purple-200 dark:border-slate-700">
+                        <div>
+                            <span class="text-[10px] font-black text-purple-700 dark:text-purple-300 uppercase">Pregunta ${quizIndex + 1} de 20</span>
+                            <h4 class="font-extrabold text-base text-slate-900 dark:text-white mt-0.5">${q.q}</h4>
+                        </div>
+                        <button onclick="speakSpanish('${q.q.replace(/'/g, "\\'")}')" class="w-9 h-9 rounded-xl bg-purple-700 text-white flex items-center justify-center flex-shrink-0" title="Escuchar">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        <button onclick="checkQuizAnswer('A')" class="exam-opt-btn bg-white dark:bg-slate-800 hover:bg-purple-700 hover:text-white p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 font-bold text-xs text-left transition flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-slate-700 text-purple-900 dark:text-slate-100 flex items-center justify-center font-black text-[10px]">A</span>
+                            <span>${q.A}</span>
+                        </button>
+                        <button onclick="checkQuizAnswer('B')" class="exam-opt-btn bg-white dark:bg-slate-800 hover:bg-purple-700 hover:text-white p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 font-bold text-xs text-left transition flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-slate-700 text-purple-900 dark:text-slate-100 flex items-center justify-center font-black text-[10px]">B</span>
+                            <span>${q.B}</span>
+                        </button>
+                        <button onclick="checkQuizAnswer('C')" class="exam-opt-btn bg-white dark:bg-slate-800 hover:bg-purple-700 hover:text-white p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 font-bold text-xs text-left transition flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-slate-700 text-purple-900 dark:text-slate-100 flex items-center justify-center font-black text-[10px]">C</span>
+                            <span>${q.C}</span>
+                        </button>
+                        <button onclick="checkQuizAnswer('D')" class="exam-opt-btn bg-white dark:bg-slate-800 hover:bg-purple-700 hover:text-white p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 font-bold text-xs text-left transition flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-purple-100 dark:bg-slate-700 text-purple-900 dark:text-slate-100 flex items-center justify-center font-black text-[10px]">D</span>
+                            <span>${q.D}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            speakSpanish(q.q);
+        }
+
+        function checkQuizAnswer(selected) {
+            const btns = document.querySelectorAll(".exam-opt-btn");
+            btns.forEach(b => b.disabled = true);
+
+            const q = examQuestions[quizIndex];
+            const correct = q.answer;
+            const isCorrect = (selected === correct);
+
+            if (isCorrect) {
+                quizScore++;
+                playSfx(783.99, 'sine', 0.15);
+                addXP(10);
+                quizFeedback.push(`✔️ Pregunta ${quizIndex + 1}: Correcta`);
+            } else {
+                playSfx(220, 'sine', 0.15);
+                quizFeedback.push(`❌ Pregunta ${quizIndex + 1}: Incorrecta (Respuesta correcta: ${correct})`);
+            }
+
+            const resultDiv = document.getElementById("quiz-result");
+            const isLast = (quizIndex + 1 >= examQuestions.length);
+
+            resultDiv.innerHTML = `
+                <div class="space-y-3">
+                    <div class="p-3 ${isCorrect ? 'bg-emerald-100 text-emerald-800 border-emerald-300' : 'bg-red-100 text-red-800 border-red-300'} rounded-2xl border text-xs font-bold flex justify-between items-center">
+                        <span>${isCorrect ? '✔️ ¡Correcto!' : `❌ Incorrecto. La opción correcta era: ${correct}`}</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <button onclick="nextQuizQuestion()" class="bg-purple-700 hover:bg-purple-800 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl btn-bounce">
+                            <span>${isLast ? 'Ver Resultados Finales' : 'Siguiente Pregunta ➡️'}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function nextQuizQuestion() {
+            quizIndex++;
+            loadQuizQuestion();
+        }
+
+        function showQuizResults() {
+            const percentage = Math.round((quizScore / examQuestions.length) * 100);
+            const workspace = document.getElementById("quiz-workspace");
+            document.getElementById("quiz-result").innerHTML = "";
+
+            workspace.innerHTML = `
+                <div class="text-center py-6 space-y-4">
+                    <div class="text-6xl">${percentage >= 70 ? '🏆' : '📚'}</div>
+                    <h3 class="text-2xl font-black text-slate-900 dark:text-white">
+                        ${percentage >= 70 ? '¡Competencia Digital Aprobada!' : 'Sigue Repasando'}
+                    </h3>
+
+                    <div class="inline-flex items-center space-x-6 bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <div>
+                            <div class="text-slate-400 text-xs font-bold">Puntaje Obtenido</div>
+                            <div class="text-2xl font-black text-purple-600">${quizScore} / 20</div>
+                        </div>
+                        <div class="border-l border-slate-200 dark:border-slate-700 pl-6">
+                            <div class="text-slate-400 text-xs font-bold">Porcentaje</div>
+                            <div class="text-2xl font-black text-enso-red">${percentage}%</div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex flex-wrap justify-center gap-3">
+                        <button onclick="downloadICTReport()" class="bg-purple-700 hover:bg-purple-800 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce flex items-center space-x-2">
+                            <i class="fas fa-file-download"></i>
+                            <span>Descargar Reporte TXT</span>
+                        </button>
+                        <button onclick="startICTExam()" class="bg-slate-800 hover:bg-slate-900 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce">
+                            <i class="fas fa-redo"></i>
+                            <span>Reiniciar Examen</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function downloadICTReport() {
+            const percentage = Math.round((quizScore / examQuestions.length) * 100);
+            let text = `========================================================\n`;
+            text += ` ESCUELA NORMAL SUPERIOR OIBA - PFC 2026\n`;
+            text += ` REPORTE: TICS APLICADAS A LA ENSEÑANZA (20 PREGUNTAS)\n`;
+            text += ` Docente Formador: Prof. Santiago Medina\n`;
+            text += ` Repositorio Oficial: www.ensopfcmedios.com\n`;
+            text += `========================================================\n\n`;
+            text += `Puntaje Final: ${quizScore} / 20\n`;
+            text += `Porcentaje: ${percentage}%\n`;
+            text += `Fecha de Presentación: ${new Date().toLocaleString()}\n\n`;
+            text += `DETALLE DE RESPUESTAS (20 PREGUNTAS):\n`;
+            text += `--------------------------------------------------------\n`;
+            text += quizFeedback.join("\n");
+
+            const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Resultado_TICs_ENSO_20Q_${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        /* ==========================================================================
+           9. INITIALIZATION ON LOAD
+           ========================================================================== */
+        window.onload = function() {
+            renderTools('all');
+            calculateSoftwareScore();
+            loadCase();
+        };
+    </script>
 </body>
 </html>
+```eof
+
+¡El archivo unificado de **TICs Aplicadas a la Enseñanza** (`TICS/index.html`) ha sido actualizado con éxito!
+
+### 🎯 Resumen de la integración:
+1. **Prácticas Guiadas por Temas con Botón "Siguiente Pregunta"**:
+   - Módulo 1: *Introducción a las TICs*
+   - Módulo 2: *Herramientas Digitales* (Genially, Classroom, Kahoot)
+   - Módulo 3: *Recursos Educativos Digitales* (Canva, PowerPoint, Google Forms)
+   - Módulo 4: *Evaluación con TICs* (Retroalimentación inmediata, rúbricas)
+   - Módulo 5: *Seguridad Digital* (Contraseñas seguras, phishing, protección de datos)
+2. **Examen Integrado de 20 Preguntas (EXAM MODE)**:
+   - Combina preguntas sobre el modelo TPACK, SAMR, seguridad digital, licenciamiento Creative Commons, brecha digital y software educativo.
+   - Desglose de respuestas, puntaje sobre 20 y reporte descargable en TXT.
+3. **Herramientas de Trabajo**:
+   - Catálogo de Herramientas TICs con filtros por categoría.
+   - Diseñador Didáctico de Objetos Virtuales de Aprendizaje (OVA).
+   - Calculadora de Rúbrica de Calidad de Software Educativo.
+   - Simulador de Casos de Aula y Dilemas Reales.
