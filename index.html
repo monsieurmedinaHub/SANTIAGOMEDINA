@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" class="h-full">
 <head>
+    <!-- STREAMING_CHUNK:Configuring meta head and dark mode styling defaults... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Educativo – Escuela Normal Superior Oiba | Prof. Santiago Medina</title>
@@ -38,6 +39,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- STREAMING_CHUNK:Declaring custom CSS for glassmorphism and animations... -->
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -83,10 +85,24 @@
         .course-card:hover {
             transform: translateY(-4px);
         }
+
+        @media print {
+            header, footer, .no-print {
+                display: none !important;
+            }
+            .print-area {
+                display: block !important;
+                background: white !important;
+                color: black !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-300">
 
+    <!-- STREAMING_CHUNK:Building institutional top navigation bar... -->
     <!-- HEADER & INSTITUTIONAL NAVBAR -->
     <header class="bg-enso-blue text-white shadow-xl sticky top-0 z-50 border-b-4 border-enso-red">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -145,6 +161,7 @@
         </div>
     </header>
 
+    <!-- STREAMING_CHUNK:Rendering main container and Hero banner... -->
     <!-- MAIN BODY CONTAINER -->
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 space-y-8">
 
@@ -176,7 +193,7 @@
                 <div class="pt-2 flex flex-wrap gap-3">
                     <a href="INGLES/index.html" class="bg-enso-red hover:bg-red-700 text-white font-extrabold px-5 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl btn-bounce flex items-center space-x-2.5 text-xs sm:text-sm border border-red-400/40">
                         <i class="fas fa-book-open text-amber-300"></i>
-                        <span>Inglés Básico</span>
+                        <span>English Basics Trainer</span>
                         <i class="fas fa-arrow-right text-xs"></i>
                     </a>
 
@@ -207,6 +224,7 @@
             </div>
         </section>
 
+        <!-- STREAMING_CHUNK:Building academic modules catalog grid... -->
         <!-- MAIN MENU & MODULES CATALOG -->
         <section id="section-courses" class="space-y-4">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
@@ -312,6 +330,7 @@
             </div>
         </section>
 
+        <!-- STREAMING_CHUNK:Building announcements and schedule section... -->
         <!-- TWO COLUMN LAYOUT: ANNOUNCEMENTS & CALENDAR -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
@@ -431,6 +450,7 @@
 
         </div>
 
+        <!-- STREAMING_CHUNK:Building PFC Toolkit - Upgraded Secuencia Didáctica Generator (Modelo Ángel Díaz-Barriga)... -->
         <!-- TOOLKIT SECTION FOR FUTURE TEACHERS -->
         <section id="section-toolkit" class="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800">
             <div>
@@ -441,47 +461,94 @@
                 <p class="text-xs text-slate-500 dark:text-slate-400">Utilidades diseñadas especialmente para la planificación e innovación de los docentes en formación.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
-                <!-- TOOL 1: GENERADOR RÁPIDO DE PLAN DE CLASE -->
-                <div class="glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-enso-blue dark:text-blue-300 flex items-center justify-center text-xl font-bold">
+                <!-- TOOL 1: GENERADOR COMPLETO DE SECUENCIAS DIDÁCTICAS (MODELO ÁNGEL DÍAZ-BARRIGA) -->
+                <div class="lg:col-span-2 glass-card rounded-3xl p-6 border-2 border-enso-blue/30 space-y-4 shadow-md">
+                    <div class="flex items-center space-x-3 pb-3 border-b border-slate-200 dark:border-slate-700">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-900/50 text-enso-blue dark:text-blue-300 flex items-center justify-center text-2xl font-bold shadow-inner flex-shrink-0">
                             📝
                         </div>
                         <div>
-                            <h4 class="font-extrabold text-base text-slate-900 dark:text-white">Generador Express de Plan de Clase</h4>
-                            <p class="text-xs text-slate-500">Estructura una secuencia didáctica rápidamente.</p>
+                            <div class="flex items-center gap-2">
+                                <h4 class="font-extrabold text-base text-slate-900 dark:text-white">Generador de Secuencias Didácticas PFC</h4>
+                                <span class="bg-purple-100 dark:bg-purple-900/60 text-purple-700 dark:text-purple-300 text-[10px] font-black px-2 py-0.5 rounded-md">Modelo Ángel Díaz-Barriga (UNAM)</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Diseña secuencias de aprendizaje situadas con momentos de apertura, desarrollo, cierre y evaluación formativa.</p>
                         </div>
                     </div>
 
-                    <div class="space-y-3 text-xs">
+                    <!-- Input Form for Secuencia Didáctica -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                         <div>
-                            <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Tema o Asignatura</label>
-                            <input type="text" id="lp-topic" placeholder="Ej. Greetings & Alphabet Cards / TICs en Ciencias" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
+                            <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Docente Normalista</label>
+                            <input type="text" id="lp-teacher" placeholder="Ej. Ana María Gómez (PFC Semestre II)" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
                         </div>
+
+                        <div>
+                            <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Asignatura / Tema General</label>
+                            <input type="text" id="lp-subject" placeholder="Ej. English Greetings & Phonics / TICs en Ciencias" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
+                        </div>
+
+                        <div>
+                            <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Unidad Temática / Ubicación Curricular</label>
+                            <input type="text" id="lp-unit" placeholder="Ej. Unidad 1: Interacción Comunitaria y Lengua Extranjera" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
+                        </div>
+
                         <div>
                             <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Grado Escolar Destino</label>
                             <select id="lp-grade" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
-                                <option value="Grados Preescolar y 1°">Grados Preescolar y 1°</option>
+                                <option value="Grados Preescolar y 1° Primaria">Grados Preescolar y 1° Primaria</option>
                                 <option value="Grados 2° y 3° Primaria">Grados 2° y 3° Primaria</option>
                                 <option value="Grados 4° y 5° Primaria">Grados 4° y 5° Primaria</option>
                                 <option value="Formación Complementaria PFC">Formación Complementaria PFC</option>
                             </select>
                         </div>
-                        <button onclick="generateLessonPlan()" class="w-full bg-enso-blue hover:bg-blue-900 text-white font-extrabold py-2.5 rounded-xl btn-bounce shadow-md flex items-center justify-center space-x-2">
-                            <i class="fas fa-cogs"></i>
-                            <span>Generar Esquema de Clase</span>
-                        </button>
+
+                        <div>
+                            <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Duración Prevista</label>
+                            <input type="text" id="lp-sessions" placeholder="Ej. 2 Sesiones (4 Horas Pedagógicas)" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
+                        </div>
+
+                        <div>
+                            <label class="block font-bold mb-1 text-slate-700 dark:text-slate-300">Problema o Caso Contextualizado (Eje Articulador)</label>
+                            <input type="text" id="lp-problem" placeholder="Ej. ¿Cómo comunicar nuestras rutinas cotidianas en la comunidad rural?" class="w-full bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-enso-blue">
+                        </div>
                     </div>
 
-                    <!-- Output Preview Container -->
-                    <div id="lp-output" class="hidden p-3 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300 space-y-2 max-h-48 overflow-y-auto">
+                    <button onclick="generateLessonPlan()" class="w-full bg-enso-blue hover:bg-blue-900 text-white font-extrabold py-3 rounded-xl btn-bounce shadow-md flex items-center justify-center space-x-2">
+                        <i class="fas fa-file-contract"></i>
+                        <span>Generar Secuencia Didáctica Completa</span>
+                    </button>
+
+                    <!-- Output Container -->
+                    <div id="lp-output-card" class="hidden space-y-3 pt-2">
+                        <div id="lp-output" class="p-4 bg-slate-50 dark:bg-slate-800/90 rounded-2xl border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 space-y-3 max-h-96 overflow-y-auto leading-relaxed shadow-inner">
+                        </div>
+
+                        <!-- Action Toolbar -->
+                        <div class="flex flex-wrap items-center justify-end gap-2 text-xs">
+                            <button onclick="copyLessonPlan()" class="bg-slate-700 hover:bg-slate-800 text-white font-bold px-3 py-2 rounded-xl btn-bounce flex items-center gap-1.5">
+                                <i class="fas fa-copy"></i>
+                                <span>Copiar Texto</span>
+                            </button>
+
+                            <button onclick="downloadLessonPlan()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-2 rounded-xl btn-bounce flex items-center gap-1.5">
+                                <i class="fas fa-file-download"></i>
+                                <span>Descargar TXT</span>
+                            </button>
+
+                            <button onclick="printLessonPlan()" class="bg-enso-red hover:bg-red-700 text-white font-bold px-3 py-2 rounded-xl btn-bounce flex items-center gap-1.5">
+                                <i class="fas fa-print"></i>
+                                <span>Imprimir / Exportar PDF</span>
+                            </button>
+                        </div>
                     </div>
+
                 </div>
 
                 <!-- TOOL 2: POMODORO STUDY TIMER FOR NORMALISTAS -->
-                <div class="glass-card rounded-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-4 flex flex-col justify-between">
+                <div class="glass-card rounded-3xl p-6 border border-slate-200 dark:border-slate-800 space-y-4 flex flex-col justify-between shadow-md">
                     <div>
                         <div class="flex items-center space-x-3 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/50 text-enso-red dark:text-red-300 flex items-center justify-center text-xl font-bold">
@@ -494,22 +561,22 @@
                         </div>
 
                         <!-- Timer Display -->
-                        <div class="text-center py-4 bg-slate-900 text-white rounded-2xl border-2 border-enso-red/40 my-2">
+                        <div class="text-center py-6 bg-slate-900 text-white rounded-2xl border-2 border-enso-red/40 my-2 shadow-inner">
                             <div id="timer-display" class="text-4xl font-black font-mono tracking-wider">25:00</div>
                             <div id="timer-status" class="text-[10px] text-amber-400 font-extrabold uppercase tracking-widest mt-1">Sesión de Concentración</div>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-center space-x-3">
-                        <button onclick="startStudyTimer()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5">
+                    <div class="flex items-center justify-center space-x-2">
+                        <button onclick="startStudyTimer()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5">
                             <i class="fas fa-play"></i>
                             <span>Iniciar</span>
                         </button>
-                        <button onclick="pauseStudyTimer()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs px-5 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5">
+                        <button onclick="pauseStudyTimer()" class="bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl btn-bounce flex items-center space-x-1.5">
                             <i class="fas fa-pause"></i>
                             <span>Pausar</span>
                         </button>
-                        <button onclick="resetStudyTimer()" class="bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl btn-bounce">
+                        <button onclick="resetStudyTimer()" class="bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs px-3 py-2.5 rounded-xl btn-bounce">
                             <i class="fas fa-undo"></i>
                         </button>
                     </div>
@@ -518,6 +585,7 @@
             </div>
         </section>
 
+        <!-- STREAMING_CHUNK:Rendering institution footer and contact details... -->
         <!-- INSTITUTION FOOTER & CREDITS -->
         <footer class="bg-enso-darkblue text-white rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl border-t-4 border-enso-red">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-blue-200">
@@ -568,6 +636,7 @@
 
     </main>
 
+    <!-- STREAMING_CHUNK:Rendering contact modal dialog... -->
     <!-- MODAL 1: CONTACTO PROFESOR -->
     <div id="modal-contact" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="glass-card bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 border border-slate-200 dark:border-slate-700">
@@ -598,6 +667,7 @@
         </div>
     </div>
 
+    <!-- STREAMING_CHUNK:Initializing Web Speech API, Audio Engine, Secuencia Didáctica Generator and study timer... -->
     <!-- JAVASCRIPT CONTROLLER & INTERACTIVITY -->
     <script>
         /* ==========================================================================
@@ -672,17 +742,7 @@
         }
 
         /* ==========================================================================
-           3. NAVIGATION & SCROLL HELPER
-           ========================================================================== */
-        function scrollToSection(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        /* ==========================================================================
-           4. COURSE SEARCH FILTER ENGINE
+           3. COURSE SEARCH FILTER ENGINE
            ========================================================================== */
         function filterCourses() {
             const query = document.getElementById("course-search").value.toLowerCase();
@@ -699,33 +759,101 @@
         }
 
         /* ==========================================================================
-           5. LESSON PLAN EXPRESS GENERATOR TOOL
+           4. SECUENCIA DIDÁCTICA GENERATOR ENGINE (ÁNGEL DÍAZ-BARRIGA - UNAM)
            ========================================================================== */
         function generateLessonPlan() {
-            const topic = document.getElementById("lp-topic").value.trim() || "Vocabulario en Inglés / Uso de TICs";
+            const teacher = document.getElementById("lp-teacher").value.trim() || "Docente Normalista PFC";
+            const subject = document.getElementById("lp-subject").value.trim() || "Didáctica de la Lengua y las TICs";
+            const unit = document.getElementById("lp-unit").value.trim() || "Unidad Temática 1: Mediación Tecnológica y Saberes Previos";
             const grade = document.getElementById("lp-grade").value;
+            const sessions = document.getElementById("lp-sessions").value.trim() || "2 Sesiones (4 Horas)";
+            const problem = document.getElementById("lp-problem").value.trim() || "¿Cómo integrar recursos interactivos para resolver necesidades reales del entorno escolar?";
+
+            const outputCard = document.getElementById("lp-output-card");
             const outputDiv = document.getElementById("lp-output");
 
             playSfx(783.99, 'sine', 0.15);
 
             outputDiv.innerHTML = `
-                <div class="font-extrabold text-enso-blue dark:text-blue-300 text-sm flex items-center justify-between">
-                    <span>📋 Esquema Didáctico Generado</span>
-                    <button onclick="copyLessonPlan()" class="text-[10px] bg-enso-red text-white px-2 py-0.5 rounded hover:bg-red-700">Copiar</button>
-                </div>
-                <div><strong>Tema:</strong> ${topic}</div>
-                <div><strong>Población Destino:</strong> ${grade}</div>
-                <div class="pt-1 border-t border-slate-200 dark:border-slate-700">
-                    <p><strong>1. Momentos de la Clase:</strong></p>
-                    <ul class="list-disc pl-4 space-y-0.5 mt-0.5">
-                        <li><strong>Iniciación (Motivation):</strong> Warm-up interactivo utilizando recursos multimedia o audio nativo.</li>
-                        <li><strong>Desarrollo (Practice):</strong> Presentación de conceptos clave, trabajo colaborativo guiado y ejercitación.</li>
-                        <li><strong>Cierre (Assessment):</strong> Evaluación gamificada mediante examen automatizado y retroalimentación colectiva.</li>
-                    </ul>
+                <div class="print-area space-y-4">
+                    <div class="text-center border-b-2 border-enso-blue pb-3">
+                        <h3 class="font-black text-base text-enso-blue dark:text-blue-300 uppercase">ESCUELA NORMAL SUPERIOR OIBA - PFC</h3>
+                        <h4 class="font-extrabold text-xs text-slate-800 dark:text-slate-100 uppercase mt-0.5">ESTRUCURA DE SECUENCIA DIDÁCTICA DE APRENDIZAJE</h4>
+                        <p class="text-[10px] text-purple-700 dark:text-purple-300 font-bold mt-0.5">Modelo Pedagógico: Dr. Ángel Díaz-Barriga (IISUE - UNAM)</p>
+                    </div>
+
+                    <!-- I. DATOS GENERALES Y UBICACIÓN -->
+                    <div class="space-y-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="font-black text-enso-red dark:text-red-400 text-[11px] uppercase tracking-wider">I. DATOS DE IDENTIFICACIÓN Y CONTEXTUALIZACIÓN</div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-[11px]">
+                            <div><strong>Docente Formador/Normalista:</strong> ${teacher}</div>
+                            <div><strong>Asignatura / Tema General:</strong> ${subject}</div>
+                            <div><strong>Unidad Temática:</strong> ${unit}</div>
+                            <div><strong>Población Destino:</strong> ${grade}</div>
+                            <div><strong>Duración & Sesiones:</strong> ${sessions}</div>
+                            <div><strong>Institución:</strong> Escuela Normal Superior Oiba</div>
+                        </div>
+                    </div>
+
+                    <!-- II. PROBLEMA O EJE ARTICULADOR -->
+                    <div class="space-y-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="font-black text-purple-700 dark:text-purple-300 text-[11px] uppercase tracking-wider">II. INTENCIÓN PEDAGÓGICA Y EJE PROBLEMATIZADOR</div>
+                        <p><strong>Problema o Caso del Entorno:</strong> ${problem}</p>
+                        <p class="text-[11px] text-slate-500 mt-1"><em>Propósito: Vincular el contenido conceptual con situaciones contextuales reales para detonar el aprendizaje significativo y el reto intelectual.</em></p>
+                    </div>
+
+                    <!-- III. LÍNEA DE SECUENCIAS DIDÁCTICAS (3 MOMENTOS) -->
+                    <div class="space-y-2">
+                        <div class="font-black text-enso-blue dark:text-blue-300 text-[11px] uppercase tracking-wider">III. LÍNEA DE SECUENCIAS DIDÁCTICAS (MOMENTOS)</div>
+                        
+                        <!-- Apertura -->
+                        <div class="bg-blue-50 dark:bg-slate-900 p-3 rounded-xl border-l-4 border-l-enso-blue">
+                            <h5 class="font-extrabold text-enso-blue dark:text-blue-300 text-xs uppercase">1. Actividades de Apertura (Clima de Aprendizaje & Saberes Previos)</h5>
+                            <ul class="list-disc pl-4 space-y-1 mt-1 text-[11px]">
+                                <li>Planteamiento de la pregunta detonante o problema del entorno para generar conflicto cognitivo.</li>
+                                <li>Discusión en pequeños grupos para movilizar saberes, nociones e hipótesis previas de los estudiantes.</li>
+                                <li>Presentación de recursos activadores (videos cortos, lectura reflexiva o reto multimedia).</li>
+                            </ul>
+                        </div>
+
+                        <!-- Desarrollo -->
+                        <div class="bg-purple-50 dark:bg-slate-900 p-3 rounded-xl border-l-4 border-l-purple-600">
+                            <h5 class="font-extrabold text-purple-700 dark:text-purple-300 text-xs uppercase">2. Actividades de Desarrollo (Interacción con la Información & TICs)</h5>
+                            <ul class="list-disc pl-4 space-y-1 mt-1 text-[11px]">
+                                <li>Procesamiento e interacción activa con la nueva información teórica/práctica de ${subject}.</li>
+                                <li>Uso de aplicaciones pedagógicas y mediación tecnológica (plataformas OVA, mapas conceptuales o interactivos).</li>
+                                <li>Trabajo colaborativo en grupos para resolver situaciones problema aplicadas al contexto.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Cierre -->
+                        <div class="bg-emerald-50 dark:bg-slate-900 p-3 rounded-xl border-l-4 border-l-emerald-600">
+                            <h5 class="font-extrabold text-emerald-700 dark:text-emerald-300 text-xs uppercase">3. Actividades de Cierre (Síntesis & Reestructuración Conceptual)</h5>
+                            <ul class="list-disc pl-4 space-y-1 mt-1 text-[11px]">
+                                <li>Elaboración del producto de síntesis (mapa mental, exposición, reporte interactivo o diario reflexivo).</li>
+                                <li>Socialización colectiva de soluciones ante el grupo de compañeros para promover la coevaluación.</li>
+                                <li>Institucionalización y reestructuración conceptual orientada por el docente.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- IV. LÍNEA DE EVALUACIÓN PARA EL APRENDIZAJE -->
+                    <div class="space-y-1 bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="font-black text-amber-600 dark:text-amber-400 text-[11px] uppercase tracking-wider">IV. LÍNEA DE EVALUACIÓN FORMATIVA Y EVIDENCIAS</div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pt-1">
+                            <div><strong>Evidencias de Proceso (Formativa):</strong> Observación activa, participación en plenaria, esquemas preliminares.</div>
+                            <div><strong>Evidencias de Producto (Sumativa):</strong> Portafolio de evidencias, rúbrica de desempeño, reporte en ${sessions}.</div>
+                        </div>
+                    </div>
+
+                    <!-- V. RECURSOS Y CIBERGRAFÍA -->
+                    <div class="space-y-1 text-[11px] text-slate-500 pt-1 border-t border-slate-200 dark:border-slate-700">
+                        <p><strong>Recursos & Cibergrafía:</strong> Repositorio Oficial ENSO (www.ensopfcmedios.com), Guía Díaz-Barriga (UNAM 2013), Módulos de práctica del Portal ENSO.</p>
+                    </div>
                 </div>
             `;
 
-            outputDiv.classList.remove("hidden");
+            outputCard.classList.remove("hidden");
         }
 
         function copyLessonPlan() {
@@ -736,11 +864,26 @@
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-            alert("¡Plan de clase copiado al portapapeles!");
+            alert("¡Secuencia didáctica copiada al portapapeles!");
+        }
+
+        function downloadLessonPlan() {
+            const text = document.getElementById("lp-output").innerText;
+            const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `Secuencia_Didactica_ENSO_${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function printLessonPlan() {
+            window.print();
         }
 
         /* ==========================================================================
-           6. STUDY TIMER (POMODORO) ENGINE
+           5. STUDY TIMER (POMODORO) ENGINE
            ========================================================================== */
         let timerMinutes = 25;
         let timerSeconds = 0;
@@ -792,7 +935,7 @@
         }
 
         /* ==========================================================================
-           7. MODALS & DOWNLOAD ENGINE
+           6. MODALS & DOWNLOAD ENGINE
            ========================================================================== */
         function openModal(id) {
             document.getElementById(id).classList.remove("hidden");
