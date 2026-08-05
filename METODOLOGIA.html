@@ -166,6 +166,46 @@
             alert("Has salido de la pestaña. El taller requiere permanencia.");
         }
     });
+<script>
+async function enviarTaller() {
+
+    const nombre = document.querySelector("input[placeholder='Nombre']").value || "Sin nombre";
+    const respuestas = [...document.querySelectorAll("textarea, input[type='text']")]
+        .map(el => el.value);
+
+    const nuevoRegistro = {
+        nombre: nombre,
+        fecha: new Date().toLocaleString(),
+        respuestas: respuestas
+    };
+
+    // 1. Obtener el archivo actual desde GitHub
+    const url = "https://api.github.com/repos/monsieurmedinahub/SANTIAGOMEDINA/contents/data/respuestas.json";
+
+    const archivo = await fetch(url).then(r => r.json());
+    const contenidoActual = JSON.parse(atob(archivo.content));
+
+    // 2. Agregar la nueva respuesta
+    contenidoActual.push(nuevoRegistro);
+
+    // 3. Enviar el archivo actualizado a GitHub
+    const nuevoContenido = btoa(JSON.stringify(contenidoActual, null, 2));
+
+    await fetch(url, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "token TU_TOKEN_DE_GITHUB_AQUI"
+        },
+        body: JSON.stringify({
+            message: "Nuevo envío de taller",
+            content: nuevoContenido,
+            sha: archivo.sha
+        })
+    });
+
+    alert("Taller enviado correctamente.");
+}
 </script>
 
 </body>
