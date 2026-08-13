@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" class="h-full">
 <head>
-    <!-- STREAMING_CHUNK:Configuring meta head and dark mode themes... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Basics Trainer | Escuela Normal Superior Oiba</title>
@@ -38,7 +37,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- STREAMING_CHUNK:Applying custom style declarations... -->
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -88,7 +86,6 @@
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-300">
 
-    <!-- STREAMING_CHUNK:Rendering navigation header bar... -->
     <!-- HEADER NAVBAR -->
     <header class="bg-enso-blue text-white shadow-xl sticky top-0 z-50 border-b-4 border-enso-red">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2">
@@ -138,7 +135,6 @@
         </div>
     </header>
 
-    <!-- STREAMING_CHUNK:Building main container and gamification scoreboards... -->
     <!-- MAIN CONTAINER -->
     <main class="flex-grow max-w-5xl w-full mx-auto p-4 sm:p-6 space-y-6">
 
@@ -179,7 +175,6 @@
 
         </section>
 
-        <!-- STREAMING_CHUNK:Rendering category selection menu including Places & Professions... -->
         <!-- CATEGORY SELECTION MENU -->
         <section class="space-y-3">
             <div class="flex items-center justify-between">
@@ -204,11 +199,11 @@
                     <div class="text-[10px] opacity-70">Tarjetas A-Z</div>
                 </button>
 
-                <!-- NEW PLACES & PROFESSIONS MODULE -->
+                <!-- PLACES & PROFESSIONS MODULE -->
                 <button onclick="startPlacesProfessions()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-emerald-500 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
                     <div class="text-lg mb-1 group-hover:scale-110 transition-transform">🏢</div>
                     <div class="font-extrabold text-xs text-emerald-600 dark:text-emerald-400 group-hover:text-white">Places & Jobs</div>
-                    <div class="text-[10px] opacity-70">Lugares y Empleos</div>
+                    <div class="text-[10px] opacity-70">Lugares & Diálogos</div>
                 </button>
 
                 <button onclick="startAlphabet()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
@@ -238,7 +233,6 @@
             </div>
         </section>
 
-        <!-- STREAMING_CHUNK:Constructing interactive workspace canvas area... -->
         <!-- MAIN EXERCISE & PRACTICE AREA -->
         <section class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-enso-blue/40 dark:border-slate-700 shadow-xl space-y-6 relative min-h-[360px] flex flex-col justify-between">
             
@@ -257,7 +251,7 @@
                     <div class="text-5xl animate-bounce">📖</div>
                     <h2 class="text-xl font-extrabold text-slate-800 dark:text-white">¡Bienvenido al Entrenador de Inglés Básico!</h2>
                     <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-                        Explora las <strong>Alphabet Cards (A-Z)</strong>, el nuevo módulo de <strong>Places & Professions</strong>, practica saludos, deletreo de verbos y presenta el <strong>Examen de 20 preguntas</strong>.
+                        Explora las <strong>Alphabet Cards (A-Z)</strong>, practica saludos, deletreo de verbos de acción y presenta la <strong>Evaluación Final de 20 preguntas</strong>.
                     </p>
                 </div>
             </div>
@@ -282,7 +276,6 @@
 
     </main>
 
-    <!-- STREAMING_CHUNK:Rendering institution footer... -->
     <!-- FOOTER -->
     <footer class="bg-enso-darkblue text-white mt-10 py-6 border-t-4 border-enso-red text-xs">
         <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
@@ -302,7 +295,6 @@
         </div>
     </footer>
 
-    <!-- STREAMING_CHUNK:Initializing Web Speech API, Audio Engine, Practice Navigation Engine and data arrays... -->
     <script>
         /* ==========================================================================
            1. AUDIO ENGINE (Web Speech API & Web Audio FX)
@@ -406,7 +398,6 @@
             { letter: "Z", sound: "/zɛd/", word: "Zebra" }
         ];
 
-        // STREAMING_CHUNK:Declaring Places & Professions dataset...
         const placesProfessionsData = [
             { place: "RESTAURANT", icon: "🍽️", profession: "Chef / Waiter", desc: "A place where people order and eat meals." },
             { place: "AIRPORT", icon: "✈️", profession: "Pilot / Flight Attendant", desc: "A place where airplanes land and take off." },
@@ -415,6 +406,58 @@
             { place: "POLICE STATION", icon: "🚔", profession: "Police Officer", desc: "The office of the local law enforcement team." },
             { place: "FIRE STATION", icon: "🚒", profession: "Firefighter", desc: "A station housing fire engines and fire personnel." },
             { place: "BANK", icon: "🏦", profession: "Banker / Teller", desc: "A financial place for depositing or withdrawing money." }
+        ];
+
+        /* CONTEXTUAL DIALOGUES IN PLACES (Lucia, Sebastian, Jenny, Andrea) */
+        const placesDialoguesData = [
+            {
+                title: "🏥 Hospital Reception (Lucia)",
+                place: "HOSPITAL",
+                lines: [
+                    { speaker: "Nurse", text: "Good morning! Welcome to the Hospital. How can I help you today?" },
+                    { speaker: "Lucia", text: "Good morning! I have a doctor's appointment." },
+                    { speaker: "Nurse", text: "May I have your name, please?" },
+                    { speaker: "Lucia", text: "My name is Lucia." },
+                    { speaker: "Nurse", text: "Could you spell your name for me, please?" },
+                    { speaker: "Lucia", text: "Sure! It is L - U - C - I - A." }
+                ]
+            },
+            {
+                title: "🏦 Bank Service Counter (Sebastian)",
+                place: "BANK",
+                lines: [
+                    { speaker: "Banker", text: "Good afternoon! Welcome to the Bank." },
+                    { speaker: "Sebastian", text: "Good afternoon! I would like to open a new savings account." },
+                    { speaker: "Banker", text: "Certainly! What is your name?" },
+                    { speaker: "Sebastian", text: "My name is Sebastian." },
+                    { speaker: "Banker", text: "Can you spell your first name, please?" },
+                    { speaker: "Sebastian", text: "Yes! It is S - E - B - A - S - T - I - A - N." }
+                ]
+            },
+            {
+                title: "✈️ Airport Check-in (Jenny)",
+                place: "AIRPORT",
+                lines: [
+                    { speaker: "Agent", text: "Hello! Welcome to the Airport check-in counter." },
+                    { speaker: "Jenny", text: "Hello! Good morning. I am here for my flight." },
+                    { speaker: "Agent", text: "What is your name, please?" },
+                    { speaker: "Jenny", text: "My name is Jenny." },
+                    { speaker: "Agent", text: "How do you spell your name for the boarding pass?" },
+                    { speaker: "Jenny", text: "It is J - E - N - N - Y." }
+                ]
+            },
+            {
+                title: "🍽️ Restaurant Reservation (Andrea)",
+                place: "RESTAURANT",
+                lines: [
+                    { speaker: "Waiter", text: "Good evening! Welcome to our Restaurant." },
+                    { speaker: "Andrea", text: "Good evening! I have a table reservation for two." },
+                    { speaker: "Waiter", text: "Wonderful! May I know your name?" },
+                    { speaker: "Andrea", text: "My name is Andrea." },
+                    { speaker: "Waiter", text: "Could you spell that for the reservation list, please?" },
+                    { speaker: "Andrea", text: "Of course! It is A - N - D - R - E - A." }
+                ]
+            }
         ];
 
         const placesProfessionsQuestions = [
@@ -493,7 +536,7 @@
             { q: "17. What is the sound of letter W in English?", A: "/dʌbəl ju:/", B: "/doblve/", C: "/dʌbl-v/", D: "/vee/", answer: "A" },
             { q: "18. Complete the dialogue: 'Where are you from?'", A: "I'm fine, thanks", B: "I'm from Colombia", C: "My name is Paula", D: "Good morning", answer: "B" },
             { q: "19. Which greeting is appropriate for 3:00 PM?", A: "Good morning", B: "Good afternoon", C: "Good night", D: "Good evening", answer: "B" },
-            { q: "20. Who works at a FIRE STATION?", A: "Firefighter", B: "Banker", C: "Teacher", D: "Doctor", answer: "A" }
+            { q: "20. How do you spell the action verb LISTEN?", A: "L-I-S-T-E-N", B: "L-E-S-T-I-N", C: "L-I-S-N-E-T", D: "L-Y-S-T-E-N", answer: "A" }
         ];
 
         /* ==========================================================================
@@ -536,43 +579,44 @@
         }
 
         /* ==========================================================================
-           4. PLACES & PROFESSIONS MODULE LOGIC
+           4. PLACES & PROFESSIONS MODULE LOGIC (CARDS & CONTEXTUAL DIALOGUES)
            ========================================================================== */
-        // STREAMING_CHUNK:Implementing Places & Professions visual deck renderer...
         function startPlacesProfessions() {
-            setCategoryHeader("Places & Professions (Lugares y Profesiones)");
+            setCategoryHeader("Places & Professions (Lugares, Profesiones y Diálogos)");
             
             const exerciseDiv = document.getElementById("exercise");
             document.getElementById("result").innerHTML = "";
 
             let html = `
-                <div class="space-y-4">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
-                        <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">
-                            Toca o haz clic en cualquier tarjeta para **escuchar el lugar y la profesión en inglés**.
-                        </p>
-                        <button onclick="initPracticeModule('Places & Jobs Quiz', placesProfessionsQuestions)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-3.5 py-1.5 rounded-xl btn-bounce flex items-center space-x-1.5 shadow-sm whitespace-nowrap">
-                            <i class="fas fa-play"></i>
-                            <span>Practicar con Test</span>
-                        </button>
-                    </div>
+                <div class="space-y-6">
+                    <!-- Section 1: Places Cards -->
+                    <div class="space-y-2">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+                                1. Toca cualquier tarjeta para **escuchar el lugar y la profesión en inglés**.
+                            </p>
+                            <button onclick="initPracticeModule('Places & Jobs Quiz', placesProfessionsQuestions)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-3.5 py-1.5 rounded-xl btn-bounce flex items-center space-x-1.5 shadow-sm whitespace-nowrap">
+                                <i class="fas fa-play"></i>
+                                <span>Practicar con Test</span>
+                            </button>
+                        </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 max-h-[420px] overflow-y-auto p-1">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-[320px] overflow-y-auto p-1">
             `;
 
             placesProfessionsData.forEach(item => {
                 html += `
-                    <div onclick="speakEnglish('${item.place}. In a ${item.place}, you can find a ${item.profession}.'); playSfx(587, 'sine', 0.1);" class="bg-white dark:bg-slate-800 p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-400 cursor-pointer shadow-sm hover:shadow-md transition-all space-y-2 group">
+                    <div onclick="speakEnglish('${item.place}. In a ${item.place}, you can find a ${item.profession}.'); playSfx(587, 'sine', 0.1);" class="bg-white dark:bg-slate-800 p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-400 cursor-pointer shadow-sm hover:shadow-md transition-all space-y-1.5 group">
                         <div class="flex items-center justify-between">
-                            <span class="text-3xl group-hover:scale-110 transition-transform">${item.icon}</span>
-                            <span class="text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-black px-2 py-0.5 rounded-md uppercase tracking-wider">Place & Job</span>
+                            <span class="text-2xl group-hover:scale-110 transition-transform">${item.icon}</span>
+                            <span class="text-[9px] bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-black px-2 py-0.5 rounded-md uppercase tracking-wider">Place & Job</span>
                         </div>
                         <div>
                             <div class="text-xs font-black text-enso-blue dark:text-blue-400 uppercase">${item.place}</div>
-                            <div class="text-sm font-extrabold text-emerald-600 dark:text-emerald-400 mt-0.5">${item.profession}</div>
-                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">${item.desc}</p>
+                            <div class="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 mt-0.5">${item.profession}</div>
+                            <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 leading-tight">${item.desc}</p>
                         </div>
-                        <div class="flex items-center justify-end text-slate-300 group-hover:text-emerald-500 text-xs pt-1">
+                        <div class="flex items-center justify-end text-slate-300 group-hover:text-emerald-500 text-xs pt-0.5">
                             <i class="fas fa-volume-up"></i>
                         </div>
                     </div>
@@ -580,12 +624,61 @@
             });
 
             html += `
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Contextual Dialogues (Greeting, Name & Spelling) -->
+                    <div class="space-y-3 border-t-2 border-slate-200 dark:border-slate-800 pt-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-xs font-black text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fas fa-comments text-emerald-500"></i>
+                                <span>2. Diálogos de Ejemplo (Entrada, Saludo, Nombre y Deletreo)</span>
+                            </h4>
+                            <span class="text-[10px] text-slate-400 font-semibold">Toca cada línea o botón para escuchar</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[380px] overflow-y-auto p-1">
+            `;
+
+            placesDialoguesData.forEach((diag) => {
+                const fullConversationText = diag.lines.map(l => `${l.speaker} says: ${l.text}`).join(". ");
+                html += `
+                    <div class="bg-slate-50 dark:bg-slate-800/90 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3 shadow-sm flex flex-col justify-between">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+                            <span class="text-xs font-extrabold text-enso-blue dark:text-blue-300">${diag.title}</span>
+                            <button onclick="speakEnglish('${fullConversationText.replace(/'/g, "\\'")}'); playSfx(600, 'sine', 0.1);" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] px-2.5 py-1 rounded-lg btn-bounce flex items-center gap-1 shadow-sm">
+                                <i class="fas fa-play text-[9px]"></i>
+                                <span>Escuchar Todo</span>
+                            </button>
+                        </div>
+
+                        <div class="space-y-2 text-xs">
+                `;
+
+                diag.lines.forEach(line => {
+                    const isWorker = line.speaker === "Nurse" || line.speaker === "Banker" || line.speaker === "Agent" || line.speaker === "Waiter";
+                    html += `
+                        <div onclick="speakEnglish('${line.speaker}: ${line.text.replace(/'/g, "\\'")}');" class="p-2 rounded-xl cursor-pointer transition ${isWorker ? 'bg-blue-50 dark:bg-slate-900/80 border-l-2 border-l-enso-blue hover:bg-blue-100' : 'bg-emerald-50 dark:bg-emerald-950/40 border-l-2 border-l-emerald-500 hover:bg-emerald-100'}">
+                            <span class="font-extrabold text-[10px] uppercase ${isWorker ? 'text-enso-blue dark:text-blue-300' : 'text-emerald-700 dark:text-emerald-400'}">${line.speaker}:</span>
+                            <span class="text-slate-800 dark:text-slate-200 font-medium ml-1">${line.text}</span>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                        </div>
                     </div>
                 </div>
             `;
 
             exerciseDiv.innerHTML = html;
-            document.getElementById("exercise-counter").innerText = "7 Lugares & Profesiones";
+            document.getElementById("exercise-counter").innerText = "Places, Jobs & Dialogues";
         }
 
         /* ==========================================================================
@@ -682,7 +775,7 @@
                     </div>
 
                     <div id="options-container" class="grid grid-cols-1 gap-2.5">
-                        ${random.options.map((opt, i) => `
+                        ${random.options.map((opt) => `
                             <button onclick="checkAnswer('${opt.replace(/'/g, "\\'")}', '${random.answer.replace(/'/g, "\\'")}', this)" class="option-btn w-full text-left bg-white dark:bg-slate-800 p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-enso-blue dark:hover:border-blue-400 font-bold text-sm text-slate-800 dark:text-slate-100 transition shadow-sm flex items-center justify-between group">
                                 <span>${opt}</span>
                                 <i class="fas fa-play text-xs text-slate-300 group-hover:text-enso-blue transition"></i>
@@ -930,4 +1023,3 @@
     </script>
 </body>
 </html>
-```eof
