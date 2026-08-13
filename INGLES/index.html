@@ -179,7 +179,7 @@
 
         </section>
 
-        <!-- STREAMING_CHUNK:Rendering category selection buttons... -->
+        <!-- STREAMING_CHUNK:Rendering category selection menu including Places & Professions... -->
         <!-- CATEGORY SELECTION MENU -->
         <section class="space-y-3">
             <div class="flex items-center justify-between">
@@ -189,41 +189,48 @@
                 </h3>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2.5">
                 
-                <button onclick="startGreetings()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
-                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">👋</div>
+                <button onclick="startGreetings()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-1 group-hover:scale-110 transition-transform">👋</div>
                     <div class="font-extrabold text-xs">Greetings</div>
                     <div class="text-[10px] opacity-70">10+ Saludos</div>
                 </button>
 
                 <!-- ALPHABET CARDS MODULE -->
-                <button onclick="startAlphabetCards()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-amber-400 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
-                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">🎴</div>
+                <button onclick="startAlphabetCards()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-amber-400 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-1 group-hover:scale-110 transition-transform">🎴</div>
                     <div class="font-extrabold text-xs text-amber-600 dark:text-amber-400 group-hover:text-white">Alphabet Cards</div>
                     <div class="text-[10px] opacity-70">Tarjetas A-Z</div>
                 </button>
 
-                <button onclick="startAlphabet()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
-                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">🔤</div>
+                <!-- NEW PLACES & PROFESSIONS MODULE -->
+                <button onclick="startPlacesProfessions()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-emerald-500 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-1 group-hover:scale-110 transition-transform">🏢</div>
+                    <div class="font-extrabold text-xs text-emerald-600 dark:text-emerald-400 group-hover:text-white">Places & Jobs</div>
+                    <div class="text-[10px] opacity-70">Lugares y Empleos</div>
+                </button>
+
+                <button onclick="startAlphabet()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-1 group-hover:scale-110 transition-transform">🔤</div>
                     <div class="font-extrabold text-xs">Alphabet Quiz</div>
                     <div class="text-[10px] opacity-70">Test Fonético</div>
                 </button>
 
-                <button onclick="startSpelling()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
-                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">✍️</div>
+                <button onclick="startSpelling()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-1 group-hover:scale-110 transition-transform">✍️</div>
                     <div class="font-extrabold text-xs">Spelling</div>
-                    <div class="text-[10px] opacity-70">Deletreo y Verbos</div>
+                    <div class="text-[10px] opacity-70">Deletreo/Verbos</div>
                 </button>
 
-                <button onclick="startDialogues()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-3 rounded-2xl text-left btn-bounce transition shadow-sm group">
-                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">💬</div>
+                <button onclick="startDialogues()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-1 group-hover:scale-110 transition-transform">💬</div>
                     <div class="font-extrabold text-xs">Dialogues</div>
                     <div class="text-[10px] opacity-70">Diálogos Cortos</div>
                 </button>
 
-                <button onclick="startExam()" class="col-span-2 sm:col-span-1 bg-gradient-to-br from-enso-red to-red-700 text-white border-2 border-red-500 p-3 rounded-2xl text-left btn-bounce transition shadow-md group">
-                    <div class="text-xl mb-1 group-hover:scale-110 transition-transform">🎓</div>
+                <button onclick="startExam()" class="col-span-2 sm:col-span-1 lg:col-span-1 bg-gradient-to-br from-enso-red to-red-700 text-white border-2 border-red-500 p-2.5 rounded-2xl text-left btn-bounce transition shadow-md group">
+                    <div class="text-lg mb-1 group-hover:scale-110 transition-transform">🎓</div>
                     <div class="font-black text-xs uppercase tracking-wider">Exam Mode</div>
                     <div class="text-[10px] text-red-200">20 Preguntas</div>
                 </button>
@@ -250,7 +257,7 @@
                     <div class="text-5xl animate-bounce">📖</div>
                     <h2 class="text-xl font-extrabold text-slate-800 dark:text-white">¡Bienvenido al Entrenador de Inglés Básico!</h2>
                     <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-                        Explora las <strong>Alphabet Cards (A-Z)</strong>, practica saludos, deletreo de verbos de acción y presenta la <strong>Evaluación Final de 20 preguntas</strong>.
+                        Explora las <strong>Alphabet Cards (A-Z)</strong>, el nuevo módulo de <strong>Places & Professions</strong>, practica saludos, deletreo de verbos y presenta el <strong>Examen de 20 preguntas</strong>.
                     </p>
                 </div>
             </div>
@@ -399,6 +406,27 @@
             { letter: "Z", sound: "/zɛd/", word: "Zebra" }
         ];
 
+        // STREAMING_CHUNK:Declaring Places & Professions dataset...
+        const placesProfessionsData = [
+            { place: "RESTAURANT", icon: "🍽️", profession: "Chef / Waiter", desc: "A place where people order and eat meals." },
+            { place: "AIRPORT", icon: "✈️", profession: "Pilot / Flight Attendant", desc: "A place where airplanes land and take off." },
+            { place: "SCHOOL", icon: "🏫", profession: "Teacher", desc: "An institution for educating students." },
+            { place: "HOSPITAL", icon: "🏥", profession: "Doctor / Nurse", desc: "A place providing medical treatment to patients." },
+            { place: "POLICE STATION", icon: "🚔", profession: "Police Officer", desc: "The office of the local law enforcement team." },
+            { place: "FIRE STATION", icon: "🚒", profession: "Firefighter", desc: "A station housing fire engines and fire personnel." },
+            { place: "BANK", icon: "🏦", profession: "Banker / Teller", desc: "A financial place for depositing or withdrawing money." }
+        ];
+
+        const placesProfessionsQuestions = [
+            { q: "Who works in a RESTAURANT?", options: ["Chef / Waiter", "Teacher", "Doctor"], answer: "Chef / Waiter" },
+            { q: "Who works at an AIRPORT?", options: ["Pilot / Flight Attendant", "Police Officer", "Banker"], answer: "Pilot / Flight Attendant" },
+            { q: "Who works in a SCHOOL?", options: ["Firefighter", "Teacher", "Chef"], answer: "Teacher" },
+            { q: "Who works in a HOSPITAL?", options: ["Doctor / Nurse", "Banker", "Pilot"], answer: "Doctor / Nurse" },
+            { q: "Who works at a POLICE STATION?", options: ["Police Officer", "Teacher", "Flight Attendant"], answer: "Police Officer" },
+            { q: "Who works at a FIRE STATION?", options: ["Firefighter", "Doctor", "Banker"], answer: "Firefighter" },
+            { q: "Who works in a BANK?", options: ["Banker / Teller", "Police Officer", "Waitress"], answer: "Banker / Teller" }
+        ];
+
         const greetingsQuestions = [
             { q: "Formal greeting when meeting someone for the first time:", options: ["Hi!", "How do you do?", "What's up?"], answer: "How do you do?" },
             { q: "Choose the correct greeting for 8:00 AM:", options: ["Good night", "Good morning", "Good afternoon"], answer: "Good morning" },
@@ -439,7 +467,7 @@
         const dialogueQuestions = [
             { q: "Choose the correct reply: 'Good afternoon! What's your name?'", options: ["Good night", "My name is Laura", "How do you do?"], answer: "My name is Laura" },
             { q: "Complete the dialogue: 'Hello! How are you today?'", options: ["I'm fine, thanks", "Good night", "How do you do?"], answer: "I'm fine, thanks" },
-            { q: "Choose the correct reply: 'Good morning! How do you do?'", options: ["Good evening", "How do you do?", "I'm fine, thanks"], answer: "I'm fine, thanks" },
+            { q: "Choose the correct reply: 'Good morning! How do you do?'", options: ["Good evening", "How do you do?", "I'm fine, thanks"], answer: "How do you do?" },
             { q: "Complete the dialogue: 'Hi! Where are you from?'", options: ["I'm from Colombia", "My name is Carlos", "Good afternoon"], answer: "I'm from Colombia" },
             { q: "Choose the correct ending: 'Good afternoon! I'm fine, thanks. ______'", options: ["Glad to meet you", "Good night", "What's your name?"], answer: "Glad to meet you" },
             { q: "Complete the dialogue: 'What do you do for a living?'", options: ["I'm a student at ENSO", "I live in Oiba", "I am 18 years old"], answer: "I'm a student at ENSO" }
@@ -456,16 +484,16 @@
             { q: "8. Sound of letter Y:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "C" },
             { q: "9. Choose the correct farewell when leaving at night:", A: "Good night", B: "Good morning", C: "Hello", D: "Hi", answer: "A" },
             { q: "10. Spell the action verb WRITE:", A: "W-R-I-T-E", B: "W-R-E-T-I", C: "R-I-T-E-W", D: "W-I-R-T-E", answer: "A" },
-            { q: "11. Which group does letter S belong to?", A: "Group 1", B: "Group 2", C: "Group 3", D: "None", answer: "B" },
-            { q: "12. Choose the correct reply: 'Good afternoon! What's your name?'", A: "Good night", B: "My name is Laura", C: "How do you do?", D: "I'm fine, thanks", answer: "B" },
-            { q: "13. Sound of letter K:", A: "/kei/", B: "/dlléi/", C: "/uái/", D: "/zed/", answer: "A" },
-            { q: "14. Spell the action verb TEACH:", A: "T-E-A-C-H", B: "T-E-C-H-A", C: "T-A-E-C-H", D: "T-E-A-H-C", answer: "A" },
+            { q: "11. Who works in a RESTAURANT?", A: "Chef / Waiter", B: "Teacher", C: "Pilot", D: "Banker", answer: "A" },
+            { q: "12. Who works in a HOSPITAL?", A: "Doctor / Nurse", B: "Firefighter", C: "Flight Attendant", D: "Police Officer", answer: "A" },
+            { q: "13. Who works at a POLICE STATION?", A: "Police Officer", B: "Teacher", C: "Chef", D: "Teller", answer: "A" },
+            { q: "14. Who works at an AIRPORT?", A: "Pilot / Flight Attendant", B: "Doctor", C: "Banker", D: "Firefighter", answer: "A" },
             { q: "15. Complete: 'Good afternoon! I'm fine, thanks. ______'", A: "Good night", B: "What's your name?", C: "Glad to meet you", D: "How do you do?", answer: "C" },
             { q: "16. How do you spell the action verb DANCE?", A: "D-A-N-S-E", B: "D-A-N-C-E", C: "D-O-N-C-E", D: "D-A-N-C-I", answer: "B" },
             { q: "17. What is the sound of letter W in English?", A: "/dʌbəl ju:/", B: "/doblve/", C: "/dʌbl-v/", D: "/vee/", answer: "A" },
             { q: "18. Complete the dialogue: 'Where are you from?'", A: "I'm fine, thanks", B: "I'm from Colombia", C: "My name is Paula", D: "Good morning", answer: "B" },
             { q: "19. Which greeting is appropriate for 3:00 PM?", A: "Good morning", B: "Good afternoon", C: "Good night", D: "Good evening", answer: "B" },
-            { q: "20. How do you spell the action verb LISTEN?", A: "L-I-S-T-E-N", B: "L-E-S-T-I-N", C: "L-I-S-N-E-T", D: "L-Y-S-T-E-N", answer: "A" }
+            { q: "20. Who works at a FIRE STATION?", A: "Firefighter", B: "Banker", C: "Teacher", D: "Doctor", answer: "A" }
         ];
 
         /* ==========================================================================
@@ -504,16 +532,69 @@
             `;
 
             exerciseDiv.innerHTML = html;
+            document.getElementById("exercise-counter").innerText = "Flashcards A-Z";
         }
 
         /* ==========================================================================
-           4. PRACTICE ENGINE LOGIC WITH "NEXT QUESTION" NAVIGATION
+           4. PLACES & PROFESSIONS MODULE LOGIC
+           ========================================================================== */
+        // STREAMING_CHUNK:Implementing Places & Professions visual deck renderer...
+        function startPlacesProfessions() {
+            setCategoryHeader("Places & Professions (Lugares y Profesiones)");
+            
+            const exerciseDiv = document.getElementById("exercise");
+            document.getElementById("result").innerHTML = "";
+
+            let html = `
+                <div class="space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+                            Toca o haz clic en cualquier tarjeta para **escuchar el lugar y la profesión en inglés**.
+                        </p>
+                        <button onclick="initPracticeModule('Places & Jobs Quiz', placesProfessionsQuestions)" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-3.5 py-1.5 rounded-xl btn-bounce flex items-center space-x-1.5 shadow-sm whitespace-nowrap">
+                            <i class="fas fa-play"></i>
+                            <span>Practicar con Test</span>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 max-h-[420px] overflow-y-auto p-1">
+            `;
+
+            placesProfessionsData.forEach(item => {
+                html += `
+                    <div onclick="speakEnglish('${item.place}. In a ${item.place}, you can find a ${item.profession}.'); playSfx(587, 'sine', 0.1);" class="bg-white dark:bg-slate-800 p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-emerald-500 dark:hover:border-emerald-400 cursor-pointer shadow-sm hover:shadow-md transition-all space-y-2 group">
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl group-hover:scale-110 transition-transform">${item.icon}</span>
+                            <span class="text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-black px-2 py-0.5 rounded-md uppercase tracking-wider">Place & Job</span>
+                        </div>
+                        <div>
+                            <div class="text-xs font-black text-enso-blue dark:text-blue-400 uppercase">${item.place}</div>
+                            <div class="text-sm font-extrabold text-emerald-600 dark:text-emerald-400 mt-0.5">${item.profession}</div>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">${item.desc}</p>
+                        </div>
+                        <div class="flex items-center justify-end text-slate-300 group-hover:text-emerald-500 text-xs pt-1">
+                            <i class="fas fa-volume-up"></i>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+            `;
+
+            exerciseDiv.innerHTML = html;
+            document.getElementById("exercise-counter").innerText = "7 Lugares & Profesiones";
+        }
+
+        /* ==========================================================================
+           5. PRACTICE ENGINE LOGIC WITH "NEXT QUESTION" NAVIGATION
            ========================================================================== */
         let currentPracticeList = [];
         let currentPracticeIndex = 0;
         let currentCategoryTitle = "";
 
-        // Utility to shuffle questions array so every practice attempt feels fresh
         function shuffleArray(array) {
             const arr = [...array];
             for (let i = arr.length - 1; i > 0; i--) {
@@ -562,7 +643,6 @@
             resultDiv.innerHTML = "";
 
             if (currentPracticeIndex >= currentPracticeList.length) {
-                // All questions in module answered
                 exerciseDiv.innerHTML = `
                     <div class="text-center py-6 space-y-4">
                         <div class="text-5xl">🎉</div>
@@ -575,9 +655,9 @@
                                 <i class="fas fa-redo"></i>
                                 <span>Repetir Módulo</span>
                             </button>
-                            <button onclick="startAlphabetCards()" class="bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce flex items-center space-x-2 shadow-md">
-                                <i class="fas fa-th"></i>
-                                <span>Ver Alphabet Cards</span>
+                            <button onclick="startPlacesProfessions()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce flex items-center space-x-2 shadow-md">
+                                <i class="fas fa-building"></i>
+                                <span>Ver Places & Professions</span>
                             </button>
                         </div>
                     </div>
@@ -619,7 +699,6 @@
             const resultDiv = document.getElementById("result");
             speakEnglish(selected);
 
-            // Disable all option buttons in current question to prevent re-clicks
             const optionBtns = document.querySelectorAll(".option-btn");
             optionBtns.forEach(btn => {
                 btn.disabled = true;
@@ -675,7 +754,7 @@
         }
 
         /* ==========================================================================
-           5. EXAM MODE ENGINE (20 QUESTIONS & REPORT GENERATION)
+           6. EXAM MODE ENGINE (20 QUESTIONS & REPORT GENERATION)
            ========================================================================== */
         let examIndex = 0;
         let score = 0;
