@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" class="h-full">
 <head>
+    <!-- STREAMING_CHUNK:Configuring meta headers and Tailwind styling extensions... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Basics Trainer | Escuela Normal Superior Oiba</title>
@@ -37,6 +38,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- STREAMING_CHUNK:Declaring visual card hover styles and smooth scrollbars... -->
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -76,16 +78,17 @@
             background: #475569;
         }
 
-        .letter-card {
+        .letter-card, .fruit-card {
             transition: all 0.2s ease-in-out;
         }
-        .letter-card:hover {
+        .letter-card:hover, .fruit-card:hover {
             transform: translateY(-4px) scale(1.03);
         }
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-300">
 
+    <!-- STREAMING_CHUNK:Building top navigation header... -->
     <!-- HEADER NAVBAR -->
     <header class="bg-enso-blue text-white shadow-xl sticky top-0 z-50 border-b-4 border-enso-red">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2">
@@ -135,6 +138,7 @@
         </div>
     </header>
 
+    <!-- STREAMING_CHUNK:Rendering main container and user XP level dashboard... -->
     <!-- MAIN CONTAINER -->
     <main class="flex-grow max-w-5xl w-full mx-auto p-4 sm:p-6 space-y-6">
 
@@ -175,6 +179,7 @@
 
         </section>
 
+        <!-- STREAMING_CHUNK:Building module selection grid with Fruits & Vegetables... -->
         <!-- CATEGORY SELECTION MENU -->
         <section class="space-y-3">
             <div class="flex items-center justify-between">
@@ -184,7 +189,7 @@
                 </h3>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2.5">
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
                 
                 <button onclick="startGreetings()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
                     <div class="text-lg mb-1 group-hover:scale-110 transition-transform">👋</div>
@@ -195,19 +200,26 @@
                 <!-- ALPHABET CARDS MODULE -->
                 <button onclick="startAlphabetCards()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-amber-400 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
                     <div class="text-lg mb-1 group-hover:scale-110 transition-transform">🎴</div>
-                    <div class="font-extrabold text-xs text-amber-600 dark:text-amber-400 group-hover:text-white">Alphabet Cards</div>
+                    <div class="font-extrabold text-xs text-amber-600 dark:text-amber-400 group-hover:text-white">Alphabet</div>
                     <div class="text-[10px] opacity-70">Tarjetas A-Z</div>
+                </button>
+
+                <!-- NEW FRUITS & VEGETABLES MODULE -->
+                <button onclick="startFruitsVeggies()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-red-400 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
+                    <div class="text-lg mb-1 group-hover:scale-110 transition-transform">🍎</div>
+                    <div class="font-extrabold text-xs text-red-600 dark:text-red-400 group-hover:text-white">Fruits & Veggies</div>
+                    <div class="text-[10px] opacity-70">30 Frutas/Verduras</div>
                 </button>
 
                 <!-- PLACES & PROFESSIONS MODULE -->
                 <button onclick="startPlacesProfessions()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-emerald-500 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
                     <div class="text-lg mb-1 group-hover:scale-110 transition-transform">🏢</div>
                     <div class="font-extrabold text-xs text-emerald-600 dark:text-emerald-400 group-hover:text-white">Places & Jobs</div>
-                    <div class="text-[10px] opacity-70">Lugares & Diálogos</div>
+                    <div class="text-[10px] opacity-70">Lugares & Empleos</div>
                 </button>
 
                 <button onclick="startAlphabet()" class="bg-white dark:bg-slate-800 hover:bg-enso-blue hover:text-white dark:hover:bg-enso-blue border-2 border-enso-blue/30 dark:border-slate-700 p-2.5 rounded-2xl text-left btn-bounce transition shadow-sm group">
-                    <div class="text-lg mb-1 group-hover:scale-110 transition-transform">🔤</div>
+                    <div class="text-lg mb-1 group-hover:scale-110 transition-transform">𔔤</div>
                     <div class="font-extrabold text-xs">Alphabet Quiz</div>
                     <div class="text-[10px] opacity-70">Test Fonético</div>
                 </button>
@@ -224,15 +236,16 @@
                     <div class="text-[10px] opacity-70">Diálogos Cortos</div>
                 </button>
 
-                <button onclick="startExam()" class="col-span-2 sm:col-span-1 lg:col-span-1 bg-gradient-to-br from-enso-red to-red-700 text-white border-2 border-red-500 p-2.5 rounded-2xl text-left btn-bounce transition shadow-md group">
+                <button onclick="startExam()" class="bg-gradient-to-br from-enso-red to-red-700 text-white border-2 border-red-500 p-2.5 rounded-2xl text-left btn-bounce transition shadow-md group">
                     <div class="text-lg mb-1 group-hover:scale-110 transition-transform">🎓</div>
-                    <div class="font-black text-xs uppercase tracking-wider">Exam Mode</div>
+                    <div class="font-black text-xs uppercase tracking-wider">Exam</div>
                     <div class="text-[10px] text-red-200">20 Preguntas</div>
                 </button>
 
             </div>
         </section>
 
+        <!-- STREAMING_CHUNK:Constructing interactive workspace container... -->
         <!-- MAIN EXERCISE & PRACTICE AREA -->
         <section class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-enso-blue/40 dark:border-slate-700 shadow-xl space-y-6 relative min-h-[360px] flex flex-col justify-between">
             
@@ -251,7 +264,7 @@
                     <div class="text-5xl animate-bounce">📖</div>
                     <h2 class="text-xl font-extrabold text-slate-800 dark:text-white">¡Bienvenido al Entrenador de Inglés Básico!</h2>
                     <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-                        Explora las <strong>Alphabet Cards (A-Z)</strong>, practica saludos, deletreo de verbos de acción y presenta la <strong>Evaluación Final de 20 preguntas</strong>.
+                        Explora las <strong>Alphabet Cards (A-Z)</strong>, el módulo de <strong>Fruits & Vegetables (30 alimentos)</strong>, <strong>Places & Jobs</strong>, deletreo y el <strong>Examen de 20 preguntas</strong>.
                     </p>
                 </div>
             </div>
@@ -276,6 +289,7 @@
 
     </main>
 
+    <!-- STREAMING_CHUNK:Rendering institution footer... -->
     <!-- FOOTER -->
     <footer class="bg-enso-darkblue text-white mt-10 py-6 border-t-4 border-enso-red text-xs">
         <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
@@ -295,6 +309,7 @@
         </div>
     </footer>
 
+    <!-- STREAMING_CHUNK:Declaring JS datasets for Fruits, Vegetables, and practice engines... -->
     <script>
         /* ==========================================================================
            1. AUDIO ENGINE (Web Speech API & Web Audio FX)
@@ -398,6 +413,53 @@
             { letter: "Z", sound: "/zɛd/", word: "Zebra" }
         ];
 
+        // STREAMING_CHUNK:Defining Fruits (20) & Vegetables (10) dataset...
+        const fruitsVeggiesData = [
+            // 20 FRUITS
+            { en: "Apple", es: "Manzana", type: "fruit", icon: "🍎" },
+            { en: "Banana", es: "Banano / Plátano", type: "fruit", icon: "🍌" },
+            { en: "Orange", es: "Naranja", type: "fruit", icon: "🍊" },
+            { en: "Strawberry", es: "Fresa", type: "fruit", icon: "🍓" },
+            { en: "Grape", es: "Uva", type: "fruit", icon: "🍇" },
+            { en: "Watermelon", es: "Sandía / Patilla", type: "fruit", icon: "🍉" },
+            { en: "Pineapple", es: "Piña", type: "fruit", icon: "🍍" },
+            { en: "Mango", es: "Mango", type: "fruit", icon: "🥭" },
+            { en: "Peach", es: "Durazno", type: "fruit", icon: "🍑" },
+            { en: "Cherry", es: "Cereza", type: "fruit", icon: "🍒" },
+            { en: "Lemon", es: "Limón", type: "fruit", icon: "🍋" },
+            { en: "Pear", es: "Pera", type: "fruit", icon: "🍐" },
+            { en: "Coconut", es: "Coco", type: "fruit", icon: "🥥" },
+            { en: "Avocado", es: "Aguacate", type: "fruit", icon: "🥑" },
+            { en: "Kiwi", es: "Kiwi", type: "fruit", icon: "🥝" },
+            { en: "Blueberry", es: "Arándano", type: "fruit", icon: "🫐" },
+            { en: "Papaya", es: "Papaya", type: "fruit", icon: "🍈" },
+            { en: "Plum", es: "Ciruela", type: "fruit", icon: "🫐" },
+            { en: "Melon", es: "Melón", type: "fruit", icon: "🍈" },
+            { en: "Fig", es: "Higo", type: "fruit", icon: "🫐" },
+
+            // 10 VEGETABLES
+            { en: "Carrot", es: "Zanahoria", type: "vegetable", icon: "🥕" },
+            { en: "Tomato", es: "Tomate", type: "vegetable", icon: "🍅" },
+            { en: "Potato", es: "Papa", type: "vegetable", icon: "🥔" },
+            { en: "Onion", es: "Cebolla", type: "vegetable", icon: "🧅" },
+            { en: "Garlic", es: "Ajo", type: "vegetable", icon: "🧄" },
+            { en: "Broccoli", es: "Brócoli", type: "vegetable", icon: "🥦" },
+            { en: "Cucumber", es: "Pepino", type: "vegetable", icon: "🥒" },
+            { en: "Corn", es: "Maíz", type: "vegetable", icon: "🌽" },
+            { en: "Lettuce", es: "Lechuga", type: "vegetable", icon: "🥬" },
+            { en: "Pepper", es: "Pimiento / Pimentón", type: "vegetable", icon: "🫑" }
+        ];
+
+        const fruitsVeggiesQuestions = [
+            { q: "How do you say 'Manzana' in English?", options: ["Apple", "Orange", "Grape"], answer: "Apple" },
+            { q: "How do you say 'Zanahoria' in English?", options: ["Carrot", "Potato", "Onion"], answer: "Carrot" },
+            { q: "Which of the following is a fruit?", options: ["Strawberry", "Broccoli", "Garlic"], answer: "Strawberry" },
+            { q: "Which of the following is a vegetable?", options: ["Tomato", "Banana", "Peach"], answer: "Tomato" },
+            { q: "How do you say 'Fresa' in English?", options: ["Strawberry", "Cherry", "Watermelon"], answer: "Strawberry" },
+            { q: "How do you say 'Papa' in English?", options: ["Potato", "Onion", "Garlic"], answer: "Potato" },
+            { q: "How do you say 'Piña' in English?", options: ["Pineapple", "Coconut", "Mango"], answer: "Pineapple" }
+        ];
+
         const placesProfessionsData = [
             { place: "RESTAURANT", icon: "🍽️", profession: "Chef / Waiter", desc: "A place where people order and eat meals." },
             { place: "AIRPORT", icon: "✈️", profession: "Pilot / Flight Attendant", desc: "A place where airplanes land and take off." },
@@ -408,7 +470,7 @@
             { place: "BANK", icon: "🏦", profession: "Banker / Teller", desc: "A financial place for depositing or withdrawing money." }
         ];
 
-        /* CONTEXTUAL DIALOGUES IN PLACES (Lucia, Sebastian, Jenny, Andrea) */
+        /* CONTEXTUAL DIALOGUES IN PLACES */
         const placesDialoguesData = [
             {
                 title: "🏥 Hospital Reception (Lucia)",
@@ -528,14 +590,14 @@
             { q: "9. Choose the correct farewell when leaving at night:", A: "Good night", B: "Good morning", C: "Hello", D: "Hi", answer: "A" },
             { q: "10. Spell the action verb WRITE:", A: "W-R-I-T-E", B: "W-R-E-T-I", C: "R-I-T-E-W", D: "W-I-R-T-E", answer: "A" },
             { q: "11. Who works in a RESTAURANT?", A: "Chef / Waiter", B: "Teacher", C: "Pilot", D: "Banker", answer: "A" },
-            { q: "12. Who works in a HOSPITAL?", A: "Doctor / Nurse", B: "Firefighter", C: "Flight Attendant", D: "Police Officer", answer: "A" },
-            { q: "13. Who works at a POLICE STATION?", A: "Police Officer", B: "Teacher", C: "Chef", D: "Teller", answer: "A" },
+            { q: "12. How do you say 'Manzana' in English?", A: "Apple", B: "Strawberry", C: "Orange", D: "Pear", answer: "A" },
+            { q: "13. How do you say 'Zanahoria' in English?", A: "Carrot", B: "Potato", C: "Garlic", D: "Cucumber", answer: "A" },
             { q: "14. Who works at an AIRPORT?", A: "Pilot / Flight Attendant", B: "Doctor", C: "Banker", D: "Firefighter", answer: "A" },
             { q: "15. Complete: 'Good afternoon! I'm fine, thanks. ______'", A: "Good night", B: "What's your name?", C: "Glad to meet you", D: "How do you do?", answer: "C" },
             { q: "16. How do you spell the action verb DANCE?", A: "D-A-N-S-E", B: "D-A-N-C-E", C: "D-O-N-C-E", D: "D-A-N-C-I", answer: "B" },
             { q: "17. What is the sound of letter W in English?", A: "/dʌbəl ju:/", B: "/doblve/", C: "/dʌbl-v/", D: "/vee/", answer: "A" },
             { q: "18. Complete the dialogue: 'Where are you from?'", A: "I'm fine, thanks", B: "I'm from Colombia", C: "My name is Paula", D: "Good morning", answer: "B" },
-            { q: "19. Which greeting is appropriate for 3:00 PM?", A: "Good morning", B: "Good afternoon", C: "Good night", D: "Good evening", answer: "B" },
+            { q: "19. Which of the following is a fruit in English?", A: "Strawberry", B: "Broccoli", C: "Garlic", D: "Potato", answer: "A" },
             { q: "20. How do you spell the action verb LISTEN?", A: "L-I-S-T-E-N", B: "L-E-S-T-I-N", C: "L-I-S-N-E-T", D: "L-Y-S-T-E-N", answer: "A" }
         ];
 
@@ -579,7 +641,67 @@
         }
 
         /* ==========================================================================
-           4. PLACES & PROFESSIONS MODULE LOGIC (CARDS & CONTEXTUAL DIALOGUES)
+           4. FRUITS & VEGETABLES MODULE LOGIC (20 FRUITS + 10 VEGETABLES)
+           ========================================================================== */
+        // STREAMING_CHUNK:Implementing Fruits & Vegetables module logic with filter controls...
+        function startFruitsVeggies(filter = 'all') {
+            setCategoryHeader("Fruits & Vegetables (20 Frutas y 10 Verduras)");
+            
+            const exerciseDiv = document.getElementById("exercise");
+            document.getElementById("result").innerHTML = "";
+
+            const filteredData = filter === 'all' 
+                ? fruitsVeggiesData 
+                : fruitsVeggiesData.filter(item => item.type === filter);
+
+            let html = `
+                <div class="space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
+                        <div class="flex items-center space-x-1.5 text-xs font-bold">
+                            <button onclick="startFruitsVeggies('all')" class="px-3 py-1.5 rounded-xl transition ${filter === 'all' ? 'bg-enso-blue text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'}">Todas (30)</button>
+                            <button onclick="startFruitsVeggies('fruit')" class="px-3 py-1.5 rounded-xl transition ${filter === 'fruit' ? 'bg-red-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'}">🍎 Frutas (20)</button>
+                            <button onclick="startFruitsVeggies('vegetable')" class="px-3 py-1.5 rounded-xl transition ${filter === 'vegetable' ? 'bg-emerald-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'}">🥦 Verduras (10)</button>
+                        </div>
+
+                        <button onclick="initPracticeModule('Fruits & Vegetables Quiz', fruitsVeggiesQuestions)" class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-3.5 py-1.5 rounded-xl btn-bounce flex items-center space-x-1.5 shadow-sm whitespace-nowrap">
+                            <i class="fas fa-play"></i>
+                            <span>Practicar con Test</span>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-3 max-h-[420px] overflow-y-auto p-1">
+            `;
+
+            filteredData.forEach(item => {
+                const isFruit = item.type === 'fruit';
+                html += `
+                    <div onclick="speakEnglish('${item.en}'); playSfx(587, 'sine', 0.1);" class="fruit-card bg-white dark:bg-slate-800 p-3 rounded-2xl border-2 ${isFruit ? 'border-red-200 dark:border-slate-700 hover:border-red-500' : 'border-emerald-200 dark:border-slate-700 hover:border-emerald-500'} text-center cursor-pointer shadow-sm hover:shadow-md transition-all space-y-1.5 group">
+                        <div class="text-4xl group-hover:scale-110 transition-transform">${item.icon}</div>
+                        <div>
+                            <div class="text-xs font-black text-enso-blue dark:text-blue-400 uppercase tracking-tight">${item.en}</div>
+                            <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400">${item.es}</div>
+                        </div>
+                        <div class="flex items-center justify-center space-x-1 pt-1">
+                            <span class="text-[9px] ${isFruit ? 'bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300' : 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300'} font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wider">
+                                ${isFruit ? 'Fruit' : 'Vegetable'}
+                            </span>
+                            <i class="fas fa-volume-up text-slate-300 group-hover:text-amber-500 text-xs"></i>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+            `;
+
+            exerciseDiv.innerHTML = html;
+            document.getElementById("exercise-counter").innerText = `${filteredData.length} Alimentos`;
+        }
+
+        /* ==========================================================================
+           5. PLACES & PROFESSIONS MODULE LOGIC (CARDS & CONTEXTUAL DIALOGUES)
            ========================================================================== */
         function startPlacesProfessions() {
             setCategoryHeader("Places & Professions (Lugares, Profesiones y Diálogos)");
@@ -682,7 +804,7 @@
         }
 
         /* ==========================================================================
-           5. PRACTICE ENGINE LOGIC WITH "NEXT QUESTION" NAVIGATION
+           6. PRACTICE ENGINE LOGIC WITH "NEXT QUESTION" NAVIGATION
            ========================================================================== */
         let currentPracticeList = [];
         let currentPracticeIndex = 0;
@@ -748,9 +870,9 @@
                                 <i class="fas fa-redo"></i>
                                 <span>Repetir Módulo</span>
                             </button>
-                            <button onclick="startPlacesProfessions()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce flex items-center space-x-2 shadow-md">
-                                <i class="fas fa-building"></i>
-                                <span>Ver Places & Professions</span>
+                            <button onclick="startFruitsVeggies('all')" class="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs px-5 py-3 rounded-xl btn-bounce flex items-center space-x-2 shadow-md">
+                                <i class="fas fa-apple-alt"></i>
+                                <span>Ver Fruits & Veggies</span>
                             </button>
                         </div>
                     </div>
@@ -847,7 +969,7 @@
         }
 
         /* ==========================================================================
-           6. EXAM MODE ENGINE (20 QUESTIONS & REPORT GENERATION)
+           7. EXAM MODE ENGINE (20 QUESTIONS & REPORT GENERATION)
            ========================================================================== */
         let examIndex = 0;
         let score = 0;
@@ -1023,3 +1145,4 @@
     </script>
 </body>
 </html>
+```eof
